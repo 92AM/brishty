@@ -1,7 +1,7 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
 
 import React from "react";
-import {handleGetLocationDetailsRoute} from "../../webRouter/handleLocationDetailsRoute";
+import {handleLocationDetailsRoute} from "../../webRouter/handleLocationDetailsRoute";
 import {handleWeatherDetailsRoute} from "../../webRouter/handleWeatherDetailsRoute";
 import {WeatherDetails} from "../../interfaces";
 import Layout from "../../components/Layout";
@@ -19,7 +19,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({params}) => {
     try {
         const locationName = params?.id
-        const locationDetailsAsJson = await handleGetLocationDetailsRoute(locationName);
+        const locationDetailsAsJson = await handleLocationDetailsRoute(locationName);
         const searchedLocationCoordinates = locationDetailsAsJson.coord;
         const weatherDetailForGivenLocationAsJson = await handleWeatherDetailsRoute(
             searchedLocationCoordinates.lat,

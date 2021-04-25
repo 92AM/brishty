@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import React from "react";
-import SearchLocation from "../components/Search";
+import SearchLocation from "../components/SearchLocation";
 
 const IndexPage = () => (
     <Layout title="Brishty - search for weather">
