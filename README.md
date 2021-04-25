@@ -1,4 +1,4 @@
-# brishty
+# brishty [WIP]
 
 Brishty is a simple web application that displays weather related details based on a given location (i.e. a city), the site is using NextJs, TypeScript and ReactJS.
 
