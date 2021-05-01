@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {getWindow} from "../utils/browserService";
+import {getWindow} from "../services/BrowserService";
 
 const searchWeatherByLocation = (input: any) => {
     const windowLocation = getWindow().location;

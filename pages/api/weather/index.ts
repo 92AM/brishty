@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import {handleLocationDetailsRoute} from "../../../webRouter/handleLocationDetailsRoute";
-import {handleWeatherDetailsRoute} from "../../../webRouter/handleWeatherDetailsRoute";
+import {handleLocationDetailsRoute} from "../../../webRouters/handleLocationDetailsRoute";
+import {handleWeatherDetailsRoute} from "../../../webRouters/handleWeatherDetailsRoute";
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 

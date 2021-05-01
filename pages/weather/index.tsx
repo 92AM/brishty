@@ -1,8 +1,8 @@
 import {WeatherDetails} from '../../interfaces'
 import Layout from '../../components/Layout'
 import React from "react";
-import {handleLocationDetailsRoute} from "../../webRouter/handleLocationDetailsRoute";
-import {handleWeatherDetailsRoute} from "../../webRouter/handleWeatherDetailsRoute";
+import {handleLocationDetailsRoute} from "../../webRouters/handleLocationDetailsRoute";
+import {handleWeatherDetailsRoute} from "../../webRouters/handleWeatherDetailsRoute";
 
 type Props = {
     item: WeatherDetails

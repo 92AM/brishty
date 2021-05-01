@@ -1,0 +1,1 @@
+export const openWeatherMapApiKey: string | undefined = process.env.openWeatherMapApiKey;

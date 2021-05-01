@@ -1,11 +1,10 @@
 import {GetStaticPaths, GetStaticProps} from 'next'
 
 import React from "react";
-import {handleLocationDetailsRoute} from "../../webRouter/handleLocationDetailsRoute";
-import {handleWeatherDetailsRoute} from "../../webRouter/handleWeatherDetailsRoute";
 import {WeatherDetails} from "../../interfaces";
 import Layout from "../../components/Layout";
 import ListWeatherDetail from "../../components/ListWeatherDetail";
+import {getWeatherDetails} from "../../services/WeatherService";
 
 type Props = {
     weatherDetails?: WeatherDetails
@@ -19,17 +18,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({params}) => {
     try {
         const locationName = params?.id
-        const locationDetailsAsJson = await handleLocationDetailsRoute(locationName);
-        const searchedLocationCoordinates = locationDetailsAsJson.coord;
-        const weatherDetailForGivenLocationAsJson = await handleWeatherDetailsRoute(
-            searchedLocationCoordinates.lat,
-            searchedLocationCoordinates.lon
-        );
-
-        const weatherDetails = {
-            name: locationName,
-            fullRawWeatherData: JSON.stringify(weatherDetailForGivenLocationAsJson),
-        } as WeatherDetails;
+        const weatherDetails:WeatherDetails = await getWeatherDetails(locationName);
 
         return {
             props: {
@@ -46,7 +35,7 @@ const WeatherDetail = ({weatherDetails}: Props) => {
     return (
         <Layout
             title={`Brishty - Weather detail for ${
-                weatherDetails && weatherDetails.name
+                weatherDetails && weatherDetails.locationName
             }`}
         >
             {weatherDetails && <ListWeatherDetail item={weatherDetails}/>}
