@@ -3,7 +3,6 @@ import {handleWeatherDetailsRoute} from "../webRouters/handleWeatherDetailsRoute
 import {Current, Weather, WeatherDetails} from "../interfaces";
 import {convertKelvinToCelsius} from "./TemperatureConversionService";
 
-
 const mapWeather = (weather: any): Weather => {
     return {
         main: weather.main,

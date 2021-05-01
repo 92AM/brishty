@@ -39,7 +39,7 @@ const SearchLocation = () => {
                         onChange={onSearchChange}
                         required
                     />
-                    <button className="flex items-center px-4 py-2 text-black hover:bg-teal-400"
+                    <button className="flex items-center px-4 py-2 text-gray-800 hover:bg-teal-400"
                             onClick={onSearchSubmit}>
                         Search
                     </button>

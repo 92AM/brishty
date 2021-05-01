@@ -34,9 +34,9 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 const WeatherDetail = ({weatherDetails}: Props) => {
     return (
         <Layout
-            title={`Brishty - Weather detail for ${
+            title={`Brishty - ${
                 weatherDetails && weatherDetails.locationName
-            }`}
+            } weather`}
         >
             {weatherDetails && <ListWeatherDetail item={weatherDetails}/>}
         </Layout>
