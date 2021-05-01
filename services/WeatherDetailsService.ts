@@ -1,21 +1,25 @@
 import {handleLocationDetailsRoute} from "../webRouters/handleLocationDetailsRoute";
 import {handleWeatherDetailsRoute} from "../webRouters/handleWeatherDetailsRoute";
 import {Current, Weather, WeatherDetails} from "../interfaces";
+import {convertKelvinToCelsius} from "./TemperatureConversionService";
 
 
 const mapWeather = (weather: any): Weather => {
     return {
-        id: weather.id as number,
         main: weather.main,
         description: weather.description,
-        icon: weather.icon
     } as Weather;
 }
 
-const mapCurrentWeather = (currentWeather: any): Current => {
-    const weather = mapWeather(currentWeather.weather[0]);
+const mapCurrentWeather = (weatherDetailsJson: any): Current => {
+    const current = weatherDetailsJson.current
+
+    const weather = mapWeather(current.weather[0]);
     return {
-        weather: weather
+        currentTemp: convertKelvinToCelsius(current.temp as number),
+        maxTemp: convertKelvinToCelsius(weatherDetailsJson.daily[0].temp.max),
+        minTemp: convertKelvinToCelsius(weatherDetailsJson.daily[0].temp.min),
+        weather: weather,
     } as Current;
 }
 
@@ -24,7 +28,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
     weatherDetailsJson: any
 ): WeatherDetails => {
 
-    const currentWeather = mapCurrentWeather(weatherDetailsJson.current);
+    const currentWeather = mapCurrentWeather(weatherDetailsJson);
 
     return {
         locationName: locationName,

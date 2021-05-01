@@ -25,6 +25,10 @@ const ListWeatherDetail = ({item: weatherDetails}: ListDetailProps) => (
             <p/>
             {weatherDetails.timezone}
         </p>
+        <p><h2>Current Weather :</h2>
+            <p/>
+            {JSON.stringify(weatherDetails.current)}
+        </p>
     </div>
 )
 
