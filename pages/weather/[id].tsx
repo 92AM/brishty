@@ -18,7 +18,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({params}) => {
     try {
         const locationName = params?.id
-        const weatherDetails:WeatherDetails = await getWeatherDetails(locationName);
+        const weatherDetails = await getWeatherDetails(locationName);
 
         return {
             props: {

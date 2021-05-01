@@ -3,7 +3,7 @@ import {handleWeatherDetailsRoute} from "../webRouters/handleWeatherDetailsRoute
 import {WeatherDetails} from "../interfaces";
 
 
-const mapWeatherJsonToWeatherDetails = (
+const mapWeatherDetailsJsonToWeatherDetailsObject = (
     locationName: string | string[] | undefined,
     weatherDetailsJson: any
 ): WeatherDetails => {
@@ -17,7 +17,9 @@ const mapWeatherJsonToWeatherDetails = (
     } as WeatherDetails;
 }
 
-export const getWeatherDetails = async (locationName: string | string[] | undefined): Promise<WeatherDetails> => {
+export const getWeatherDetails = async (
+    locationName: string | string[] | undefined
+): Promise<WeatherDetails> => {
 
     const locationDetailsAsJson = await handleLocationDetailsRoute(locationName);
     const searchedLocationCoordinates = locationDetailsAsJson.coord;
@@ -26,5 +28,8 @@ export const getWeatherDetails = async (locationName: string | string[] | undefi
         searchedLocationCoordinates.lon
     );
 
-    return mapWeatherJsonToWeatherDetails(locationName, weatherDetailForGivenLocationAsJson);
+    return mapWeatherDetailsJsonToWeatherDetailsObject(
+        locationName,
+        weatherDetailForGivenLocationAsJson
+    );
 };
