@@ -5,7 +5,7 @@ import SearchLocation from "../components/SearchLocation";
 const IndexPage = () => (
     <Layout title="Brishty - search for weather">
         <h1>Brishty ☂️ 🌨️ 🌈 ☀️ 🌪️ </h1>
-        <SearchLocation/>
+        {/*<SearchLocation/>*/}
     </Layout>
 )
 

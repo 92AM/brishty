@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import Header from "./Header";
 
 type Props = {
     children?: ReactNode
@@ -16,6 +17,7 @@ const Layout = ({children, title = 'Brishty'}: Props) => (
             <meta charSet="utf-8"/>
             <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
         </Head>
+        <Header/>
         <header>
             <nav>
                 <Link href="/">
@@ -28,9 +30,8 @@ const Layout = ({children, title = 'Brishty'}: Props) => (
             </nav>
         </header>
         {children}
-        <footer>
-            <hr/>
-            <span>Brishty &#169; 2021</span>
+        <footer className="bg-indigo-900 text-white text-2l text-center p-8">
+            Brishty &#169; 2021
         </footer>
     </div>
 )
