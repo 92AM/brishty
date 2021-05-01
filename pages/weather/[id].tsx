@@ -4,7 +4,7 @@ import React from "react";
 import {WeatherDetails} from "../../interfaces";
 import Layout from "../../components/Layout";
 import ListWeatherDetail from "../../components/ListWeatherDetail";
-import {getWeatherDetails} from "../../services/WeatherService";
+import {getWeatherDetails} from "../../services/WeatherDetailsService";
 
 type Props = {
     weatherDetails?: WeatherDetails

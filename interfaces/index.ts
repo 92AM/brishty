@@ -1,16 +1,16 @@
 export interface Current {
-    dateTime: string
-    sunrise: string
-    sunset: string
-    temp: number
-    feelsLike: number
-    pressure: number
-    humidity: number
-    uvi: number
-    clouds: number
-    visibility: number
-    windSpeed: number
-    windDegree: number
+    // dateTime: string
+    // sunrise: string
+    // sunset: string
+    // temp: number
+    // feelsLike: number
+    // pressure: number
+    // humidity: number
+    // uvi: number
+    // clouds: number
+    // visibility: number
+    // windSpeed: number
+    // windDegree: number
     weather: Weather
 }
 
@@ -31,6 +31,6 @@ export interface WeatherDetails {
     longitude: string
     timezone: string
 
-    // current: Current
+    current: Current
 
 }
