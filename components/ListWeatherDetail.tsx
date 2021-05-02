@@ -7,28 +7,17 @@ type ListDetailProps = {
 }
 
 const ListWeatherDetail = ({item: weatherDetails}: ListDetailProps) => (
-    <div>
-        <h1>Detail for location : {weatherDetails.locationName}</h1>
-        {/*<p><h2>Returned by Open Weather API :</h2>*/}
-        {/*    <p/>*/}
-        {/*    {weatherDetails.fullRawWeatherData}*/}
-        {/*</p>*/}
-        <p><h2>Latitude :</h2>
-            <p/>
-            {weatherDetails.latitude}
-        </p>
-        <p><h2>Longitude :</h2>
-            <p/>
-            {weatherDetails.longitude}
-        </p>
-        <p><h2>Timezone :</h2>
-            <p/>
-            {weatherDetails.timezone}
-        </p>
-        <p><h2>Current Weather :</h2>
-            <p/>
-            {JSON.stringify(weatherDetails.current)}
-        </p>
+
+    <div className="flex space-x-4">
+        <div className="flex-1 p-4 max-w-xs">
+            <h1 className="text-5xl p-1 text-center">{weatherDetails.locationName}</h1>
+            <h2 className="text-2xl text-center capitalize p-1 hidden sm:block">{weatherDetails.current.weather.description}</h2>
+            <h1 className="text-8xl p-1 text-center">{weatherDetails.current.currentTemp}</h1>
+            <h2 className="text-xl text-center">High : {weatherDetails.current.maxTemp} Low : {weatherDetails.current.minTemp}</h2>
+        </div>
+        <div className="text-l flex-1 p-4">
+            {/*TODO : Add stuff here*/}
+        </div>
     </div>
 )
 

@@ -5,6 +5,7 @@ import {WeatherDetails} from "../../interfaces";
 import Layout from "../../components/Layout";
 import ListWeatherDetail from "../../components/ListWeatherDetail";
 import {getWeatherDetails} from "../../services/WeatherDetailsService";
+import PageContent from "../../components/PageContent";
 
 type Props = {
     weatherDetails?: WeatherDetails
@@ -38,7 +39,9 @@ const WeatherDetail = ({weatherDetails}: Props) => {
                 weatherDetails && weatherDetails.locationName
             } weather`}
         >
-            {weatherDetails && <ListWeatherDetail item={weatherDetails}/>}
+            <PageContent>
+                {weatherDetails && <ListWeatherDetail item={weatherDetails}/>}
+            </PageContent>
         </Layout>
     )
 }
