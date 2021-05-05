@@ -19,6 +19,6 @@ To view the data returned by openweathermap.org visit : http://localhost:3000/ap
 Note : In order to get weather details of a different location just change the location, see below.
 `http://localhost:3000/api/weather?location={ENTER_YOUR_LOCATION_HERE}`
 
-## Live link 
+## Live link - under construction (very much a WIP)
 
 https://brishty.netlify.app/
