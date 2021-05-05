@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 
-const PageContent = () => {
+type Props = {
+    children?: ReactNode
+}
+
+const PageContent = ({children}: Props) => {
     return (
-        <div></div>
+        <div className="md:container md:mx-auto px-4 pt-28 pb-4">
+            {children}
+        </div>
     );
 };
 

@@ -28,7 +28,7 @@ const SearchLocation = () => {
     };
 
     return (
-        <form onSubmit={onSearchSubmit} className="mb-4 w-full md:mb-0 md:w-2/5">
+        <form onSubmit={onSearchSubmit} className="mb-4 w-full md:mb-0 md:w-3/6">
             <div className="p-1">
                 <div className="bg-white flex items-center rounded-full shadow-xl divide-x">
                     <input
