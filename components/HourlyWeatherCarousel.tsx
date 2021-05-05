@@ -38,7 +38,7 @@ export const HourlyWeatherCarousel = (props: any) => {
             onSlideNextTransitionStart={onSlideNextTransitionStart}
             onSlidePrevTransitionStart={onSlidePrevTransitionStart}
             onReachEnd={() => {console.log("Last slide reached!")}}
-            navigation
+            // navigation
         >
             {slides}
         </Swiper>
