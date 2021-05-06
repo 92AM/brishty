@@ -1,25 +1,44 @@
 import {handleLocationDetailsRoute} from "../webRouters/handleLocationDetailsRoute";
 import {handleWeatherDetailsRoute} from "../webRouters/handleWeatherDetailsRoute";
-import {Current, Weather, WeatherDetails} from "../interfaces";
+import {Current, Hour, Weather, WeatherDetails} from "../interfaces";
 import {convertKelvinToCelsius} from "./TemperatureConversionService";
 
-const mapWeather = (weather: any): Weather => {
+const mapToWeather = (weather: any): Weather => {
     return {
         main: weather.main,
         description: weather.description,
+        icon: weather.icon
     } as Weather;
 }
 
-const mapCurrentWeather = (weatherDetailsJson: any): Current => {
-    const current = weatherDetailsJson.current
+const mapToCurrentWeather = (weatherDetailsJson: any): Current => {
 
-    const weather = mapWeather(current.weather[0]);
+    const current = weatherDetailsJson.current
+    const weather = mapToWeather(current.weather[0]);
+
     return {
-        currentTemp: convertKelvinToCelsius(current.temp as number),
+        currentTemp: convertKelvinToCelsius(current.temp),
         maxTemp: convertKelvinToCelsius(weatherDetailsJson.daily[0].temp.max),
         minTemp: convertKelvinToCelsius(weatherDetailsJson.daily[0].temp.min),
         weather: weather,
     } as Current;
+}
+
+const mapToHourlyWeather = (weatherDetailsJson: any): Hour[] => {
+
+    const hourlyWeather = weatherDetailsJson.hourly;
+    const hourly: Hour[] = [];
+
+    hourlyWeather.forEach((hour: any) => {
+        const tempHour: Hour = {
+            dateTime: hour.dt,
+            temp: convertKelvinToCelsius(hour.temp),
+            weather: mapToWeather(hour.weather[0])
+        }
+        hourly.push(tempHour)
+    })
+
+    return hourly
 }
 
 const mapWeatherDetailsJsonToWeatherDetailsObject = (
@@ -27,7 +46,8 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
     weatherDetailsJson: any
 ): WeatherDetails => {
 
-    const currentWeather = mapCurrentWeather(weatherDetailsJson);
+    const currentWeather = mapToCurrentWeather(weatherDetailsJson);
+    const hourly = mapToHourlyWeather(weatherDetailsJson);
 
     return {
         locationName: locationName,
@@ -35,6 +55,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
         longitude: weatherDetailsJson.lon,
         timezone: weatherDetailsJson.timezone,
         current: currentWeather,
+        hourly: hourly,
         fullRawWeatherData: JSON.stringify(weatherDetailsJson),
     } as WeatherDetails;
 }

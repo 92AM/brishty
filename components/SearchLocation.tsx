@@ -17,7 +17,7 @@ const SearchLocation = () => {
         e.preventDefault();
         try {
             if (!input) {
-                throw "An error occurred, please insert a valid city name and search again."
+                throw "Please insert a valid city name and search again."
             } else {
                 searchWeatherByLocation(input)
             }
