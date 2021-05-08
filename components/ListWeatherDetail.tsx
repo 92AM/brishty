@@ -38,22 +38,22 @@ const ListWeatherDetail = ({item: weatherDetails}: ListDetailProps) => {
     });
 
     return (
-        <div className="md:flex space-x-4">
-            <div className="flex-1 pt-20 pb-8 md:p-8 max-w-sx text-gray-800 container mx-auto">
-                <h1 className="text-5xl p-1 text-center">{weatherDetails.locationName}</h1>
+        <div className="md:flex">
+            <div className="flex-1 pt-20 md:pt-10 pb-8 max-w-md text-gray-800 container mx-auto">
+                <h1 className="text-5xl truncate text-center mx-auto">{weatherDetails.locationName}</h1>
                 <h2 className="text-xl text-center capitalize p-1">
                     {weatherDetails.current.weather.description}
                 </h2>
                 <h1 className="text-8xl p-1 text-center">{weatherDetails.current.currentTemp}</h1>
                 <h2 className="text-xl text-center">
-                    High : {weatherDetails.current.maxTemp}
+                    High : {weatherDetails.current.maxTemp}C
                 </h2>
                 <h2 className="text-xl text-center">
-                    Low : {weatherDetails.current.minTemp}
+                    Low : {weatherDetails.current.minTemp}C
                 </h2>
             </div>
-            <div className="flex overflow-x-scroll pt-10 pb-10 hide-scroll-bar">
-                <div className="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+            <div className="flex overflow-x-scroll pt-10 pb-10 hide-scroll-bar md:ml-5 md:max-w-lg lg:max-w-xl xl:max-w-3xl 2xl:max-w-5xl">
+                <div className="flex flex-nowrap ">
                     {slideComponents}
                 </div>
             </div>
