@@ -38,7 +38,9 @@ const HourlyWeather = ({item: hourly}: HourlyWeatherProps) => {
 
     return (
         <div
-            className="flex overflow-x-scroll pt-10 pb-10 hide-scroll-bar md:ml-5 md:max-w-lg lg:max-w-xl xl:max-w-3xl 2xl:max-w-5xl">
+            className="flex overflow-x-scroll pt-10 pb-10 hide-scroll-bar
+            md:ml-5 md:max-w-lg lg:max-w-xl xl:max-w-3xl 2xl:max-w-5xl"
+        >
             <div className="flex flex-nowrap ">
                 {slideComponents}
             </div>
