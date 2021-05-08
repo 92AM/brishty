@@ -3,7 +3,7 @@ import {GetStaticPaths, GetStaticProps} from 'next'
 import React from "react";
 import {WeatherDetails} from "../../interfaces";
 import Layout from "../../components/Layout";
-import ListWeatherDetail from "../../components/ListWeatherDetail";
+import LocationWeatherDetail from "../../components/LocationWeatherDetail";
 import {getWeatherDetails} from "../../services/WeatherDetailsService";
 import PageContent from "../../components/PageContent";
 
@@ -40,7 +40,7 @@ const WeatherDetail = ({weatherDetails}: Props) => {
             } weather`}
         >
             <PageContent>
-                {weatherDetails && <ListWeatherDetail item={weatherDetails}/>}
+                {weatherDetails && <LocationWeatherDetail item={weatherDetails}/>}
             </PageContent>
         </Layout>
     )
