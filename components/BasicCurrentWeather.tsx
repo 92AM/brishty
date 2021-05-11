@@ -7,8 +7,8 @@ type WeatherDetailsProps = {
 
 const BasicCurrentWeather = ({item: weatherDetails}: WeatherDetailsProps) => {
     return (
-        <div className="flex-1 pt-20 md:pt-10 pb-8 max-w-md md:mr-10 text-gray-800 container mx-auto">
-            <h1 className="text-5xl truncate text-center mx-auto">{weatherDetails.locationName}</h1>
+        <div className="flex-1 pt-20 md:pt-10 pb-8 max-w-md text-gray-800 container mx-auto">
+            <h1 className="text-5xl pb-2 truncate text-center mx-auto">{weatherDetails.locationName}</h1>
             <h2 className="text-xl text-center capitalize p-1">
                 {weatherDetails.current.weather.description}
             </h2>

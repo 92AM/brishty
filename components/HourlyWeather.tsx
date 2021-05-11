@@ -30,7 +30,7 @@ const HourlyWeather = ({item: hourly}: HourlyWeatherProps) => {
                         src={` https://openweathermap.org/img/wn/${hour.weather.icon}@4x.png`}
                         alt={hour.weather.description}
                     />
-                    <h1 className="text-xl md:text-2xl pb-5 md:pb-10 text-center">{`${hour.temp}C`}</h1>
+                    <h1 className="text-xl md:text-2xl pb-5 md:pb-10 text-center">{`${hour.temperature}C`}</h1>
                 </div>
             </div>
         );

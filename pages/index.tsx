@@ -1,10 +1,10 @@
 import Layout from '../components/Layout'
 import React from "react";
-import PageContent from "../components/PageContent";
+import PageContentWrapper from "../components/PageContentWrapper";
 
 const IndexPage = () => (
     <Layout title="Brishty - search for weather">
-        <PageContent>
+        <PageContentWrapper>
             <h1>Brishty ☂️ 🌨️ 🌈 ☀️ 🌪️ </h1>
             {/*<SearchLocation/>*/}
             <div>
@@ -102,7 +102,7 @@ const IndexPage = () => (
                 blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede
                 facilisis laoreet. Donec lacus nunc, viverra nec.
             </div>
-        </PageContent>
+        </PageContentWrapper>
     </Layout>
 )
 

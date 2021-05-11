@@ -3,6 +3,17 @@ export interface Current {
     maxTemp: string
     minTemp: string
     weather: Weather
+    dateTime: string
+    sunrise: string
+    sunset: string
+    feelsLike: string
+    pressure: string
+    humidity: string
+    uvIndex: string
+    visibility: string
+    windSpeed: string
+    windDegree: string
+    cloudiness: string
 }
 
 export interface Weather {
@@ -11,10 +22,45 @@ export interface Weather {
     icon: string
 }
 
+export interface Temperature {
+    min: string
+    max: string
+    day: string
+    night: string
+    evening: string
+    morning: string
+}
+
+export interface FeelLike {
+    day: string
+    night: string
+    evening: string
+    morning: string
+}
+
 export interface Hour {
     dateTime: string
     weather: Weather
-    temp: string
+    temperature: string
+    probabilityOfPrecipitation: string
+}
+
+export interface Daily {
+    dateTime: string
+    sunrise: string
+    sunset: string
+    moonrise: string
+    moonset: string
+    weather: Weather
+    temperature: Temperature
+    feelsLike: FeelLike
+    probabilityOfPrecipitation: string
+    uvIndex: string
+    windDegree: string
+    windSpeed: string
+    cloudiness: string
+    pressure: string
+    humidity: string
 }
 
 export interface WeatherDetails {
@@ -24,6 +70,7 @@ export interface WeatherDetails {
     timezone: string
     current: Current
     hourly: Hour[]
+    daily: Daily[]
 
     // TODO : To be removed eventually ...
     fullRawWeatherData: string

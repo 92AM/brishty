@@ -3,9 +3,10 @@ import {GetStaticPaths, GetStaticProps} from 'next'
 import React from "react";
 import {WeatherDetails} from "../../interfaces";
 import Layout from "../../components/Layout";
-import LocationWeatherDetail from "../../components/LocationWeatherDetail";
+import BasicCurrentlyAndHourlyWeather from "../../components/BasicCurrentlyAndHourlyWeather";
 import {getWeatherDetails} from "../../services/WeatherDetailsService";
-import PageContent from "../../components/PageContent";
+import PageContentWrapper from "../../components/PageContentWrapper";
+import DetailedCurrentWeather from "../../components/DetailedCurrentWeather";
 
 type Props = {
     weatherDetails?: WeatherDetails
@@ -28,22 +29,28 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             revalidate: 60
         }
     } catch (err) {
-        return {notFound: true}
+        return {
+            notFound: true
+        }
     }
 }
 
-const WeatherDetail = ({weatherDetails}: Props) => {
+const Weather = ({weatherDetails}: Props) => {
     return (
         <Layout
             title={`Brishty - ${
                 weatherDetails && weatherDetails.locationName
             } weather`}
         >
-            <PageContent>
-                {weatherDetails && <LocationWeatherDetail item={weatherDetails}/>}
-            </PageContent>
+            <PageContentWrapper>
+                {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails}/>}
+            </PageContentWrapper>
+            {weatherDetails && <DetailedCurrentWeather item={weatherDetails}/>}
+            <PageContentWrapper classNameCustomAttributes={"p-12"}>
+                <div>EMPTY DIV FOR NOW : THIS WILL DISPLAY DAILY WEATHER</div>
+            </PageContentWrapper>
         </Layout>
     )
 }
 
-export default WeatherDetail
+export default Weather

@@ -4,11 +4,11 @@ import {WeatherDetails} from '../interfaces'
 import BasicCurrentWeather from "./BasicCurrentWeather";
 import HourlyWeather from "./HourlyWeather";
 
-type ListDetailProps = {
+type Props = {
     item: WeatherDetails
 }
 
-const LocationWeatherDetail = ({item: weatherDetails}: ListDetailProps) => {
+const BasicCurrentlyAndHourlyWeather = ({item: weatherDetails}: Props) => {
 
     return (
         <div className="md:flex">
@@ -18,5 +18,5 @@ const LocationWeatherDetail = ({item: weatherDetails}: ListDetailProps) => {
     );
 }
 
-export default LocationWeatherDetail
+export default BasicCurrentlyAndHourlyWeather
 

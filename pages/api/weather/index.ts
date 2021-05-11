@@ -1,15 +1,15 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import {handleLocationDetailsRoute} from "../../../webRouters/handleLocationDetailsRoute";
-import {handleWeatherDetailsRoute} from "../../../webRouters/handleWeatherDetailsRoute";
+import {locationDetailsRouteHandler} from "../../../webRouters/LocationDetailsRouteHandler";
+import {weatherDetailsRouteHandler} from "../../../webRouters/WeatherDetailsRouteHandler";
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
     const locationName = _req.query.location
 
     try {
-        const locationDetailsAsJson = await handleLocationDetailsRoute(locationName);
+        const locationDetailsAsJson = await locationDetailsRouteHandler(locationName);
         const searchedLocationCoordinates = locationDetailsAsJson.coord;
-        const weatherDetailForGivenLocationAsJson = await handleWeatherDetailsRoute(
+        const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
             searchedLocationCoordinates.lat,
             searchedLocationCoordinates.lon
         );
