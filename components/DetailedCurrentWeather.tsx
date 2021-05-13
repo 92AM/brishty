@@ -71,6 +71,7 @@ const DetailedCurrentWeather = ({item: weatherDetails}: Props) => {
                     />
                 </div>
             </div>
+
         </div>
     );
 };

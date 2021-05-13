@@ -6,11 +6,13 @@ Brishty is a simple web application that displays weather related details based 
 
 `npm run dev`
 
-The app should start locally here : http://localhost:3000/ 
+The app should start locally here : http://localhost:3000/
+
+Example weather page : http://localhost:3000/weather/London
 
 ## Building in production
 
-`npm run build && npm run start`
+`next build && next start`
 
 ## Api support
 

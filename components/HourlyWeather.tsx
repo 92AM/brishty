@@ -14,7 +14,7 @@ const HourlyWeather = ({item: hourly}: HourlyWeatherProps) => {
 
         const time = index === 0
             ? 'Now'
-            : moment.unix(Number(hour.dateTime)).format('HH');
+            : moment.unix(Number(hour.dateTime)).format('HH:') + "00";
 
         slideComponents.push(
             <div className="inline-block px-3">
