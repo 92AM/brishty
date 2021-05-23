@@ -11,7 +11,9 @@ type Props = {
 const Layout = ({children, title}: Props) => (
     <Fragment>
         <Seo title={title}/>
-        <body className="bg-gray-50"/>
+        <body className="bg-gray-50">
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        </body>
         <Header/>
         {children}
         <Footer/>

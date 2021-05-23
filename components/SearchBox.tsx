@@ -28,18 +28,18 @@ const SearchBox = () => {
     };
 
     return (
-        <form onSubmit={onSearchSubmit} className="mb-4 w-full md:mb-0 md:w-3/6">
+        <form onSubmit={onSearchSubmit} className="pt-6 px-3 md:px-10 pb-10 mb-4 w-full">
             <div className="p-1">
                 <div className="bg-white flex items-center rounded-full shadow-xl divide-x">
                     <input
-                        className="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
+                        className="rounded-l-full h-16 w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
                         type="search"
                         placeholder="City name"
                         value={input}
                         onChange={onSearchChange}
                         required
                     />
-                    <button className="flex items-center px-4 py-2 text-gray-800 hover:bg-teal-400"
+                    <button className="flex items-center px-4 py-2 text-gray-800 hover:bg-teal-400 text-xl"
                             onClick={onSearchSubmit}
                     >
                         Search
