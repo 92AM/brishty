@@ -48,9 +48,7 @@ const Weather = ({weatherDetails}: Props) => {
             </PageContentWrapper>
             {weatherDetails && <DetailedCurrentWeather item={weatherDetails}/>}
             <PageContentWrapper classNameCustomAttributes={"py-8 px-2"}>
-                <div className="md:flex">
-                    {weatherDetails && <SevenDayWeatherSection item={weatherDetails.daily}/>}
-                </div>
+                {weatherDetails && <SevenDayWeatherSection item={weatherDetails.daily}/>}
             </PageContentWrapper>
         </Layout>
     )

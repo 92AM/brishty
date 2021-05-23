@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/globals.css'
-import '../styles/accordion.css'
+import '../styles/nav.css'
 
 export default function App({Component, pageProps}) {
     return <Component {...pageProps} />

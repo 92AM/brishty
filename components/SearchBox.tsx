@@ -6,7 +6,7 @@ const searchWeatherByLocation = (input: any) => {
     windowLocation.assign('/weather/' + input);
 }
 
-const SearchLocation = () => {
+const SearchBox = () => {
     const [input, setInput] = useState('');
 
     const onSearchChange = (e: any) => {
@@ -40,7 +40,8 @@ const SearchLocation = () => {
                         required
                     />
                     <button className="flex items-center px-4 py-2 text-gray-800 hover:bg-teal-400"
-                            onClick={onSearchSubmit}>
+                            onClick={onSearchSubmit}
+                    >
                         Search
                     </button>
                 </div>
@@ -49,4 +50,4 @@ const SearchLocation = () => {
     );
 };
 
-export default SearchLocation
+export default SearchBox

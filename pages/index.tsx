@@ -6,7 +6,7 @@ const IndexPage = () => (
     <Layout title="Brishty - search for weather">
         <PageContentWrapper>
             <h1>Brishty ☂️ 🌨️ 🌈 ☀️ 🌪️ </h1>
-            {/*<SearchLocation/>*/}
+            {/*<SearchBox/>*/}
             <div>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus
                 ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
