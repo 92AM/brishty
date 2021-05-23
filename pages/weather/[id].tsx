@@ -7,6 +7,7 @@ import BasicCurrentlyAndHourlyWeather from "../../components/BasicCurrentlyAndHo
 import {getWeatherDetails} from "../../services/WeatherDetailsService";
 import PageContentWrapper from "../../components/PageContentWrapper";
 import DetailedCurrentWeather from "../../components/DetailedCurrentWeather";
+import SevenDayWeatherSection from "../../components/SevenDayWeatherSection";
 
 type Props = {
     weatherDetails?: WeatherDetails
@@ -46,8 +47,10 @@ const Weather = ({weatherDetails}: Props) => {
                 {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails}/>}
             </PageContentWrapper>
             {weatherDetails && <DetailedCurrentWeather item={weatherDetails}/>}
-            <PageContentWrapper classNameCustomAttributes={"p-12"}>
-                <div>EMPTY DIV FOR NOW : THIS WILL DISPLAY DAILY WEATHER</div>
+            <PageContentWrapper classNameCustomAttributes={"py-8 px-2"}>
+                <div className="md:flex">
+                    {weatherDetails && <SevenDayWeatherSection item={weatherDetails.daily}/>}
+                </div>
             </PageContentWrapper>
         </Layout>
     )

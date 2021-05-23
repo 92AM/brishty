@@ -5,12 +5,12 @@ import {convertKelvinToCelsius} from "./GenericUtilityService";
 
 const mapToTemperature = (temperature: any): Temperature => {
     return {
-        min: temperature.min,
-        max: temperature.max,
-        day: temperature.day,
-        night: temperature.night,
-        evening: temperature.eve,
-        morning: temperature.morn,
+        min: convertKelvinToCelsius(temperature.min),
+        max: convertKelvinToCelsius(temperature.max),
+        day: convertKelvinToCelsius(temperature.day),
+        night: convertKelvinToCelsius(temperature.night),
+        evening: convertKelvinToCelsius(temperature.eve),
+        morning: convertKelvinToCelsius(temperature.morn),
     } as Temperature;
 }
 
