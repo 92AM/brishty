@@ -3,12 +3,13 @@ import {validateAndExecuteSearch} from "../services/SearchService";
 
 export interface NavSearchProps {
     searchContentNode?: any
+    displayNavSearch: any
+    setDisplayNavSearch: any
 }
 
-const NavSearch = ({searchContentNode}: NavSearchProps) => {
+const NavSearch = ({searchContentNode, displayNavSearch, setDisplayNavSearch}: NavSearchProps) => {
 
     const [input, setInput] = useState('');
-    const [displayNavSearch, setDisplayNavSearch] = useState(true);
 
     const onSearchFormSubmit = (e: any) => {
         e.preventDefault();
@@ -37,7 +38,8 @@ const NavSearch = ({searchContentNode}: NavSearchProps) => {
 
     if (displayNavSearch) {
         return (
-            <form onSubmit={onSearchFormSubmit} className="relative w-full bg-white shadow-xl" id="search-content" ref={searchContentNode}>
+            <form onSubmit={onSearchFormSubmit} className="relative w-full bg-white shadow-xl" id="search-content"
+                  ref={searchContentNode}>
                 <div className="container mx-auto py-3 text-black">
                     <input
                         className={cxSearchInput}

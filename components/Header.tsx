@@ -125,6 +125,8 @@ const Header = () => {
             {displayNavSearch &&
             <NavSearch
                 searchContentNode={searchContentNode}
+                displayNavSearch={displayNavSearch}
+                setDisplayNavSearch={setDisplayNavSearch}
             />}
         </nav>
     );
