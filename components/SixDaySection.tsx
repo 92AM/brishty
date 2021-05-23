@@ -2,7 +2,7 @@ import React from "react";
 
 const SixDaySection = () => {
     return (
-        <section className="text-gray-600 body-font">
+        <section className="text-gray-800 body-font">
             <div className="container px-5 mx-auto">
                 <div className="flex flex-wrap -m-4">
                     <div className="xl:w-1/3 md:w-1/2 container mx-auto p-4">
@@ -12,7 +12,7 @@ const SixDaySection = () => {
                                 src={` https://openweathermap.org/img/wn/10d@4x.png`}
                                 alt="image description"
                             />
-                            <h2 className="text-center text-2xl text-gray-900 font-medium title-font mb-4">Saturday</h2>
+                            <h2 className="text-center text-2xl text-gray-800 font-medium title-font mb-4">Saturday</h2>
 
                             <div className="grid gap-4 grid-cols-2">
                                 <div className="divide-y space-y-2">
