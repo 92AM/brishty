@@ -11,7 +11,7 @@ const PageContentWrapper = ({children, classNameCustomAttributes}: Props) => {
 
     const classNameToPassToComponent = classNameCustomAttributes
         ? defaultClassNameAttributes + " " + classNameCustomAttributes
-        : defaultClassNameAttributes + " px-4 pt-28 pb-4";
+        : defaultClassNameAttributes + " px-4 pt-20 pb-4";
 
     return (
         <div className={classNameToPassToComponent}>

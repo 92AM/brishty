@@ -39,7 +39,7 @@ const SevenDayWeatherSection = ({item: daily}: DailyWeatherProps) => {
                         <div className="grid gap-4 grid-cols-2">
                             <div className="divide-y space-y-2">
                                 <div>
-                                    <p className="text-center leading-relaxed text-base pt-1">Chance of Rain</p>
+                                    <p className="text-center leading-relaxed text-base pt-1">Chance of rain</p>
                                     <p className="text-center">
                                         <b>{Math.round(Number(eachDay.probabilityOfPrecipitation) * 100)}%</b></p>
                                 </div>
@@ -72,7 +72,7 @@ const SevenDayWeatherSection = ({item: daily}: DailyWeatherProps) => {
                                     <p className="text-center"><b>{eachDay.cloudiness}%</b></p>
                                 </div>
                                 <div>
-                                    <p className="text-center leading-relaxed text-base pt-1">Feels like</p>
+                                    <p className="text-center leading-relaxed text-base pt-1">Feels like (avg)</p>
                                     <p className="text-center"><b>{feelsLike}C</b></p>
                                 </div>
                             </div>
@@ -84,12 +84,13 @@ const SevenDayWeatherSection = ({item: daily}: DailyWeatherProps) => {
     });
 
     return (
-        <div className="flex overflow-x-scroll hide-scroll-bar h-full">
-            <div className="flex flex-nowrap py-2">
-                {slideComponents}
+        <div className="md:flex">
+            <div className="flex overflow-x-scroll hide-scroll-bar h-full">
+                <div className="flex flex-nowrap py-2">
+                    {slideComponents}
+                </div>
             </div>
         </div>
-
     );
 }
 
