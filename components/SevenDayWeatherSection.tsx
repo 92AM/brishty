@@ -29,7 +29,7 @@ const SevenDayWeatherSection = ({item: daily}: DailyWeatherProps) => {
                     <div className="p-4">
                         <img
                             className="object-contain object-center w-full h-24"
-                            src={` https://openweathermap.org/img/wn/${eachDay.weather.icon}@4x.png`}
+                            src={`https://openweathermap.org/img/wn/${eachDay.weather.icon}@4x.png`}
                             alt={eachDay.weather.description}
                         />
                         <h2 className="text-center text-xl text-gray-900 font-medium title-font mb-4">
