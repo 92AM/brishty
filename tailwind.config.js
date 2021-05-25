@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: theme => ({
-        'raindrop': "url('/images/landscape.jpg')",
+        'landscape': "url('/images/landscape.jpg')",
       })
     },
   },
