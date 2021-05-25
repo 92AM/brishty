@@ -32,9 +32,9 @@ const IndexPage = () => (
                                     alt={"weather icon"}
                                 />
                                 <div className="flex-1 float-right">
-                                    <p className="pt-1 text-gray-700 text-base">Lorem ipsum .</p>
-                                    <p className="text-gray-700 text-base">Lorem ipsum .</p>
-                                    <p className="text-gray-700 text-base">Lorem ipsum .</p>
+                                    <p className="pt-1 text-2xl text-gray-700 text-base">9°C</p>
+                                    <p className="text-gray-700 text-sm">Feels like : 6°C</p>
+                                    <p className="text-gray-700 text-sm">Few clouds</p>
                                 </div>
                             </div>
                         </div>
