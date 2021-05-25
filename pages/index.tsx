@@ -19,27 +19,26 @@ const IndexPage = () => (
             <span className="block pt-3 text-center text-2xl text-gray-800">Top UK forecasts</span>
 
             <div className="p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3  gap-5">
+
+                {/*TODO : Use this is the main card going forwards.*/}
                 <div className="w-full lg:max-w-full lg:flex shadow-lg">
                     <img className="hidden lg:block h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" src="/images/london.jpg" title="Forest">
                     </img>
                     <div className="container mw-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b lg:rounded-tl-none lg:border-l-0 lg:border-t lg:border-gray-300 lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                        <div className="mb-3">
-                            <div className="text-gray-800 font-bold text-xl mb-2">London</div>
-                            <div className="flex space-x-4">
-                                <img
-                                    className="h-24"
-                                    src={`https://openweathermap.org/img/wn/04n@4x.png`}
-                                    alt={"weather icon"}
-                                />
-                                <div className="flex-1 float-right">
-                                    <p className="pt-1 text-2xl text-gray-700 text-base">9°C</p>
-                                    <p className="text-gray-700 text-sm">Feels like : 6°C</p>
-                                    <p className="text-gray-700 text-sm">Few clouds</p>
-                                </div>
+                        <div className="text-gray-800 font-bold text-xl mb-2">London</div>
+                        <div className="flex space-x-4">
+                            <img
+                                className="h-24"
+                                src={`https://openweathermap.org/img/wn/04n@4x.png`}
+                                alt={"weather icon"}
+                            />
+                            <div className="flex-1 float-right">
+                                <p className="pt-1 text-2xl text-gray-700 text-base">9°C</p>
+                                <p className="text-gray-700 text-sm">Feels like : 6°C</p>
+                                <p className="text-gray-700 text-sm">Few clouds</p>
                             </div>
                         </div>
                         <div className="flex items-center">
-                            {/*<img className="w-10 h-10 rounded-full mr-4" src="/rafael.png" alt="Avatar of Writer"></img>*/}
                                 <a className="flex space-x-4" href="/weather/London, UK">
                                     <p className="text-gray-800 text-lg hover:underline">View Weather </p>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="pt-1 flex-1 float-right h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
