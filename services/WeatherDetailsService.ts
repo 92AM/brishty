@@ -1,6 +1,16 @@
 import {locationDetailsRouteHandler} from "../webRouters/LocationDetailsRouteHandler";
 import {weatherDetailsRouteHandler} from "../webRouters/WeatherDetailsRouteHandler";
-import {Current, Daily, FeelLike, Hour, Temperature, Weather, WeatherDetails} from "../interfaces";
+import {
+    Coordinate,
+    Current,
+    Daily,
+    FeelLike,
+    Hour,
+    LocationCurrentWeather,
+    Temperature,
+    Weather,
+    WeatherDetails
+} from "../interfaces";
 import {convertKelvinToCelsius} from "./GenericUtilityService";
 
 const mapToTemperature = (temperature: any): Temperature => {
@@ -102,6 +112,24 @@ const mapToDailyWeather = (weatherDetailsJson: any): Daily[] => {
     return daily
 }
 
+const mapToCoordinate = (coordinate: any): Coordinate => {
+    return {
+        latitude: coordinate.lat,
+        longitude: coordinate.lon,
+    } as Coordinate;
+}
+
+const mapLocationDetailsJsonToLocationCurrentWeather = (locationDetailsJson: any): LocationCurrentWeather => {
+    return {
+        coordinate: mapToCoordinate(locationDetailsJson.coord),
+        weather: mapToWeather(locationDetailsJson.weather[0]),
+        temperature: locationDetailsJson.main.temp,
+        feelsLike : locationDetailsJson.main.feels_like,
+        minTemp : locationDetailsJson.main.temp_min,
+        maxTemp : locationDetailsJson.main.temp_max,
+    } as LocationCurrentWeather;
+}
+
 const mapWeatherDetailsJsonToWeatherDetailsObject = (
     locationName: string | string[] | undefined,
     weatherDetailsJson: any
@@ -123,15 +151,20 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
     } as WeatherDetails;
 }
 
+export const getLocationCurrentWeather = async (
+    locationName: string | string[] | undefined
+): Promise<LocationCurrentWeather> => {
+    const locationDetailsAsJson = await locationDetailsRouteHandler(locationName);
+    return mapLocationDetailsJsonToLocationCurrentWeather(locationDetailsAsJson);
+};
+
 export const getWeatherDetails = async (
     locationName: string | string[] | undefined
 ): Promise<WeatherDetails> => {
-
-    const locationDetailsAsJson = await locationDetailsRouteHandler(locationName);
-    const searchedLocationCoordinates = locationDetailsAsJson.coord;
+    const searchedLocationCurrentWeather = await getLocationCurrentWeather(locationName);
     const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
-        searchedLocationCoordinates.lat,
-        searchedLocationCoordinates.lon
+        searchedLocationCurrentWeather.coordinate.latitude,
+        searchedLocationCurrentWeather.coordinate.longitude
     );
 
     return mapWeatherDetailsJsonToWeatherDetailsObject(

@@ -2,6 +2,36 @@ import Layout from '../components/Layout'
 import React from "react";
 import PageContentWrapper from "../components/PageContentWrapper";
 import SearchBox from "../components/SearchBox";
+// import {WeatherDetails} from "../interfaces";
+// import {GetStaticPaths, GetStaticProps} from "next";
+// import {getWeatherDetails} from "../services/WeatherDetailsService";
+//
+// type Props = {
+//     weatherDetails?: WeatherDetails
+//     errors?: string
+// }
+//
+// export const getStaticPaths: GetStaticPaths = async () => {
+//     return {paths: [], fallback: 'blocking'}
+// }
+//
+// export const getStaticProps: GetStaticProps = async ({params}) => {
+//     try {
+//         const locationName = params?.id
+//         const weatherDetails = await getWeatherDetails(locationName);
+//
+//         return {
+//             props: {
+//                 weatherDetails
+//             },
+//             revalidate: 60
+//         }
+//     } catch (err) {
+//         return {
+//             notFound: true
+//         }
+//     }
+// }
 
 const IndexPage = () => (
     <Layout title="Brishty - search for weather">

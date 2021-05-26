@@ -75,3 +75,17 @@ export interface WeatherDetails {
     // TODO : To be removed eventually ...
     fullRawWeatherData: string
 }
+
+export interface Coordinate {
+    latitude: string
+    longitude: string
+}
+
+export interface LocationCurrentWeather {
+    coordinate: Coordinate
+    weather: Weather
+    temperature: string
+    feelsLike : string
+    minTemp : string
+    maxTemp : string
+}
