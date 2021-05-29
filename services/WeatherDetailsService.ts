@@ -123,10 +123,11 @@ const mapLocationDetailsJsonToLocationCurrentWeather = (locationDetailsJson: any
     return {
         coordinate: mapToCoordinate(locationDetailsJson.coord),
         weather: mapToWeather(locationDetailsJson.weather[0]),
-        temperature: locationDetailsJson.main.temp,
-        feelsLike: locationDetailsJson.main.feels_like,
-        minTemp: locationDetailsJson.main.temp_min,
-        maxTemp: locationDetailsJson.main.temp_max,
+        temperature: convertKelvinToCelsius(locationDetailsJson.main.temp),
+        feelsLike: convertKelvinToCelsius(locationDetailsJson.main.feels_like),
+        minTemp: convertKelvinToCelsius(locationDetailsJson.main.temp_min),
+        maxTemp: convertKelvinToCelsius(locationDetailsJson.main.temp_max),
+        locationName: locationDetailsJson.name,
     } as LocationCurrentWeather;
 }
 

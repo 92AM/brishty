@@ -38,7 +38,6 @@ const Header = () => {
     // }
 
     const handleSearchButtonOnClickEvent = () => {
-        console.log("displayNavSearch in Header status : " + displayNavSearch);
         displayNavSearch
             ? setDisplayNavSearch(false)
             : setDisplayNavSearch(true);
@@ -46,7 +45,6 @@ const Header = () => {
 
     const handleSearchButtonOnBlurEvent = (e: any) => {
         e.preventDefault();
-        console.log("clickedOnSearchForm status : " + clickedOnSearchForm);
         if (clickedOnSearchForm) {
             return;
         }

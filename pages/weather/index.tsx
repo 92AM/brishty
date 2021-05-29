@@ -1,31 +1,34 @@
-import {WeatherDetails} from '../../interfaces'
+import {LocationCurrentWeather} from '../../interfaces'
 import Layout from '../../components/Layout'
 import React from "react";
-import {locationDetailsRouteHandler} from "../../webRouters/LocationDetailsRouteHandler";
-import {weatherDetailsRouteHandler} from "../../webRouters/WeatherDetailsRouteHandler";
+import {getLocationCurrentWeather} from "../../services/WeatherDetailsService";
+import PageContentWrapper from "../../components/PageContentWrapper";
 
 type Props = {
-    item: WeatherDetails
+    item: LocationCurrentWeather
 }
 
 const Weather = ({item}: Props) => (
     <Layout title="Brishty - Weather For London">
-        <h1>Weather For London</h1>
-        <p>{item}</p>
+        <PageContentWrapper>
+            <h1>Weather</h1>
+            <p>{JSON.stringify(item)}</p>
+        </PageContentWrapper>
     </Layout>
 )
 
 Weather.getInitialProps = async () => {
 
     const locationName = 'london'
-    const locationDetailsAsJson = await locationDetailsRouteHandler(locationName);
-    const searchedLocationCoordinates = locationDetailsAsJson.coord;
-    const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
-        searchedLocationCoordinates.lat,
-        searchedLocationCoordinates.lon
-    );
-
-    return {item: JSON.stringify(weatherDetailForGivenLocationAsJson)}
+    const currentWeatherForLocation = await getLocationCurrentWeather(locationName);
+    console.log("Current weather for a location : ", currentWeatherForLocation);
+    return {item: currentWeatherForLocation};
 }
+
+// Weather.getInitialProps = async () => {
+//
+//     const locationName = 'manchester'
+//     return await getLocationCurrentWeather(locationName);
+// }
 
 export default Weather

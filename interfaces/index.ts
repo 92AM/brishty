@@ -88,4 +88,5 @@ export interface LocationCurrentWeather {
     feelsLike : string
     minTemp : string
     maxTemp : string
+    locationName : string
 }
