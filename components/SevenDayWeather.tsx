@@ -1,24 +1,17 @@
 import React from "react";
 import {Daily} from "../interfaces";
 import moment from "moment";
-import {convertKelvinToCelsius} from "../services/GenericUtilityService";
+import {windDegreeToText} from "../services/GenericUtilityService";
 
 type DailyWeatherProps = {
     item: Daily[]
 }
 
-const SevenDayWeatherSection = ({item: daily}: DailyWeatherProps) => {
+const SevenDayWeather = ({item: daily}: DailyWeatherProps) => {
 
     const slideComponents: any = [];
 
     daily.forEach((eachDay) => {
-        const feelsLike = convertKelvinToCelsius(
-            Number(
-                eachDay.feelsLike.day
-                + eachDay.feelsLike.night
-                + eachDay.feelsLike.evening
-                + eachDay.feelsLike.morning) / 4
-        );
 
         slideComponents.push(
             <div className="inline-block px-3 my-4">
@@ -55,25 +48,53 @@ const SevenDayWeatherSection = ({item: daily}: DailyWeatherProps) => {
                                     <p className="text-center leading-relaxed text-base pt-1">Low</p>
                                     <p className="text-center"><b>{eachDay.temperature.min}C</b></p>
                                 </div>
+                                <div>
+                                    <p className="text-center leading-relaxed text-base pt-1">Wind speed</p>
+                                    <p className="text-center"><b>
+                                        {`${windDegreeToText(Number(eachDay.windDegree))} ${Math.round(
+                                            Number(eachDay.windSpeed)
+                                        )} km/hr`}
+                                    </b></p>
+                                </div>
+                                <div>
+                                    <p className="text-center leading-relaxed text-base pt-1">UV index</p>
+                                    <p className="text-center"><b>{eachDay.uvIndex}</b></p>
+                                </div>
+                                <div>
+                                    <p className="text-center leading-relaxed text-base pt-1">Pressure</p>
+                                    <p className="text-center"><b>{eachDay.pressure} hPa</b></p>
+                                </div>
                             </div>
                             <div className="divide-y space-y-2">
                                 <div>
                                     <p className="text-center leading-relaxed text-base pt-1">Sunrise</p>
                                     <p className="text-center">
-                                        <b>{moment.unix(Number(eachDay.sunrise)).format('hh:mm')}</b></p>
+                                        <b>{moment.unix(Number(eachDay.sunrise)).format('HH:MM')}</b></p>
                                 </div>
                                 <div>
                                     <p className="text-center leading-relaxed text-base pt-1">Sunset</p>
                                     <p className="text-center">
-                                        <b>{moment.unix(Number(eachDay.sunset)).format('hh:mm')}</b></p>
+                                        <b>{moment.unix(Number(eachDay.sunset)).format('HH:MM')}</b></p>
                                 </div>
                                 <div>
                                     <p className="text-center leading-relaxed text-base pt-1">Cloudiness</p>
                                     <p className="text-center"><b>{eachDay.cloudiness}%</b></p>
                                 </div>
                                 <div>
-                                    <p className="text-center leading-relaxed text-base pt-1">Feels like (avg)</p>
-                                    <p className="text-center"><b>{feelsLike}C</b></p>
+                                    <p className="text-center leading-relaxed text-base pt-1">Feels like (morn)</p>
+                                    <p className="text-center"><b>{eachDay.feelsLike.morning}C</b></p>
+                                </div>
+                                <div>
+                                    <p className="text-center leading-relaxed text-base pt-1">Feels like (day)</p>
+                                    <p className="text-center"><b>{eachDay.feelsLike.day}C</b></p>
+                                </div>
+                                <div>
+                                    <p className="text-center leading-relaxed text-base pt-1">Feels like (eve)</p>
+                                    <p className="text-center"><b>{eachDay.feelsLike.evening}C</b></p>
+                                </div>
+                                <div>
+                                    <p className="text-center leading-relaxed text-base pt-1">Feels like (night)</p>
+                                    <p className="text-center"><b>{eachDay.feelsLike.night}C</b></p>
                                 </div>
                             </div>
                         </div>
@@ -94,4 +115,4 @@ const SevenDayWeatherSection = ({item: daily}: DailyWeatherProps) => {
     );
 }
 
-export default SevenDayWeatherSection
+export default SevenDayWeather

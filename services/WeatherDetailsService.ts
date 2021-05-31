@@ -27,10 +27,10 @@ const mapToTemperature = (temperature: any): Temperature => {
 
 const mapToFeelsLike = (feelsLike: any): FeelLike => {
     return {
-        day: feelsLike.day,
-        night: feelsLike.night,
-        evening: feelsLike.eve,
-        morning: feelsLike.morn,
+        day: convertKelvinToCelsius(feelsLike.day),
+        night: convertKelvinToCelsius(feelsLike.night),
+        evening: convertKelvinToCelsius(feelsLike.eve),
+        morning: convertKelvinToCelsius(feelsLike.morn),
     } as FeelLike;
 }
 
