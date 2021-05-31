@@ -89,4 +89,6 @@ export interface LocationCurrentWeather {
     minTemp : string
     maxTemp : string
     locationName : string
+    countryCode: string
+    imageLink : string
 }

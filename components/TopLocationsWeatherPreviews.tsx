@@ -1,26 +1,33 @@
 import React from 'react'
 import {LocationCurrentWeather} from "../interfaces";
 
-type UkTopLocationsWeatherPreviewsProps = {
+type TopLocationsWeatherPreviewsProps = {
     items: LocationCurrentWeather[]
 }
 
-const UkTopLocationsWeatherPreviews = ({items: locationsWeathers}: UkTopLocationsWeatherPreviewsProps) => {
-    const topUkForecasts: any = [];
+const TopLocationsWeatherPreviews = ({items: locationsWeathers}: TopLocationsWeatherPreviewsProps) => {
+    const topForecasts: any = [];
     locationsWeathers.forEach((locationWeather) => {
-        topUkForecasts.push(
+        const location = locationWeather.locationName + ", " + locationWeather.countryCode;
+        topForecasts.push(
             <div className="w-full lg:max-w-full lg:flex shadow-lg">
                 <img
-                    className="hidden lg:block h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                    src={"/images/" + locationWeather.locationName.toLowerCase() + ".jpg"} title="London">
+                    className="hidden lg:block h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t
+                    lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                    src={locationWeather.imageLink}
+                    title={location}
+                    alt={location}>
                 </img>
                 <div
-                    className="container mw-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b lg:rounded-tl-none lg:border-l-0 lg:border-t lg:border-gray-300 lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    className="container mw-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b
+                    lg:rounded-tl-none lg:border-l-0 lg:border-t lg:border-gray-300 lg:rounded-b-none lg:rounded-r
+                    p-4 flex flex-col justify-between leading-normal"
+                >
                     <div className="text-gray-800 font-bold text-xl mb-2">{locationWeather.locationName}</div>
                     <div className="flex space-x-4">
                         <img
                             className="h-24"
-                            src={` https://openweathermap.org/img/wn/${locationWeather.weather.icon}@4x.png`}
+                            src={`https://openweathermap.org/img/wn/${locationWeather.weather.icon}@4x.png`}
                             alt={"weather icon"}
                         />
                         <div className="flex-1 float-right">
@@ -30,8 +37,9 @@ const UkTopLocationsWeatherPreviews = ({items: locationsWeathers}: UkTopLocation
                         </div>
                     </div>
                     <div className="flex items-center">
-                        <a className="flex space-x-4" href={"/weather/" + locationWeather.locationName + ", UK"}>
-                            <p className="text-gray-800 text-lg hover:underline">View Weather </p>
+                        <a className="flex space-x-4"
+                           href={"/weather/" + location}>
+                            <p className="text-gray-800 text-lg hover:underline">View Weather</p>
                             <svg xmlns="http://www.w3.org/2000/svg" className="pt-1 flex-1 float-right h-6 w-6"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -52,10 +60,10 @@ const UkTopLocationsWeatherPreviews = ({items: locationsWeathers}: UkTopLocation
             lg:grid-cols-2
             xl:grid-cols-2
             2xl:grid-cols-3 gap-5">
-            {topUkForecasts}
+            {topForecasts}
         </div>
     );
 };
 
-export default UkTopLocationsWeatherPreviews
+export default TopLocationsWeatherPreviews
 

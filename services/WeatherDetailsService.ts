@@ -12,6 +12,7 @@ import {
     WeatherDetails
 } from "../interfaces";
 import {convertKelvinToCelsius} from "./GenericUtilityService";
+import {getStaticUkTopSearchLocations, getStaticWorldTopSearchLocations} from "./StaticSearchLocationGeneratorService";
 
 const mapToTemperature = (temperature: any): Temperature => {
     return {
@@ -120,6 +121,11 @@ const mapToCoordinate = (coordinate: any): Coordinate => {
 }
 
 const mapLocationDetailsJsonToLocationCurrentWeather = (locationDetailsJson: any): LocationCurrentWeather => {
+
+    const imageLink = "/images/"
+        + locationDetailsJson.name.toLowerCase().replace(/\s/g, "")
+        + ".jpg";
+
     return {
         coordinate: mapToCoordinate(locationDetailsJson.coord),
         weather: mapToWeather(locationDetailsJson.weather[0]),
@@ -128,6 +134,8 @@ const mapLocationDetailsJsonToLocationCurrentWeather = (locationDetailsJson: any
         minTemp: convertKelvinToCelsius(locationDetailsJson.main.temp_min),
         maxTemp: convertKelvinToCelsius(locationDetailsJson.main.temp_max),
         locationName: locationDetailsJson.name,
+        countryCode: locationDetailsJson.sys.country,
+        imageLink: imageLink
     } as LocationCurrentWeather;
 }
 
@@ -173,3 +181,23 @@ export const getWeatherDetails = async (
         weatherDetailForGivenLocationAsJson
     );
 };
+
+export const getUkTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topUkStaticLocationSearchTerms = getStaticUkTopSearchLocations();
+    let ukTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topUkStaticLocationSearchTerms) {
+        ukTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return ukTopLocationsCurrentWeathers;
+}
+
+export const getWorldTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topWorldStaticLocationSearchTerms = getStaticWorldTopSearchLocations();
+    let worldTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topWorldStaticLocationSearchTerms) {
+        worldTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return worldTopLocationsCurrentWeathers;
+}

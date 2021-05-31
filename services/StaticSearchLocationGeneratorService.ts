@@ -7,8 +7,26 @@ const topUkCities: string[] = [
     'Glasgow, UK',
 ];
 
+const topWorldCities: string[] = [
+    'New York',
+    'Paris',
+    'Moscow',
+    'Tokyo',
+    'Dubai',
+    'Los Angeles',
+    'Rome',
+    'Madrid',
+    'Amsterdam',
+];
+
 export const getStaticUkTopSearchLocations = (): string[] => {
     return [
         ...topUkCities,
+    ];
+};
+
+export const getStaticWorldTopSearchLocations = (): string[] => {
+    return [
+        ...topWorldCities,
     ];
 };

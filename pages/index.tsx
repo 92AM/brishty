@@ -3,33 +3,31 @@ import React from "react";
 import PageContentWrapper from "../components/PageContentWrapper";
 import SearchBox from "../components/SearchBox";
 import {LocationCurrentWeather} from "../interfaces";
-import {getLocationCurrentWeather} from "../services/WeatherDetailsService";
-import {getStaticUkTopSearchLocations} from "../services/StaticSearchLocationGeneratorService";
-import UkTopLocationsWeatherPreviews from "../components/UkTopLocationsWeatherPreviews";
-
+import {getUkTopLocationsCurrentWeathers, getWorldTopLocationsCurrentWeathers} from "../services/WeatherDetailsService";
+import TopLocationsWeatherPreviews from "../components/TopLocationsWeatherPreviews";
 
 type IndexPageProps = {
-    ukTopLocationsWeather: LocationCurrentWeather[]
+    ukTopLocationsWeathers: LocationCurrentWeather[]
+    worldTopLocationsWeathers: LocationCurrentWeather[]
 }
 
-const IndexPage = ({ukTopLocationsWeather}: IndexPageProps) => (
+const IndexPage = ({ukTopLocationsWeathers, worldTopLocationsWeathers}: IndexPageProps) => (
     <Layout title="Brishty - search for weather">
         <SearchBox/>
         <PageContentWrapper classNameCustomAttributes={"py-10 px-2"}>
             <span className="block pt-3 text-center text-2xl text-gray-800">Top UK forecasts</span>
-            {ukTopLocationsWeather && <UkTopLocationsWeatherPreviews items={ukTopLocationsWeather}/>}
+            {ukTopLocationsWeathers && <TopLocationsWeatherPreviews items={ukTopLocationsWeathers}/>}
+            <span className="block pt-3 text-center text-2xl text-gray-800">Top World forecasts</span>
+            {worldTopLocationsWeathers && <TopLocationsWeatherPreviews items={worldTopLocationsWeathers}/>}
         </PageContentWrapper>
     </Layout>
 )
 
 IndexPage.getInitialProps = async () => {
-    const staticLocationSearchTerms = getStaticUkTopSearchLocations();
-    let locationsCurrentWeathers = [];
-
-    for (let locationName of staticLocationSearchTerms) {
-        locationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return {ukTopLocationsWeather: locationsCurrentWeathers};
+    return {
+        ukTopLocationsWeathers: getUkTopLocationsCurrentWeathers(),
+        worldTopLocationsWeathers: getWorldTopLocationsCurrentWeathers(),
+    };
 }
 
 export default IndexPage
