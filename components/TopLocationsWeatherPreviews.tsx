@@ -32,16 +32,15 @@ const TopLocationsWeatherPreviews = ({items: locationsWeathers}: TopLocationsWea
                         />
                         <div className="flex-1 float-right">
                             <p className="pt-1 text-2xl text-gray-700 text-base">{locationWeather.temperature}C</p>
-                            <p className="text-gray-700 text-sm">Feels like : {locationWeather.feelsLike}C</p>
-                            <p className="text-gray-700 text-sm">{locationWeather.weather.description}</p>
+                            <p className="text-gray-700 text-sm font-medium">Feels like : {locationWeather.feelsLike}C</p>
+                            <p className="text-gray-700 text-sm capitalize font-medium">{locationWeather.weather.description}</p>
                         </div>
                     </div>
                     <div className="flex items-center">
                         <a className="flex space-x-4"
                            href={"/weather/" + location}>
                             <p className="text-gray-800 text-lg hover:underline">View Weather</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="pt-1 flex-1 float-right h-6 w-6"
-                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="pt-1 flex-1 float-right h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                       d="M9 5l7 7-7 7"/>
                             </svg>

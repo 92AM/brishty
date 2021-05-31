@@ -25,8 +25,8 @@ const IndexPage = ({ukTopLocationsWeathers, worldTopLocationsWeathers}: IndexPag
 
 IndexPage.getInitialProps = async () => {
     return {
-        ukTopLocationsWeathers: getUkTopLocationsCurrentWeathers(),
-        worldTopLocationsWeathers: getWorldTopLocationsCurrentWeathers(),
+        ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
+        worldTopLocationsWeathers: await getWorldTopLocationsCurrentWeathers(),
     };
 }
 
