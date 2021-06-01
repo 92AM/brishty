@@ -21,7 +21,7 @@ const TopLocationsWeatherPreviews = ({items: locationsWeathers}: TopLocationsWea
                 <div
                     className="container mw-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b
                     lg:rounded-tl-none lg:border-l-0 lg:border-t lg:border-gray-300 lg:rounded-b-none lg:rounded-r
-                    p-4 flex flex-col justify-between leading-normal"
+                    px-4 pt-4 pb-2 flex flex-col justify-between leading-normal"
                 >
                     <div className="text-gray-800 font-bold text-xl mb-2">{locationWeather.locationName}</div>
                     <div className="flex space-x-4">
@@ -32,15 +32,17 @@ const TopLocationsWeatherPreviews = ({items: locationsWeathers}: TopLocationsWea
                         />
                         <div className="flex-1 float-right">
                             <p className="pt-1 text-2xl text-gray-700 text-base">{locationWeather.temperature}C</p>
-                            <p className="text-gray-700 text-sm font-medium">Feels like : {locationWeather.feelsLike}C</p>
+                            <p className="text-gray-700 text-sm font-medium">Feels like
+                                : {locationWeather.feelsLike}C</p>
                             <p className="text-gray-700 text-sm capitalize font-medium">{locationWeather.weather.description}</p>
                         </div>
                     </div>
-                    <div className="flex items-center">
+                    <div className="items-center">
                         <a className="flex space-x-4"
                            href={"/weather/" + location}>
-                            <p className="text-gray-800 text-lg hover:underline">View Weather</p>
-                            <svg className="pt-1 flex-1 float-right h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <p className="flex-1 text-gray-800 text-lg hover:underline">View Weather</p>
+                            <svg className="flex-2 pt-1 float-right h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                       d="M9 5l7 7-7 7"/>
                             </svg>
