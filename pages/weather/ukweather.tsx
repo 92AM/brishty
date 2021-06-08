@@ -3,7 +3,7 @@ import {LocationCurrentWeather} from "../../interfaces";
 import PageContentWrapper from "../../components/PageContentWrapper";
 import TopLocationsWeatherPreviews from "../../components/TopLocationsWeatherPreviews";
 import Layout from "../../components/Layout";
-import {getUkTopLocationsCurrentWeathers} from "../../services/WeatherDetailsService";
+import {getUkMoreTopLocationsCurrentWeathers} from "../../services/WeatherDetailsService";
 
 type UkWeatherProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[]
@@ -22,7 +22,7 @@ const UkWeather = ({ukTopLocationsWeathers}: UkWeatherProps) => {
 
 UkWeather.getInitialProps = async () => {
     return {
-        ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
+        ukTopLocationsWeathers: await getUkMoreTopLocationsCurrentWeathers(),
     };
 }
 

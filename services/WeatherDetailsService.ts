@@ -12,7 +12,14 @@ import {
     WeatherDetails
 } from "../interfaces";
 import {convertKelvinToCelsius} from "./GenericUtilityService";
-import {getStaticUkTopSearchLocations, getStaticWorldTopSearchLocations} from "./StaticSearchLocationGeneratorService";
+import {
+    getMoreStaticAsianTopSearchLocations,
+    getMoreStaticEuropeanTopSearchLocations,
+    getMoreStaticUkTopSearchLocations,
+    getStaticAsianTopSearchLocations,
+    getStaticEuropeanTopSearchLocations,
+    getStaticUkTopSearchLocations
+} from "./StaticSearchLocationGeneratorService";
 
 const mapToTemperature = (temperature: any): Temperature => {
     return {
@@ -192,12 +199,52 @@ export const getUkTopLocationsCurrentWeathers = async (): Promise<LocationCurren
     return ukTopLocationsCurrentWeathers;
 }
 
-export const getWorldTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topWorldStaticLocationSearchTerms = getStaticWorldTopSearchLocations();
-    let worldTopLocationsCurrentWeathers = [];
+export const getUkMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topUkStaticLocationSearchTerms = getMoreStaticUkTopSearchLocations();
+    let ukTopLocationsCurrentWeathers = [];
 
-    for (let locationName of topWorldStaticLocationSearchTerms) {
-        worldTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    for (let locationName of topUkStaticLocationSearchTerms) {
+        ukTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
     }
-    return worldTopLocationsCurrentWeathers;
+    return ukTopLocationsCurrentWeathers;
+}
+
+export const getEuropeTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topEuropeStaticLocationSearchTerms = getStaticEuropeanTopSearchLocations();
+    let europeTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topEuropeStaticLocationSearchTerms) {
+        europeTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return europeTopLocationsCurrentWeathers;
+}
+
+export const getEuropeMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topEuropeStaticLocationSearchTerms = getMoreStaticEuropeanTopSearchLocations();
+    let europeTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topEuropeStaticLocationSearchTerms) {
+        europeTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return europeTopLocationsCurrentWeathers;
+}
+
+export const getAsiaTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topAsianStaticLocationSearchTerms = getStaticAsianTopSearchLocations();
+    let asianTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topAsianStaticLocationSearchTerms) {
+        asianTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return asianTopLocationsCurrentWeathers;
+}
+
+export const getAsiaMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topAsianStaticLocationSearchTerms = getMoreStaticAsianTopSearchLocations();
+    let asianTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topAsianStaticLocationSearchTerms) {
+        asianTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return asianTopLocationsCurrentWeathers;
 }

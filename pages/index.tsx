@@ -3,22 +3,35 @@ import React from "react";
 import PageContentWrapper from "../components/PageContentWrapper";
 import SearchBox from "../components/SearchBox";
 import {LocationCurrentWeather} from "../interfaces";
-import {getUkTopLocationsCurrentWeathers, getWorldTopLocationsCurrentWeathers} from "../services/WeatherDetailsService";
-import TopLocationsWeatherPreviews from "../components/TopLocationsWeatherPreviews";
+import {
+    getAsiaTopLocationsCurrentWeathers,
+    getEuropeTopLocationsCurrentWeathers,
+    getUkTopLocationsCurrentWeathers
+} from "../services/WeatherDetailsService";
+import TopLocationsWeatherPreviewsCarousel from "../components/TopLocationsWeatherPreviewsCarousel";
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[]
-    worldTopLocationsWeathers: LocationCurrentWeather[]
+    europeTopLocationsWeathers: LocationCurrentWeather[]
+    asiaTopLocationWeathers: LocationCurrentWeather[]
 }
 
-const IndexPage = ({ukTopLocationsWeathers, worldTopLocationsWeathers}: IndexPageProps) => (
+const IndexPage = (
+    {
+        ukTopLocationsWeathers,
+        europeTopLocationsWeathers,
+        asiaTopLocationWeathers
+    }: IndexPageProps
+) => (
     <Layout title="Brishty - search for weather">
         <SearchBox/>
         <PageContentWrapper classNameCustomAttributes={"py-10 px-2"}>
-            <span className="block pt-3 text-center text-2xl text-gray-800">Top UK forecasts</span>
-            {ukTopLocationsWeathers && <TopLocationsWeatherPreviews items={ukTopLocationsWeathers}/>}
-            <span className="block pt-3 text-center text-2xl text-gray-800">Top World forecasts</span>
-            {worldTopLocationsWeathers && <TopLocationsWeatherPreviews items={worldTopLocationsWeathers}/>}
+            {ukTopLocationsWeathers &&
+            <TopLocationsWeatherPreviewsCarousel items={ukTopLocationsWeathers} mainLocation={"UK"}/>}
+            {europeTopLocationsWeathers &&
+            <TopLocationsWeatherPreviewsCarousel items={europeTopLocationsWeathers} mainLocation={"Europe"}/>}
+            {asiaTopLocationWeathers &&
+            <TopLocationsWeatherPreviewsCarousel items={asiaTopLocationWeathers} mainLocation={"Asia"}/>}
         </PageContentWrapper>
     </Layout>
 )
@@ -26,7 +39,8 @@ const IndexPage = ({ukTopLocationsWeathers, worldTopLocationsWeathers}: IndexPag
 IndexPage.getInitialProps = async () => {
     return {
         ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
-        worldTopLocationsWeathers: await getWorldTopLocationsCurrentWeathers(),
+        europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
+        asiaTopLocationWeathers: await getAsiaTopLocationsCurrentWeathers(),
     };
 }
 
