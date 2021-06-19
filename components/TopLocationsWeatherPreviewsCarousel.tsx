@@ -37,7 +37,7 @@ const TopLocationsWeatherPreviewsCarousel = ({items, mainLocation}: TopLocations
                     alt={location}>
                 </img>
                 <div
-                    className="flex-2 p-4 w-96 h-full max-w-xs overflow-hidden rounded-3xl lg:rounded-l-none
+                    className="flex-2 p-4 w-72 h-full max-w-xs overflow-hidden rounded-3xl lg:rounded-l-none
                     shadow-md bg-white"
                 >
                     <div className="text-gray-800 font-bold text-xl mb-2">{locationWeather.locationName}</div>
@@ -74,7 +74,7 @@ const TopLocationsWeatherPreviewsCarousel = ({items, mainLocation}: TopLocations
              onClick={() => onClickLoadViewMoreLocationPage(mainLocation)}
         >
             <div
-                className="flex p-4 w-96 h-full max-w-xs overflow-hidden rounded-3xl
+                className="flex p-4 w-64 h-full max-w-xs overflow-hidden rounded-3xl
                     shadow-md bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
             >
                 <div className="flex-1">
