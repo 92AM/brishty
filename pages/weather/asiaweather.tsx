@@ -22,7 +22,7 @@ const AsiaWeather = ({asiaTopLocationsWeathers}: AsiaWeatherProps) => {
 
 AsiaWeather.getInitialProps = async () => {
     return {
-        ukTopLocationsWeathers: await getAsiaMoreTopLocationsCurrentWeathers(),
+        asiaTopLocationsWeathers: await getAsiaMoreTopLocationsCurrentWeathers(),
     };
 }
 
