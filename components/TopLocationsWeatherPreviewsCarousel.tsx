@@ -48,6 +48,7 @@ const TopLocationsWeatherPreviewsCarousel = ({items, mainLocation}: TopLocations
                             className="h-24"
                             src={`https://openweathermap.org/img/wn/${locationWeather.weather.icon}@4x.png`}
                             alt={"weather icon"}
+                            loading={"lazy"}
                         />
                         <div className="flex-1 float-right">
                             <p className="pt-1 text-2xl text-gray-700 text-base">{locationWeather.temperature}C</p>
