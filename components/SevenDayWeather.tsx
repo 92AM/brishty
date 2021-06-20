@@ -16,7 +16,7 @@ const SevenDayWeather = ({item: daily}: DailyWeatherProps) => {
         slideComponents.push(
             <div className="inline-block px-3 my-4">
                 <div
-                    className="w-96 h-full max-w-xs overflow-hidden rounded-lg
+                    className="w-96 h-full max-w-xs overflow-hidden rounded-3xl
                     shadow-md bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
                 >
                     <div className="p-4">

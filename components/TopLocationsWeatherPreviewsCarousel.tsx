@@ -34,7 +34,9 @@ const TopLocationsWeatherPreviewsCarousel = ({items, mainLocation}: TopLocations
                     shadow-md"
                     src={locationWeather.imageLink}
                     title={location}
-                    alt={location}>
+                    alt={location}
+                    loading={"lazy"}
+                >
                 </img>
                 <div
                     className="flex-2 p-4 w-72 h-full max-w-xs overflow-hidden rounded-3xl lg:rounded-l-none
