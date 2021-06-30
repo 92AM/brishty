@@ -13,9 +13,12 @@ import {
 } from "../interfaces";
 import {convertKelvinToCelsius} from "./GenericUtilityService";
 import {
+    getMoreStaticAfricaTopSearchLocations,
+    getMoreStaticAmericasTopSearchLocations,
     getMoreStaticAsianTopSearchLocations,
     getMoreStaticEuropeanTopSearchLocations,
-    getMoreStaticUkTopSearchLocations,
+    getMoreStaticUkTopSearchLocations, getStaticAfricaTopSearchLocations,
+    getStaticAmericasTopSearchLocations,
     getStaticAsianTopSearchLocations,
     getStaticEuropeanTopSearchLocations,
     getStaticUkTopSearchLocations
@@ -247,4 +250,44 @@ export const getAsiaMoreTopLocationsCurrentWeathers = async (): Promise<Location
         asianTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
     }
     return asianTopLocationsCurrentWeathers;
+}
+
+export const getAmericasTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topAmericasStaticLocationSearchTerms = getStaticAmericasTopSearchLocations();
+    let americasTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topAmericasStaticLocationSearchTerms) {
+        americasTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return americasTopLocationsCurrentWeathers;
+}
+
+export const getAmericasMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topAmericasStaticLocationSearchTerms = getMoreStaticAmericasTopSearchLocations();
+    let americasTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topAmericasStaticLocationSearchTerms) {
+        americasTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return americasTopLocationsCurrentWeathers;
+}
+
+export const getAfricaTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topAfricaStaticLocationSearchTerms = getStaticAfricaTopSearchLocations();
+    let africaTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topAfricaStaticLocationSearchTerms) {
+        africaTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return africaTopLocationsCurrentWeathers;
+}
+
+export const getAfricaMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topAfricaStaticLocationSearchTerms = getMoreStaticAfricaTopSearchLocations();
+    let africaTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topAfricaStaticLocationSearchTerms) {
+        africaTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return africaTopLocationsCurrentWeathers;
 }

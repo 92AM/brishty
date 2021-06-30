@@ -19,7 +19,7 @@ const HourlyWeather = ({item: hourly}: HourlyWeatherProps) => {
         slideComponents.push(
             <div className="inline-block px-3">
                 <div
-                    className="w-44 h-44 md:w-64 md:h-64 max-w-xs
+                    className="w-32 h-44 md:w-44 md:h-64 max-w-xs
                     overflow-hidden rounded-3xl shadow-md bg-white
                     hover:shadow-xl transition-shadow
                     duration-300 ease-in-out"

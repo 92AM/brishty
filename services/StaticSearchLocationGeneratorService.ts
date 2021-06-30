@@ -25,6 +25,24 @@ const topAsianCities: string[] = [
     'Tokyo',
 ];
 
+const topAmericasCities: string[] = [
+    'Sao Paulo',
+    'New York',
+    'Chicago',
+    'Mexico City',
+    'Buenos Aires',
+    'Los Angeles',
+];
+
+const topAfricaCities: string[] = [
+    'Cape Town',
+    'Nairobi',
+    'Lagos',
+    'Johannesburg',
+    'Addis Ababa',
+    'Cairo',
+];
+
 const moreTopEuropeanCities: string[] = [
     'Milan',
     'Barcelona',
@@ -79,6 +97,42 @@ const moreTopAsianCities: string[] = [
     'Jakarta',
 ];
 
+const moreTopAmericasCities: string[] = [
+    'Lima',
+    'Bogota',
+    'Rio de Janeiro',
+    'Santiago',
+    'Salvador',
+    'Toronto',
+    'Fortaleza',
+    'Medellin',
+    'Cali',
+    'Houston',
+    'Brasilia',
+    'Montreal',
+    'Phoenix',
+    'Philadelphia',
+    'Guadalajara',
+];
+
+const moreTopAfricaCities: string[] = [
+    'Kinshasa',
+    'Giza',
+    'Alexandria',
+    'Dar es Salaam',
+    'Casablanca',
+    'Accra',
+    'Durban',
+    'Kano',
+    'Tripoli',
+    'Algiers',
+    'Mogadishu',
+    'Mombasa',
+    'Harare',
+    'Antananarivo',
+    'Tunis',
+];
+
 export const getStaticUkTopSearchLocations = (): string[] => {
     return [
         ...topUkCities,
@@ -94,6 +148,18 @@ export const getStaticEuropeanTopSearchLocations = (): string[] => {
 export const getStaticAsianTopSearchLocations = (): string[] => {
     return [
         ...topAsianCities,
+    ];
+};
+
+export const getStaticAmericasTopSearchLocations = (): string[] => {
+    return [
+        ...topAmericasCities,
+    ];
+};
+
+export const getStaticAfricaTopSearchLocations = (): string[] => {
+    return [
+        ...topAfricaCities,
     ];
 };
 
@@ -115,5 +181,19 @@ export const getMoreStaticAsianTopSearchLocations = (): string[] => {
     return [
         ...topAsianCities,
         ...moreTopAsianCities,
+    ];
+};
+
+export const getMoreStaticAmericasTopSearchLocations = (): string[] => {
+    return [
+        ...topAmericasCities,
+        ...moreTopAmericasCities,
+    ];
+};
+
+export const getMoreStaticAfricaTopSearchLocations = (): string[] => {
+    return [
+        ...topAfricaCities,
+        ...moreTopAfricaCities,
     ];
 };

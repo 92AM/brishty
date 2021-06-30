@@ -4,6 +4,8 @@ import PageContentWrapper from "../components/PageContentWrapper";
 import SearchBox from "../components/SearchBox";
 import {LocationCurrentWeather} from "../interfaces";
 import {
+    getAfricaTopLocationsCurrentWeathers,
+    getAmericasTopLocationsCurrentWeathers,
     getAsiaTopLocationsCurrentWeathers,
     getEuropeTopLocationsCurrentWeathers,
     getUkTopLocationsCurrentWeathers
@@ -14,13 +16,17 @@ type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[]
     europeTopLocationsWeathers: LocationCurrentWeather[]
     asiaTopLocationWeathers: LocationCurrentWeather[]
+    americasTopLocationWeathers: LocationCurrentWeather[]
+    africaTopLocationWeathers: LocationCurrentWeather[]
 }
 
 const IndexPage = (
     {
         ukTopLocationsWeathers,
         europeTopLocationsWeathers,
-        asiaTopLocationWeathers
+        asiaTopLocationWeathers,
+        americasTopLocationWeathers,
+        africaTopLocationWeathers
     }: IndexPageProps
 ) => (
     <Layout title="Brishty - search for weather">
@@ -32,6 +38,10 @@ const IndexPage = (
             <TopLocationsWeatherPreviewsCarousel items={europeTopLocationsWeathers} mainLocation={"Europe"}/>}
             {asiaTopLocationWeathers &&
             <TopLocationsWeatherPreviewsCarousel items={asiaTopLocationWeathers} mainLocation={"Asia"}/>}
+            {americasTopLocationWeathers &&
+            <TopLocationsWeatherPreviewsCarousel items={americasTopLocationWeathers} mainLocation={"Americas"}/>}
+            {africaTopLocationWeathers &&
+            <TopLocationsWeatherPreviewsCarousel items={africaTopLocationWeathers} mainLocation={"Africa"}/>}
         </PageContentWrapper>
     </Layout>
 )
@@ -41,6 +51,8 @@ IndexPage.getInitialProps = async () => {
         ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
         europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
         asiaTopLocationWeathers: await getAsiaTopLocationsCurrentWeathers(),
+        americasTopLocationWeathers: await getAmericasTopLocationsCurrentWeathers(),
+        africaTopLocationWeathers: await getAfricaTopLocationsCurrentWeathers(),
     };
 }
 

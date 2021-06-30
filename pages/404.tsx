@@ -75,7 +75,7 @@ export default function Custom404() {
                         </svg>
 
                         <div className="flex-1">
-                            <p className="pt-1 text-lg text-gray-700 text-base">View UK weather</p>
+                            <p className="pt-1 text-lg text-gray-700 text-base">UK cities weather</p>
                         </div>
                         <div className="flex-2 float-right">
                             <svg className="pl-18 pt-1 flex-1 h-7 w-7" fill="none" viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ export default function Custom404() {
                                   12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         <div className="flex-1">
-                            <p className="pt-1 text-lg text-gray-700 text-base">View world weather</p>
+                            <p className="pt-1 text-lg text-gray-700 text-base">World cities weather</p>
                         </div>
                         <div className="flex-2 float-right">
                             <svg className="pl-18 pt-1 flex-1 h-7 w-7" fill="none" viewBox="0 0 24 24"

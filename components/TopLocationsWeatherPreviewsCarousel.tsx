@@ -1,6 +1,7 @@
 import React from 'react'
 import {LocationCurrentWeather} from "../interfaces";
 import {getWindow} from "../services/BrowserService";
+import HomePageRegionHeader from "./HomePageRegionHeader";
 
 type TopLocationsWeatherPreviewsCarouselProps = {
     items: LocationCurrentWeather[]
@@ -13,17 +14,6 @@ const onClickLoadViewMoreLocationPage = (location: string) => {
 
 const TopLocationsWeatherPreviewsCarousel = ({items, mainLocation}: TopLocationsWeatherPreviewsCarouselProps) => {
     const topForecasts: any = [];
-    const locationTitleContent = "Top " + mainLocation + " forecasts";
-    topForecasts.push(
-        <div className="inline-block px-3 my-4">
-            <div
-                className="p-4 w-64 h-full max-w-xs overflow-hidden rounded-3xl
-                    shadow-md bg-white"
-            >
-                <span className="block px-6 py-10 text-center text-3xl text-gray-800">{locationTitleContent}</span>
-            </div>
-        </div>
-    );
     items.forEach((locationWeather) => {
         const location = locationWeather.locationName + ", " + locationWeather.countryCode;
         topForecasts.push(
@@ -72,34 +62,39 @@ const TopLocationsWeatherPreviewsCarousel = ({items, mainLocation}: TopLocations
             </div>
         );
     });
-    topForecasts.push(
-        <div className="inline-block px-3 my-4 cursor-pointer"
-             onClick={() => onClickLoadViewMoreLocationPage(mainLocation)}
-        >
-            <div
-                className="flex p-4 w-64 h-full max-w-xs overflow-hidden rounded-3xl
-                    shadow-md bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
+    if (!(mainLocation === "Americas" || mainLocation === "Africa")) {
+        topForecasts.push(
+            <div className="inline-block px-3 my-4 cursor-pointer"
+                 onClick={() => onClickLoadViewMoreLocationPage(mainLocation)}
             >
-                <div className="flex-1">
-                    <span className="block pt-16 text-center text-3xl text-gray-800">View More</span>
+                <div
+                    className="flex p-4 w-64 h-full max-w-xs overflow-hidden rounded-3xl
+                    shadow-md bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
+                >
+                    <div className="flex-1">
+                        <span className="block pt-16 text-center text-3xl text-gray-800">View More</span>
+                    </div>
+                    <svg className="flex-2 mt-14 float-right h-12 w-12" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                              d="M9 5l7 7-7 7"/>
+                    </svg>
                 </div>
-                <svg className="flex-2 mt-14 float-right h-12 w-12" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                          d="M9 5l7 7-7 7"/>
-                </svg>
             </div>
-        </div>
-    );
+        );
+    }
 
     return (
-        <div className="md:flex">
-            <div className="flex overflow-x-scroll hide-scroll-bar h-full">
-                <div className="flex flex-nowrap py-2">
-                    {topForecasts}
+        <>
+            <HomePageRegionHeader item={mainLocation}/>
+            <div className="md:flex">
+                <div className="flex overflow-x-scroll hide-scroll-bar h-full">
+                    <div className="flex flex-nowrap py-2">
+                        {topForecasts}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
