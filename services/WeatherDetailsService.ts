@@ -7,6 +7,7 @@ import {
     FeelLike,
     Hour,
     LocationCurrentWeather,
+    NearbyLocation,
     Temperature,
     Weather,
     WeatherDetails
@@ -17,12 +18,17 @@ import {
     getMoreStaticAmericasTopSearchLocations,
     getMoreStaticAsianTopSearchLocations,
     getMoreStaticEuropeanTopSearchLocations,
-    getMoreStaticUkTopSearchLocations, getStaticAfricaTopSearchLocations,
+    getMoreStaticUkTopSearchLocations,
+    getStaticAfricaTopSearchLocations,
     getStaticAmericasTopSearchLocations,
     getStaticAsianTopSearchLocations,
     getStaticEuropeanTopSearchLocations,
     getStaticUkTopSearchLocations
 } from "./StaticSearchLocationGeneratorService";
+import {nearbyLocationsRouteHandler} from "../webRouters/NearbyLocationsRouteHandler";
+
+const NEARBY_LOCATION_RADIUS = 100;
+const NEARBY_LOCATIONS_LIMIT = 10;
 
 const mapToTemperature = (temperature: any): Temperature => {
     return {
@@ -149,9 +155,36 @@ const mapLocationDetailsJsonToLocationCurrentWeather = (locationDetailsJson: any
     } as LocationCurrentWeather;
 }
 
+const mapNearbyLocationsJsonToNearbyLocations = (nearbyLocationsJson: any): NearbyLocation[] => {
+
+    const nearbyLocationsRaw = nearbyLocationsJson.data;
+    const nearbyLocations: NearbyLocation[] = [];
+
+    nearbyLocationsRaw.forEach((eachNearbyLocation: any) => {
+        const coordinate = {
+            lat: eachNearbyLocation.latitude,
+            lon: eachNearbyLocation.longitude
+        };
+        const tempNearbyLocation: NearbyLocation = {
+            type: eachNearbyLocation.type,
+            name: eachNearbyLocation.name,
+            country: eachNearbyLocation.country,
+            countryCode: eachNearbyLocation.countryCode,
+            region: eachNearbyLocation.region,
+            regionCode: eachNearbyLocation.regionCode,
+            distance: eachNearbyLocation.distance,
+            coordinate: mapToCoordinate(coordinate)
+        }
+        nearbyLocations.push(tempNearbyLocation)
+    })
+
+    return nearbyLocations;
+}
+
 const mapWeatherDetailsJsonToWeatherDetailsObject = (
     locationName: string | string[] | undefined,
-    weatherDetailsJson: any
+    weatherDetailsJson: any,
+    nearbyLocations: NearbyLocation[]
 ): WeatherDetails => {
 
     const currentWeather = mapToCurrentWeather(weatherDetailsJson);
@@ -166,7 +199,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
         current: currentWeather,
         hourly: hourly,
         daily: daily,
-        fullRawWeatherData: JSON.stringify(weatherDetailsJson),
+        nearbyLocations: nearbyLocations,
     } as WeatherDetails;
 }
 
@@ -177,6 +210,16 @@ export const getLocationCurrentWeather = async (
     return mapLocationDetailsJsonToLocationCurrentWeather(locationDetailsAsJson);
 };
 
+export const getNearbyLocations = async (
+    latitude: string | string[] | undefined,
+    longitude: string | string[] | undefined,
+    radius: number,
+    limit: number
+): Promise<NearbyLocation[]> => {
+    const nearbyLocationsAsJson = await nearbyLocationsRouteHandler(latitude, longitude, radius, limit);
+    return mapNearbyLocationsJsonToNearbyLocations(nearbyLocationsAsJson);
+};
+
 export const getWeatherDetails = async (
     locationName: string | string[] | undefined
 ): Promise<WeatherDetails> => {
@@ -185,10 +228,17 @@ export const getWeatherDetails = async (
         searchedLocationCurrentWeather.coordinate.latitude,
         searchedLocationCurrentWeather.coordinate.longitude
     );
+    const nearbyLocations = await getNearbyLocations(
+        searchedLocationCurrentWeather.coordinate.latitude,
+        searchedLocationCurrentWeather.coordinate.longitude,
+        NEARBY_LOCATION_RADIUS,
+        NEARBY_LOCATIONS_LIMIT
+    );
 
     return mapWeatherDetailsJsonToWeatherDetailsObject(
         locationName,
-        weatherDetailForGivenLocationAsJson
+        weatherDetailForGivenLocationAsJson,
+        nearbyLocations
     );
 };
 

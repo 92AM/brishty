@@ -71,9 +71,7 @@ export interface WeatherDetails {
     current: Current
     hourly: Hour[]
     daily: Daily[]
-
-    // TODO : To be removed eventually ...
-    fullRawWeatherData: string
+    nearbyLocations: NearbyLocation[]
 }
 
 export interface Coordinate {
@@ -91,4 +89,15 @@ export interface LocationCurrentWeather {
     locationName : string
     countryCode: string
     imageLink : string
+}
+
+export interface NearbyLocation {
+    type: string
+    name : string
+    country : string
+    countryCode: string
+    region: string
+    regionCode: string
+    distance: string
+    coordinate: Coordinate
 }
