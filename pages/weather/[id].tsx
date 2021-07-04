@@ -4,7 +4,7 @@ import React from "react";
 import {WeatherDetails} from "../../interfaces";
 import Layout from "../../components/Layout";
 import BasicCurrentlyAndHourlyWeather from "../../components/BasicCurrentlyAndHourlyWeather";
-import {getWeatherDetails} from "../../services/WeatherDetailsService";
+import {getWeatherDetailsWithLocationName} from "../../services/WeatherDetailsService";
 import PageContentWrapper from "../../components/PageContentWrapper";
 import DetailedCurrentWeather from "../../components/DetailedCurrentWeather";
 import SevenDayWeather from "../../components/SevenDayWeather";
@@ -21,7 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({params}) => {
     try {
         const locationName = params?.id
-        const weatherDetails = await getWeatherDetails(locationName);
+        const weatherDetails = await getWeatherDetailsWithLocationName(locationName);
 
         return {
             props: {

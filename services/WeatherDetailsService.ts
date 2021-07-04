@@ -12,7 +12,7 @@ import {
     Weather,
     WeatherDetails
 } from "../interfaces";
-import {convertKelvinToCelsius} from "./GenericUtilityService";
+import {convertKelvinToCelsius, sanitiseCoordinate} from "./GenericUtilityService";
 import {
     getMoreStaticAfricaTopSearchLocations,
     getMoreStaticAmericasTopSearchLocations,
@@ -29,6 +29,7 @@ import {nearbyLocationsRouteHandler} from "../webRouters/NearbyLocationsRouteHan
 
 const NEARBY_LOCATION_RADIUS = 100;
 const NEARBY_LOCATIONS_LIMIT = 10;
+const NEARBY_LOCATION_TYPE = "CITY";
 
 const mapToTemperature = (temperature: any): Temperature => {
     return {
@@ -211,16 +212,25 @@ export const getLocationCurrentWeather = async (
 };
 
 export const getNearbyLocations = async (
-    latitude: string | string[] | undefined,
-    longitude: string | string[] | undefined,
+    latitude: string,
+    longitude: string,
     radius: number,
-    limit: number
+    limit: number,
+    countryCode: string,
+    type: string
 ): Promise<NearbyLocation[]> => {
-    const nearbyLocationsAsJson = await nearbyLocationsRouteHandler(latitude, longitude, radius, limit);
+    const nearbyLocationsAsJson = await nearbyLocationsRouteHandler(
+        sanitiseCoordinate(latitude),
+        sanitiseCoordinate(longitude),
+        radius,
+        limit,
+        countryCode,
+        type
+    );
     return mapNearbyLocationsJsonToNearbyLocations(nearbyLocationsAsJson);
 };
 
-export const getWeatherDetails = async (
+export const getWeatherDetailsWithLocationName = async (
     locationName: string | string[] | undefined
 ): Promise<WeatherDetails> => {
     const searchedLocationCurrentWeather = await getLocationCurrentWeather(locationName);
@@ -232,7 +242,35 @@ export const getWeatherDetails = async (
         searchedLocationCurrentWeather.coordinate.latitude,
         searchedLocationCurrentWeather.coordinate.longitude,
         NEARBY_LOCATION_RADIUS,
-        NEARBY_LOCATIONS_LIMIT
+        NEARBY_LOCATIONS_LIMIT,
+        searchedLocationCurrentWeather.countryCode,
+        NEARBY_LOCATION_TYPE
+    );
+
+    return mapWeatherDetailsJsonToWeatherDetailsObject(
+        locationName,
+        weatherDetailForGivenLocationAsJson,
+        nearbyLocations
+    );
+};
+
+export const getWeatherDetailsWithCoordinate = async (
+    latitude: string,
+    longitude: string,
+    locationName: string,
+    countryCode: string
+): Promise<WeatherDetails> => {
+    const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
+        latitude,
+        longitude
+    );
+    const nearbyLocations = await getNearbyLocations(
+        latitude,
+        longitude,
+        NEARBY_LOCATION_RADIUS,
+        NEARBY_LOCATIONS_LIMIT,
+        countryCode,
+        NEARBY_LOCATION_TYPE
     );
 
     return mapWeatherDetailsJsonToWeatherDetailsObject(

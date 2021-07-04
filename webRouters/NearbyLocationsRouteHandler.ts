@@ -7,11 +7,13 @@ export const nearbyLocationsRouteHandler = async (
     latitude: string | string[] | undefined,
     longitude: string | string[] | undefined,
     radius: number,
-    limit: number
+    limit: number,
+    countryCode: string,
+    type: string
 ): Promise<any> => {
 
     const nearbyLocations = await fetch(
-        `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}${longitude}/nearbyCities?radius=${radius}&limit=${limit}`,
+        `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}${longitude}/nearbyCities?radius=${radius}&limit=${limit}&countryIds=${countryCode}&types=${type}`,
         {
             method: "GET",
             headers: {

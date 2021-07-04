@@ -2,7 +2,7 @@ export const convertKelvinToCelsius = (kelvin: number): string => {
     return `${Math.round(kelvin - 273.15)}°`;
 };
 
-export const windDegreeToText = (windDegree: number) => {
+export const windDegreeToText = (windDegree: number): string => {
     switch (true) {
         case windDegree < 22.5:
             return 'n';
@@ -38,3 +38,8 @@ export const windDegreeToText = (windDegree: number) => {
             return 'nw';
     }
 };
+
+export const sanitiseCoordinate = (coordinate: string): string => {
+    const coordinateStr = String(coordinate);
+    return (coordinateStr.indexOf("-") > -1 ? coordinateStr : "+" + coordinateStr).toString();
+}
