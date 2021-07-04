@@ -247,38 +247,59 @@ export const getWeatherDetailsWithLocationName = async (
         NEARBY_LOCATION_TYPE
     );
 
-    return mapWeatherDetailsJsonToWeatherDetailsObject(
-        locationName,
-        weatherDetailForGivenLocationAsJson,
-        nearbyLocations
-    );
-};
-
-export const getWeatherDetailsWithCoordinate = async (
-    latitude: string,
-    longitude: string,
-    locationName: string,
-    countryCode: string
-): Promise<WeatherDetails> => {
-    const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
-        latitude,
-        longitude
-    );
-    const nearbyLocations = await getNearbyLocations(
-        latitude,
-        longitude,
-        NEARBY_LOCATION_RADIUS,
-        NEARBY_LOCATIONS_LIMIT,
-        countryCode,
-        NEARBY_LOCATION_TYPE
+    const nearbyLocationsWithSourceRemoved = removeSourceLocationFromNearbyLocation(
+        nearbyLocations,
+        locationName
     );
 
     return mapWeatherDetailsJsonToWeatherDetailsObject(
         locationName,
         weatherDetailForGivenLocationAsJson,
-        nearbyLocations
+        nearbyLocationsWithSourceRemoved
     );
 };
+
+// export const getWeatherDetailsWithCoordinate = async (
+//     latitude: string,
+//     longitude: string,
+//     locationName: string,
+//     countryCode: string
+// ): Promise<WeatherDetails> => {
+//     const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
+//         latitude,
+//         longitude
+//     );
+//     const nearbyLocations = await getNearbyLocations(
+//         latitude,
+//         longitude,
+//         NEARBY_LOCATION_RADIUS,
+//         NEARBY_LOCATIONS_LIMIT,
+//         countryCode,
+//         NEARBY_LOCATION_TYPE
+//     );
+//
+//     const nearbyLocationsWithSourceRemoved = removeSourceLocationFromNearbyLocation(nearbyLocations, locationName);
+//
+//     return mapWeatherDetailsJsonToWeatherDetailsObject(
+//         locationName,
+//         weatherDetailForGivenLocationAsJson,
+//         nearbyLocationsWithSourceRemoved
+//     );
+// };
+
+const removeSourceLocationFromNearbyLocation = (
+    nearbyLocations: NearbyLocation[],
+    sourceLocationName: string | string[] | undefined
+): NearbyLocation[] => {
+
+    nearbyLocations.forEach((eachNearbyLocation, index) => {
+        if ((String(sourceLocationName).indexOf(eachNearbyLocation.name) > -1)) {
+            nearbyLocations.splice(index, 1);
+        }
+    });
+
+    return nearbyLocations;
+}
 
 export const getUkTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
     const topUkStaticLocationSearchTerms = getStaticUkTopSearchLocations();

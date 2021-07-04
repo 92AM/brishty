@@ -8,6 +8,8 @@ import {getWeatherDetailsWithLocationName} from "../../services/WeatherDetailsSe
 import PageContentWrapper from "../../components/PageContentWrapper";
 import DetailedCurrentWeather from "../../components/DetailedCurrentWeather";
 import SevenDayWeather from "../../components/SevenDayWeather";
+import NearbyLocations from "../../components/NearbyLocations";
+import TodaysWeatherDescription from "../../components/TodaysWeatherDescription";
 
 type Props = {
     weatherDetails?: WeatherDetails
@@ -45,6 +47,10 @@ const Weather = ({weatherDetails}: Props) => {
         >
             <PageContentWrapper>
                 {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails}/>}
+            </PageContentWrapper>
+            {weatherDetails?.nearbyLocations && <NearbyLocations items={weatherDetails?.nearbyLocations!}/>}
+            <PageContentWrapper classNameCustomAttributes={"py-8 px-2"}>
+                {weatherDetails && <TodaysWeatherDescription item={weatherDetails}/>}
             </PageContentWrapper>
             {weatherDetails && <DetailedCurrentWeather item={weatherDetails}/>}
             <PageContentWrapper classNameCustomAttributes={"py-8 px-2"}>

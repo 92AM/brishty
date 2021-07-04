@@ -13,7 +13,7 @@ export const validateAndExecuteSearch = (input: any) => {
     }
 }
 
-export const searchWeatherByLocation = (input: any) => {
+export const searchWeatherByLocation = (input: string) => {
     const windowLocation = getWindow().location;
     windowLocation.assign('/weather/' + input);
 }
