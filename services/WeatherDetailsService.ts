@@ -18,11 +18,11 @@ import {
     getMoreStaticAmericasTopSearchLocations,
     getMoreStaticAsianTopSearchLocations,
     getMoreStaticEuropeanTopSearchLocations,
-    getMoreStaticUkTopSearchLocations,
+    getMoreStaticUkTopSearchLocations, getMoreStaticWorldTopSearchLocations,
     getStaticAfricaTopSearchLocations,
     getStaticAmericasTopSearchLocations,
     getStaticAsianTopSearchLocations,
-    getStaticEuropeanTopSearchLocations,
+    getStaticEuropeanTopSearchLocations, getStaticRestOfWorldTopSearchLocations,
     getStaticUkTopSearchLocations
 } from "./StaticSearchLocationGeneratorService";
 import {nearbyLocationsRouteHandler} from "../webRouters/NearbyLocationsRouteHandler";
@@ -339,6 +339,26 @@ export const getEuropeMoreTopLocationsCurrentWeathers = async (): Promise<Locati
         europeTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
     }
     return europeTopLocationsCurrentWeathers;
+}
+
+export const getWorldTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topWorldStaticLocationSearchTerms = getStaticRestOfWorldTopSearchLocations();
+    let worldTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topWorldStaticLocationSearchTerms) {
+        worldTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return worldTopLocationsCurrentWeathers;
+}
+
+export const getWorldMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
+    const topWorldStaticLocationSearchTerms = getMoreStaticWorldTopSearchLocations();
+    let worldTopLocationsCurrentWeathers = [];
+
+    for (let locationName of topWorldStaticLocationSearchTerms) {
+        worldTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
+    }
+    return worldTopLocationsCurrentWeathers;
 }
 
 export const getAsiaTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {

@@ -7,9 +7,9 @@ type Props = {
 
 const TodaysWeatherDescription = ({item: weatherDetails}: Props) => {
     return (
-        <div className="2xl:px-32">
+        <div className="px-4 2xl:px-32">
             <div className="text-gray-800 text-2xl text-left p-2 pb-4">
-                Today's weather forecast :
+                {weatherDetails.locationName}'s weather forecast today :
             </div>
             <div className="text-gray-800 text-lg text-left p-2">
                 Expect {weatherDetails.current.weather.description} today, currently{' '}
@@ -18,8 +18,6 @@ const TodaysWeatherDescription = ({item: weatherDetails}: Props) => {
                 {weatherDetails.current.minTemp}C. Check out today's detailed weather and 7 days weather breakdown below.
             </div>
         </div>
-
-
     );
 };
 

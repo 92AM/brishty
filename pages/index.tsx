@@ -4,29 +4,23 @@ import PageContentWrapper from "../components/PageContentWrapper";
 import SearchBox from "../components/SearchBox";
 import {LocationCurrentWeather} from "../interfaces";
 import {
-    getAfricaTopLocationsCurrentWeathers,
-    getAmericasTopLocationsCurrentWeathers,
-    getAsiaTopLocationsCurrentWeathers,
     getEuropeTopLocationsCurrentWeathers,
-    getUkTopLocationsCurrentWeathers
+    getUkTopLocationsCurrentWeathers,
+    getWorldTopLocationsCurrentWeathers
 } from "../services/WeatherDetailsService";
 import TopLocationsWeatherPreviewsCarousel from "../components/TopLocationsWeatherPreviewsCarousel";
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[]
     europeTopLocationsWeathers: LocationCurrentWeather[]
-    asiaTopLocationWeathers: LocationCurrentWeather[]
-    americasTopLocationWeathers: LocationCurrentWeather[]
-    africaTopLocationWeathers: LocationCurrentWeather[]
+    worldTopLocationWeathers: LocationCurrentWeather[]
 }
 
 const IndexPage = (
     {
         ukTopLocationsWeathers,
         europeTopLocationsWeathers,
-        asiaTopLocationWeathers,
-        americasTopLocationWeathers,
-        africaTopLocationWeathers
+        worldTopLocationWeathers,
     }: IndexPageProps
 ) => (
     <Layout title="Brishty - search for weather">
@@ -36,12 +30,8 @@ const IndexPage = (
             <TopLocationsWeatherPreviewsCarousel items={ukTopLocationsWeathers} mainLocation={"UK"}/>}
             {europeTopLocationsWeathers &&
             <TopLocationsWeatherPreviewsCarousel items={europeTopLocationsWeathers} mainLocation={"Europe"}/>}
-            {asiaTopLocationWeathers &&
-            <TopLocationsWeatherPreviewsCarousel items={asiaTopLocationWeathers} mainLocation={"Asia"}/>}
-            {americasTopLocationWeathers &&
-            <TopLocationsWeatherPreviewsCarousel items={americasTopLocationWeathers} mainLocation={"Americas"}/>}
-            {africaTopLocationWeathers &&
-            <TopLocationsWeatherPreviewsCarousel items={africaTopLocationWeathers} mainLocation={"Africa"}/>}
+            {worldTopLocationWeathers &&
+            <TopLocationsWeatherPreviewsCarousel items={worldTopLocationWeathers} mainLocation={"World"}/>}
         </PageContentWrapper>
     </Layout>
 )
@@ -50,9 +40,7 @@ IndexPage.getInitialProps = async () => {
     return {
         ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
         europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
-        asiaTopLocationWeathers: await getAsiaTopLocationsCurrentWeathers(),
-        americasTopLocationWeathers: await getAmericasTopLocationsCurrentWeathers(),
-        africaTopLocationWeathers: await getAfricaTopLocationsCurrentWeathers(),
+        worldTopLocationWeathers: await getWorldTopLocationsCurrentWeathers(),
     };
 }
 
