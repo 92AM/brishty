@@ -101,3 +101,8 @@ export interface NearbyLocation {
     distance: string
     coordinate: Coordinate
 }
+
+export type WeatherDetailsProps = {
+    weatherDetails?: WeatherDetails
+    errors?: string
+}

@@ -39,7 +39,7 @@ export const windDegreeToText = (windDegree: number): string => {
     }
 };
 
-export const sanitiseCoordinate = (coordinate: string): string => {
+export const sanitiseCoordinate = (coordinate: string | string[] | undefined): string => {
     const coordinateStr = String(coordinate);
     return (coordinateStr.indexOf("-") > -1 ? coordinateStr : "+" + coordinateStr).toString();
 }

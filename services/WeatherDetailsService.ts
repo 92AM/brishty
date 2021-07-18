@@ -212,11 +212,11 @@ export const getLocationCurrentWeather = async (
 };
 
 export const getNearbyLocations = async (
-    latitude: string,
-    longitude: string,
+    latitude: string | string[] | undefined,
+    longitude: string | string[] | undefined,
     radius: number,
     limit: number,
-    countryCode: string,
+    countryCode: string | string[] | undefined,
     type: string
 ): Promise<NearbyLocation[]> => {
     const nearbyLocationsAsJson = await nearbyLocationsRouteHandler(
@@ -230,7 +230,7 @@ export const getNearbyLocations = async (
     return mapNearbyLocationsJsonToNearbyLocations(nearbyLocationsAsJson);
 };
 
-export const getWeatherDetailsWithLocationName = async (
+export const getWeatherDetailsByLocationName = async (
     locationName: string | string[] | undefined
 ): Promise<WeatherDetails> => {
     const searchedLocationCurrentWeather = await getLocationCurrentWeather(locationName);
@@ -259,33 +259,36 @@ export const getWeatherDetailsWithLocationName = async (
     );
 };
 
-// export const getWeatherDetailsWithCoordinate = async (
-//     latitude: string,
-//     longitude: string,
-//     locationName: string,
-//     countryCode: string
-// ): Promise<WeatherDetails> => {
-//     const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
-//         latitude,
-//         longitude
-//     );
-//     const nearbyLocations = await getNearbyLocations(
-//         latitude,
-//         longitude,
-//         NEARBY_LOCATION_RADIUS,
-//         NEARBY_LOCATIONS_LIMIT,
-//         countryCode,
-//         NEARBY_LOCATION_TYPE
-//     );
-//
-//     const nearbyLocationsWithSourceRemoved = removeSourceLocationFromNearbyLocation(nearbyLocations, locationName);
-//
-//     return mapWeatherDetailsJsonToWeatherDetailsObject(
-//         locationName,
-//         weatherDetailForGivenLocationAsJson,
-//         nearbyLocationsWithSourceRemoved
-//     );
-// };
+export const getWeatherDetailsByGeoLocation = async (
+    locationName: string | string[] | undefined,
+    latitude: string | string[] | undefined,
+    longitude: string | string[] | undefined,
+    countryCode: string | string[] | undefined
+): Promise<WeatherDetails> => {
+    const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
+        latitude,
+        longitude
+    );
+    const nearbyLocations = await getNearbyLocations(
+        latitude,
+        longitude,
+        NEARBY_LOCATION_RADIUS,
+        NEARBY_LOCATIONS_LIMIT,
+        countryCode,
+        NEARBY_LOCATION_TYPE
+    );
+
+    const nearbyLocationsWithSourceRemoved = removeSourceLocationFromNearbyLocation(
+        nearbyLocations,
+        locationName
+    );
+
+    return mapWeatherDetailsJsonToWeatherDetailsObject(
+        locationName,
+        weatherDetailForGivenLocationAsJson,
+        nearbyLocationsWithSourceRemoved
+    );
+};
 
 const removeSourceLocationFromNearbyLocation = (
     nearbyLocations: NearbyLocation[],

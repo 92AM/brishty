@@ -8,7 +8,7 @@ export const nearbyLocationsRouteHandler = async (
     longitude: string | string[] | undefined,
     radius: number,
     limit: number,
-    countryCode: string,
+    countryCode: string | string[] | undefined,
     type: string
 ): Promise<any> => {
 

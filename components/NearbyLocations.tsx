@@ -1,13 +1,23 @@
 import React from 'react'
 import {NearbyLocation} from "../interfaces";
-import {searchWeatherByLocation} from "../services/SearchService";
+import {searchWeatherByGeoLocation} from "../services/SearchService";
 
 type Props = {
     items: NearbyLocation[]
 }
 
-const onClickLoadNearbyLocationWeather = (location: string) => {
-    searchWeatherByLocation(location);
+const onClickLoadNearbyLocationWeather = (
+    locationName: string,
+    latitude: string,
+    longitude: string,
+    countryCode: string
+) => {
+    searchWeatherByGeoLocation(
+        locationName,
+        latitude,
+        longitude,
+        countryCode
+    );
 };
 
 const NearbyLocations = ({items: nearbyLocations}: Props) => {
@@ -24,7 +34,12 @@ const NearbyLocations = ({items: nearbyLocations}: Props) => {
         slideComponents.push(
             <button
                 className="whitespace-nowrap w-auto px-6 shadow-md no-underline rounded-full bg-gray-200 text-gray-800 font-sans font-semibold text-sm border-blue btn-primary hover:text-black hover:bg-gray-400 focus:outline-none active:shadow-none"
-                onClick={() => onClickLoadNearbyLocationWeather(eachNearbyLocation.name + ", " + eachNearbyLocation.countryCode)}
+                onClick={() => onClickLoadNearbyLocationWeather(
+                    eachNearbyLocation.name,
+                    eachNearbyLocation.coordinate.latitude,
+                    eachNearbyLocation.coordinate.longitude,
+                    eachNearbyLocation.countryCode
+                )}
             >
                 <p className="text-base">{eachNearbyLocation.name}</p>
                 <p className="text-xs">{eachNearbyLocation.distance} miles away</p>
@@ -46,4 +61,3 @@ const NearbyLocations = ({items: nearbyLocations}: Props) => {
 };
 
 export default NearbyLocations
-

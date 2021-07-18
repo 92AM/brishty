@@ -5,7 +5,7 @@ export const validateAndExecuteSearch = (input: any) => {
         if (!input) {
             throw "Please insert a valid city name and search again."
         } else {
-            searchWeatherByLocation(input)
+            searchWeatherByLocationName(input)
         }
     } catch (err) {
         alert(err);
@@ -13,7 +13,19 @@ export const validateAndExecuteSearch = (input: any) => {
     }
 }
 
-export const searchWeatherByLocation = (input: string) => {
+export const searchWeatherByLocationName = (input: string) => {
     const windowLocation = getWindow().location;
     windowLocation.assign('/weather/' + input);
+}
+
+export const searchWeatherByGeoLocation = (
+    locationName: string,
+    latitude: string,
+    longitude: string,
+    countryCode: string
+) => {
+    const windowLocation = getWindow().location;
+    windowLocation.assign(
+        '/weather/' + locationName + "/" + latitude + "/" + longitude + "/" + countryCode
+    );
 }
