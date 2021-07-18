@@ -20,7 +20,7 @@ const Icon = ({description, value}: Props) => {
 };
 
 const getIconSourceLink = (value: string): string => {
-    return "http://openweathermap.org/img/wn/" + value + "@2x.png"
+    return "https://openweathermap.org/img/wn/" + value + "@2x.png"
 }
 
 export default function Icons() {
