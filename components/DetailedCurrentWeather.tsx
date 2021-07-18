@@ -1,5 +1,5 @@
 import React from 'react'
-import WeatherDescriptionItem from "./CurrentWeatherItem";
+import WeatherDescriptionItem from "./WeatherDescriptionItem";
 import {WeatherDetails} from "../interfaces";
 import moment from "moment";
 import {windDegreeToText} from "../services/GenericUtilityService";

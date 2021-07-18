@@ -6,11 +6,12 @@ import Seo from "./Seo";
 type Props = {
     children?: ReactNode
     title?: string
+    background?: string
 }
 
-const Layout = ({children, title}: Props) => (
+const Layout = ({children, title, background}: Props) => (
     <Fragment>
-        <body className="bg-gray-100">
+        <body className={background ? background : "bg-gray-100"}>
         <Seo title={title}/>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <Header/>

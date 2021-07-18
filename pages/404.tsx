@@ -15,6 +15,10 @@ const onClickTopWorldWeathers = () => {
     getWindow().location.assign('/weather/worldweather');
 };
 
+const onClickAboutUs = () => {
+    getWindow().location.assign('/about');
+};
+
 export default function Custom404() {
     return (
         <Layout title="Brishty - search for weather">
@@ -101,6 +105,27 @@ export default function Custom404() {
                         </svg>
                         <div className="flex-1">
                             <p className="pt-1 text-lg text-gray-700 text-base">World cities weather</p>
+                        </div>
+                        <div className="flex-2 float-right">
+                            <svg className="pl-18 pt-1 flex-1 h-7 w-7" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                      d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    className="container mx-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b
+                    p-5 flex flex-col justify-between leading-normal drop-shadow-lg cursor-pointer mb-6"
+                    onClick={onClickAboutUs}
+                >
+                    <div className="flex space-x-2">
+                        <svg className="flex-none mx-4 h-7 w-7 mt-1" fill="#000000" viewBox="0 0 24 24">
+                            <path d="M 4.0097656 3 C 2.9179106 3 2.0097656 3.9049841 2.0097656 4.9980469 L 2 23 L 6 19 L 20 19 C 21.093063 19 22 18.093063 22 17 L 22 5 C 22 3.9069372 21.093063 3 20 3 L 4.0097656 3 z M 4.0097656 5 L 20 5 L 20 17 L 5.171875 17 L 4.0039062 18.167969 L 4.0097656 5 z M 11 7 L 11 9 L 13 9 L 13 7 L 11 7 z M 11 11 L 11 15 L 13 15 L 13 11 L 11 11 z"/>
+                        </svg>
+                        <div className="flex-1">
+                            <p className="pt-1 text-lg text-gray-700 text-base">About us</p>
                         </div>
                         <div className="flex-2 float-right">
                             <svg className="pl-18 pt-1 flex-1 h-7 w-7" fill="none" viewBox="0 0 24 24"
