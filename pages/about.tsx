@@ -42,10 +42,10 @@ export default function About() {
                             The weather related information on Brishty website are all provided by the following
                             external companies :
                             <ul className="list-disc pl-8">
-                                <li>Weather information are provided by <span className="text-indigo-600"><Link
+                                <li>Weather information are provided by <span className="text-blue-900 hover:underline"><Link
                                     href={"https://openweathermap.org/"}>Open Weather
                                     Map</Link></span></li>
-                                <li>Nearby locations are provided by <span className="text-indigo-600"><Link
+                                <li>Nearby locations are provided by <span className="text-blue-900 hover:underline"><Link
                                     href={"https://rapidapi.com/wirefreethought/api/geodb-cities"}>
                                     GeoDB Cities</Link></span></li>
                             </ul>
