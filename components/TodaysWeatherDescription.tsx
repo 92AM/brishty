@@ -20,7 +20,7 @@ const TodaysWeatherDescription = ({item: weatherDetails}: Props) => {
                 {weatherDetails.current.minTemp}C. Check out today's detailed weather and 7 days weather breakdown
                 below.
             </div>
-            <hr className="mt-8"/>
+            <hr className="mt-8 border-solid border-1 border-gray-400"/>
             <div className="text-gray-800 text-2xl text-left mt-8 p-2 pb-4">
                 Information about weather icons used
             </div>
