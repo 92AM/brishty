@@ -45,7 +45,8 @@ export default function About() {
                                 <li>Weather information are provided by <span className="text-blue-900 hover:underline"><Link
                                     href={"https://openweathermap.org/"}>Open Weather
                                     Map</Link></span></li>
-                                <li>Nearby locations are provided by <span className="text-blue-900 hover:underline"><Link
+                                <li>Nearby locations are provided by <span
+                                    className="text-blue-900 hover:underline"><Link
                                     href={"https://rapidapi.com/wirefreethought/api/geodb-cities"}>
                                     GeoDB Cities</Link></span></li>
                             </ul>
@@ -139,6 +140,34 @@ export default function About() {
                         </div>
                     </div>
                 </div>
+
+                <form name="simpleContactForm" method="POST" data-netlify="true" id="simple-contact-form" className="contact-form">
+                    <p className="form-row">
+                        <label id="contact-form-name-label" htmlFor="contact-form-name"
+                               className="form-label">Name</label>
+                        <input type="text" name="name" id="contact-form-name" aria-labelledby="contact-form-name-label"
+                               className="form-input"/>
+                    </p>
+                    <p className="form-row">
+                        <label id="contact-form-email-label" htmlFor="contact-form-email" className="form-label">Email
+                            address</label>
+                        <input type="email" name="email" id="contact-form-email"
+                               aria-labelledby="contact-form-email-label" className="form-input"/>
+                    </p>
+                    <p className="form-row">
+                        <label id="contact-form-message-label" htmlFor="contact-form-message"
+                               className="form-label">Message</label>
+                        <textarea
+                            name="message"
+                            id="contact-form-message"
+                            aria-labelledby="contact-form-message-label"
+                            className="form-textarea"
+                        />
+                    </p>
+                    <p className="form-row form-submit">
+                        <button type="submit" className="button">Send Message</button>
+                    </p>
+                </form>
 
             </PageContentWrapper>
         </Layout>
