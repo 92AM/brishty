@@ -7,7 +7,7 @@ import {ParsedUrlQuery} from "querystring";
 import WeatherLocationDetails from "../../components/WeatherLocationDetails";
 
 type Props = {
-    weatherDetails?: WeatherDetails
+    weatherDetails: WeatherDetails
     errors?: string
 }
 

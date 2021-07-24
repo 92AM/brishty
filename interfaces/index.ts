@@ -63,17 +63,6 @@ export interface Daily {
     humidity: string
 }
 
-export interface WeatherDetails {
-    locationName: string
-    latitude: string
-    longitude: string
-    timezone: string
-    current: Current
-    hourly: Hour[]
-    daily: Daily[]
-    nearbyLocations: NearbyLocation[]
-}
-
 export interface Coordinate {
     latitude: string
     longitude: string
@@ -102,7 +91,18 @@ export interface NearbyLocation {
     coordinate: Coordinate
 }
 
+export interface WeatherDetails {
+    locationName: string
+    latitude: string
+    longitude: string
+    timezone: string
+    current: Current
+    hourly: Hour[]
+    daily: Daily[]
+    nearbyLocations: NearbyLocation[]
+}
+
 export type WeatherDetailsProps = {
-    weatherDetails?: WeatherDetails
+    weatherDetails: WeatherDetails
     errors?: string
 }

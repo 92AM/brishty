@@ -7,8 +7,10 @@ import NearbyLocations from "./NearbyLocations";
 import TodaysWeatherDescription from "./TodaysWeatherDescription";
 import DetailedCurrentWeather from "./DetailedCurrentWeather";
 import SevenDayWeather from "./SevenDayWeather";
+import {MapLoader} from "./MapLoader";
 
 const WeatherLocationDetails = ({weatherDetails}: WeatherDetailsProps) => {
+
     return (
         <Layout
             title={`Brishty - ${
@@ -18,6 +20,10 @@ const WeatherLocationDetails = ({weatherDetails}: WeatherDetailsProps) => {
             <PageContentWrapper>
                 {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails}/>}
             </PageContentWrapper>
+            {
+                weatherDetails.latitude && weatherDetails.longitude &&
+                <MapLoader weatherDetails={weatherDetails}/>
+            }
             {
                 (weatherDetails?.nearbyLocations && weatherDetails?.nearbyLocations.length != 0)
                     ? <NearbyLocations items={weatherDetails?.nearbyLocations!}/>

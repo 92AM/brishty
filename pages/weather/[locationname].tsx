@@ -6,7 +6,7 @@ import {getWeatherDetailsByLocationName} from "../../services/WeatherDetailsServ
 import WeatherLocationDetails from "../../components/WeatherLocationDetails";
 
 type Props = {
-    weatherDetails?: WeatherDetails
+    weatherDetails: WeatherDetails
     errors?: string
 }
 
