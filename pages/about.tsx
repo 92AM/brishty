@@ -53,11 +53,14 @@ export default function About() {
                         </p>
                     </div>
 
+                    <hr className="border-solid border-1 border-gray-400"/>
+
+                    <h3 className="mt-6 text-2xl text-gray-900">Get in touch!</h3>
+                    <p className="py-3 text-xl">
+                        Please feel free to send us questions and feedbacks by completing the below form.
+                    </p>
                     <form name="brishtyContactForm" method="POST" action="/thanks" data-netlify="true"
                           id="brishty-contact-form" className="form border-solid rounded-lg border-2 bg-white p-6 mt-2 mr-2 ml-2 mb-8">
-                        <h3 className="text-2xl text-gray-900">Get in touch!</h3>
-                        <p className="pt-2 pb-2 text-gray-600"> Please feel free to send us questions and feedbacks
-                            below.</p>
                         <input type="hidden" name="form-name" value="brishtyContactForm"/>
                         <input type="text" name="name" id="contact-form-nam" placeholder="Your Name"
                                className="border p-2  w-full mt-3"/>
@@ -68,7 +71,7 @@ export default function About() {
                                   className="border p-2 mt-3 w-full form-textarea"/>
 
                         <button type="submit" value="Submit"
-                                className="w-full h-16 mt-6 bg-gray-800 hover:bg-gray-600 text-white font-semibold p-3">Send
+                                className="w-full h-16 mt-6 mb-3 bg-gray-800 hover:bg-gray-600 text-white font-semibold p-3">Send
                             Message
                         </button>
                     </form>
