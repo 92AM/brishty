@@ -142,6 +142,7 @@ export default function About() {
                 </div>
 
                 <form name="simpleContactForm" method="POST" action="/thanks" data-netlify="true" id="simple-contact-form" className="contact-form">
+                    <input type="hidden" name="form-name" value="simpleContactForm" />
                     <p className="form-row">
                         <label id="contact-form-name-label" htmlFor="contact-form-name"
                                className="form-label">Name</label>
