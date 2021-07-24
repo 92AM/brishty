@@ -53,51 +53,28 @@ export default function About() {
                         </p>
                     </div>
 
-
-                    <form name="brishtyContactForm" method="POST" action="/thanks" data-netlify="true" id="brishty-contact-form" className="form bg-white p-6 mt-2 mr-2 ml-2 mb-8">
+                    <form name="brishtyContactForm" method="POST" action="/thanks" data-netlify="true"
+                          id="brishty-contact-form" className="form bg-white p-6 mt-2 mr-2 ml-2 mb-8">
                         <h3 className="text-2xl text-gray-900">Get in touch!</h3>
-                        <p className="pt-2 pb-2 text-gray-600"> Please feel free to send us questions and feedbacks below.</p>
-                        <input type="hidden" name="form-name" value="brishtyContactForm" />
-                        <input type="text" name="name" id="contact-form-nam" placeholder="Your Name" className="border p-2  w-full mt-3"/>
+                        <p className="pt-2 pb-2 text-gray-600"> Please feel free to send us questions and feedbacks
+                            below.</p>
+                        <input type="hidden" name="form-name" value="brishtyContactForm"/>
+                        <input type="text" name="name" id="contact-form-nam" placeholder="Your Name"
+                               className="border p-2  w-full mt-3"/>
 
-                        <input type="email" name="email" id="contact-form-email" placeholder="Your Email" className="border p-2 w-full mt-3"/>
+                        <input type="email" name="email" id="contact-form-email" placeholder="Your Email"
+                               className="border p-2 w-full mt-3"/>
                         <textarea name="message" id="contact-form-message" placeholder="Write your message here"
                                   className="border p-2 mt-3 w-full form-textarea"/>
 
-                        {/*<p className="form-row">*/}
-                        {/*    /!*<label id="contact-form-name-label" htmlFor="contact-form-name"*!/*/}
-                        {/*    /!*       className="form-label">Name</label>*!/*/}
-                        {/*    /!*<input type="text" name="name" id="contact-form-name" aria-labelledby="contact-form-name-label"*!/*/}
-                        {/*    /!*       className="form-input"/>*!/*/}
-                        {/*    <input type="text" name="" id="contact-form-nam" placeholder="Your Name" className="border p-2  w-1/2"/>*/}
-                        {/*</p>*/}
-                        {/*<p className="form-row">*/}
-                        {/*    <label id="contact-form-email-label" htmlFor="contact-form-email" className="form-label">Email*/}
-                        {/*        address</label>*/}
-                        {/*    <input type="email" name="email" id="contact-form-email"*/}
-                        {/*           aria-labelledby="contact-form-email-label" className="form-input"/>*/}
-                        {/*</p>*/}
-                        {/*<p className="form-row">*/}
-                        {/*    <label id="contact-form-message-label" htmlFor="contact-form-message"*/}
-                        {/*           className="form-label">Message</label>*/}
-                        {/*    <textarea*/}
-                        {/*        name="message"*/}
-                        {/*        id="contact-form-message"*/}
-                        {/*        aria-labelledby="contact-form-message-label"*/}
-                        {/*        className="form-textarea"*/}
-                        {/*    />*/}
-                        {/*</p>*/}
                         <button type="submit" value="Submit"
-                                className="w-full mt-6 bg-gray-800 hover:bg-gray-600 text-white font-semibold p-3">Send Message</button>
-
-                        {/*<p className="form-row form-submit">*/}
-                        {/*    <button type="submit" className="button">Send Message</button>*/}
-                        {/*</p>*/}
+                                className="w-full mt-6 bg-gray-800 hover:bg-gray-600 text-white font-semibold p-3">Send
+                            Message
+                        </button>
                     </form>
 
 
                     <hr className="border-solid border-1 border-gray-400"/>
-
 
                     <span className="pt-6 pb-6 text-2xl">Here are few suggestions that you may find helpful.</span>
 
@@ -185,8 +162,6 @@ export default function About() {
                             </div>
                         </div>
                     </div>
-
-
 
                 </div>
 
