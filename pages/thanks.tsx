@@ -13,7 +13,7 @@ const onClickAboutUs = () => {
 
 export default function Thanks() {
     return (
-        <Layout title="Brishty - search for weather" background={"bg-white"}>
+        <Layout title="Brishty - search for weather">
             <PageContentWrapper classNameCustomAttributes={"px-4 pt-20 pb-5 min-h-screen"}>
                 <div className="grid grid-cols-1 gap-4 container mx-auto">
                     <span className="pt-12 text-4xl">
