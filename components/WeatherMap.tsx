@@ -1,4 +1,4 @@
-import {MapContainer, Marker, TileLayer} from "react-leaflet";
+import {LayersControl, MapContainer, Marker, TileLayer} from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet';
 import {WeatherDetailsProps} from "../interfaces";
@@ -29,19 +29,37 @@ const WeatherMap = ({weatherDetails}: WeatherDetailsProps) => {
                       style={{height: WEATHER_MAP_HEIGHT, width: WEATHER_MAP_WIDTH}}
                       className="z-0"
         >
-            <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | &copy; <a href="">Brishty</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker
-                position={[latitude, longitude]}
-                icon={L.divIcon({
-                    iconSize: [WEATHER_MAP_ICON_SIZE, WEATHER_MAP_ICON_SIZE],
-                    iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
-                    className: "",
-                    html: getLocationPin(),
-                })}
-            />
+            <LayersControl position="topright">
+                <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | &copy; <a href="">Brishty</a>'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                </LayersControl.BaseLayer>
+                <LayersControl.BaseLayer name="OpenStreetMap.BlackAndWhite">
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+                    />
+                </LayersControl.BaseLayer>
+                <LayersControl.Overlay name="Marker with popup">
+                    <Marker
+                        position={[latitude, longitude]}
+                        icon={L.divIcon({
+                            iconSize: [WEATHER_MAP_ICON_SIZE, WEATHER_MAP_ICON_SIZE],
+                            iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
+                            className: "",
+                            html: getLocationPin(),
+                        })}
+                    />
+                </LayersControl.Overlay>
+                <LayersControl.Overlay name="Marker with anotherrr popup">
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://tile.openweathermap.org/map/temp_new/1/0/0.png?appid=a72e7f363e829766f8e4e1103e65a3be"
+                    />
+                </LayersControl.Overlay>
+            </LayersControl>
         </MapContainer>
     )
 }
