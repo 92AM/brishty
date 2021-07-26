@@ -27,6 +27,12 @@ interface WeatherLayerProps {
     omwLayerName: string
 }
 
+interface MapLayerProps {
+    layerDisplayName: string
+    mapLayerUrl: string
+    checked: boolean
+}
+
 const WeatherLayer = ({layerDisplayName, omwLayerName}: WeatherLayerProps) => {
     return (
         <LayersControl.Overlay name={layerDisplayName}>
@@ -34,6 +40,23 @@ const WeatherLayer = ({layerDisplayName, omwLayerName}: WeatherLayerProps) => {
                 url={`https://tile.openweathermap.org/map/${omwLayerName}/{z}/{x}/{y}.png?appid=${OWM_API_KEY}`}
             />
         </LayersControl.Overlay>
+    );
+}
+
+const MapLayer = ({layerDisplayName, mapLayerUrl, checked}: MapLayerProps) => {
+    return (
+        checked ?
+            <LayersControl.BaseLayer checked name={layerDisplayName}>
+                <TileLayer
+                    attribution={mapAttributions}
+                    url={mapLayerUrl}
+                />
+            </LayersControl.BaseLayer> : <LayersControl.BaseLayer name={layerDisplayName}>
+                <TileLayer
+                    attribution={mapAttributions}
+                    url={mapLayerUrl}
+                />
+            </LayersControl.BaseLayer>
     );
 }
 
@@ -59,18 +82,14 @@ const WeatherMap = ({weatherDetails}: WeatherDetailsProps) => {
                 })}
             />
             <LayersControl position="topright">
-                <LayersControl.BaseLayer checked name="OpenStreetMap - Black And White">
-                    <TileLayer
-                        attribution={mapAttributions}
-                        url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
-                    />
-                </LayersControl.BaseLayer>
-                <LayersControl.BaseLayer name="OpenStreetMap - Standard Mapnik">
-                    <TileLayer
-                        attribution={mapAttributions}
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                </LayersControl.BaseLayer>
+                <MapLayer layerDisplayName={"OpenStreetMap - Black And White"}
+                          mapLayerUrl={"https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"}
+                          checked={true}
+                />
+                <MapLayer layerDisplayName={"OpenStreetMap - Standard Mapnik"}
+                          mapLayerUrl={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                          checked={false}
+                />
                 <WeatherLayer layerDisplayName={"Temperature"} omwLayerName={"temp_new"}/>
                 <WeatherLayer layerDisplayName={"Clouds"} omwLayerName={"clouds_new"}/>
                 <WeatherLayer layerDisplayName={"Precipitation"} omwLayerName={"precipitation_new"}/>
