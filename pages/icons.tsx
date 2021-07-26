@@ -41,7 +41,7 @@ export default function Icons() {
                     </span>
                 </div>
 
-                <div className="bg-white text-white text-2l text-center p-8">
+                <div className="bg-white text-white text-2l text-center">
                     <div
                         className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8
                 divide-y divide-gray-500 lg:divide-y-0"
