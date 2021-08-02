@@ -8,6 +8,7 @@ import TodaysWeatherDescription from "./TodaysWeatherDescription";
 import DetailedCurrentWeather from "./DetailedCurrentWeather";
 import SevenDayWeather from "./SevenDayWeather";
 import {MapLoader} from "./MapLoader";
+import {getWeatherDetailsPageStaticMapProps} from "../services/WeatherDetailsService";
 
 const WeatherLocationDetails = ({weatherDetails}: WeatherDetailsProps) => {
 
@@ -22,7 +23,7 @@ const WeatherLocationDetails = ({weatherDetails}: WeatherDetailsProps) => {
             </PageContentWrapper>
             {
                 weatherDetails.latitude && weatherDetails.longitude &&
-                <MapLoader weatherDetails={weatherDetails}/>
+                <MapLoader weatherDetails={weatherDetails} mapProps={getWeatherDetailsPageStaticMapProps()}/>
             }
             {
                 (weatherDetails?.nearbyLocations && weatherDetails?.nearbyLocations.length != 0)

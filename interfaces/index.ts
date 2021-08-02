@@ -106,3 +106,18 @@ export type WeatherDetailsProps = {
     weatherDetails: WeatherDetails
     errors?: string
 }
+
+export type MapProps = {
+    blackAndWhiteChecked: boolean
+    mapnikChecked: boolean
+    zoomLevel: number
+    width : string
+    height: number
+    displayMarker: boolean
+    classNames: string
+    temperatureChecked: boolean
+    cloudsChecked: boolean
+    precipitationChecked: boolean
+    pressureChecked: boolean
+    windChecked: boolean
+}

@@ -10,14 +10,14 @@ const TodaysWeatherDescription = ({item: weatherDetails}: Props) => {
     return (
         <div className="px-4 2xl:px-32">
             <div className="text-gray-800 text-2xl text-left p-2 pb-4">
-                {weatherDetails.locationName}'s weather forecast today
+                Weather forecast in {weatherDetails.locationName} today
             </div>
             <div className="text-gray-800 text-lg text-left p-2">
                 Expect {weatherDetails.current.weather.description} today, currently{' '}
                 the temperature in {weatherDetails.locationName} is {weatherDetails.current.currentTemp}C. The high will
                 be{' '}
                 {weatherDetails.current.maxTemp}C and the low tonight will be{' '}
-                {weatherDetails.current.minTemp}C. Check out today's detailed weather and 7 days weather breakdown
+                {weatherDetails.current.minTemp}C. Check out today's detailed weather and the whole week's weather breakdown
                 below.
             </div>
             <hr className="mt-8 border-solid border-1 border-gray-400"/>

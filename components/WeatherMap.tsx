@@ -1,14 +1,9 @@
 import {LayersControl, MapContainer, Marker, TileLayer} from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet';
-import {WeatherDetailsProps} from "../interfaces";
+import {MapProps, WeatherDetails} from "../interfaces";
 import React from "react";
-import {
-    WEATHER_MAP_HEIGHT,
-    WEATHER_MAP_ICON_SIZE,
-    WEATHER_MAP_WIDTH,
-    WEATHER_MAP_ZOOM_LEVEL
-} from "../utility/constants";
+import {WEATHER_MAP_ICON_SIZE} from "../utility/constants";
 import {openWeatherMapApiKey} from "../services/ApiKeyService";
 
 const OWM_API_KEY = openWeatherMapApiKey;
@@ -20,11 +15,14 @@ const getLocationPinSvgIcon = () => {
         "    </svg>";
 }
 
-const mapAttributions = '&copy; <a href="">Brishty</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> | &copy; <a href="https://openweathermap.org/">OpenWeatherMap</a>';
+const mapAttributions = '&copy; <a href="">Brishty</a> ' +
+    '| &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> ' +
+    '| &copy; <a href="https://openweathermap.org/">OpenWeatherMap</a>';
 
 interface WeatherLayerProps {
     layerDisplayName: string
     omwLayerName: string
+    checked : boolean
 }
 
 interface MapLayerProps {
@@ -33,9 +31,9 @@ interface MapLayerProps {
     checked: boolean
 }
 
-const WeatherLayer = ({layerDisplayName, omwLayerName}: WeatherLayerProps) => {
+const WeatherLayer = ({layerDisplayName, omwLayerName, checked}: WeatherLayerProps) => {
     return (
-        <LayersControl.Overlay name={layerDisplayName}>
+        <LayersControl.Overlay checked={checked} name={layerDisplayName}>
             <TileLayer
                 url={`https://tile.openweathermap.org/map/${omwLayerName}/{z}/{x}/{y}.png?appid=${OWM_API_KEY}`}
             />
@@ -45,56 +43,64 @@ const WeatherLayer = ({layerDisplayName, omwLayerName}: WeatherLayerProps) => {
 
 const MapLayer = ({layerDisplayName, mapLayerUrl, checked}: MapLayerProps) => {
     return (
-        checked ?
-            <LayersControl.BaseLayer checked name={layerDisplayName}>
-                <TileLayer
-                    attribution={mapAttributions}
-                    url={mapLayerUrl}
-                />
-            </LayersControl.BaseLayer> : <LayersControl.BaseLayer name={layerDisplayName}>
-                <TileLayer
-                    attribution={mapAttributions}
-                    url={mapLayerUrl}
-                />
-            </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer checked={checked} name={layerDisplayName}>
+            <TileLayer
+                attribution={mapAttributions}
+                url={mapLayerUrl}
+            />
+        </LayersControl.BaseLayer>
     );
 }
 
-const WeatherMap = ({weatherDetails}: WeatherDetailsProps) => {
+type Props = {
+    weatherDetails: WeatherDetails
+    mapProps: MapProps
+}
 
-    const latitude: number = parseInt(weatherDetails?.latitude) || 0;
-    const longitude: number = parseInt(weatherDetails?.longitude) || 0;
+const WeatherMap = ({weatherDetails: weatherDetails, mapProps: mapProps}: Props) => {
+
+    const londonLatitude = 51.5074;
+    const londonLongitude = 0.1278;
+
+    const latitude: number = parseInt(weatherDetails?.latitude) || londonLatitude;
+    const longitude: number = parseInt(weatherDetails?.longitude) || londonLongitude;
 
     return (
         <MapContainer center={[latitude, longitude]}
-                      zoom={WEATHER_MAP_ZOOM_LEVEL}
+                      zoom={mapProps.zoomLevel}
                       scrollWheelZoom={false}
-                      style={{height: WEATHER_MAP_HEIGHT, width: WEATHER_MAP_WIDTH}}
-                      className="z-0"
+                      style={{height: mapProps.height, width: mapProps.width}}
+                      className={mapProps.classNames}
         >
-            <Marker
-                position={[latitude, longitude]}
-                icon={L.divIcon({
-                    iconSize: [WEATHER_MAP_ICON_SIZE, WEATHER_MAP_ICON_SIZE],
-                    iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
-                    className: "",
-                    html: getLocationPinSvgIcon(),
-                })}
-            />
+            {
+                mapProps.displayMarker &&
+                <Marker
+                    position={[latitude, longitude]}
+                    icon={L.divIcon({
+                        iconSize: [WEATHER_MAP_ICON_SIZE, WEATHER_MAP_ICON_SIZE],
+                        iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
+                        className: "",
+                        html: getLocationPinSvgIcon(),
+                    })}
+                />
+            }
             <LayersControl position="topright">
                 <MapLayer layerDisplayName={"OpenStreetMap - Black And White"}
                           mapLayerUrl={"https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"}
-                          checked={true}
+                          checked={mapProps.blackAndWhiteChecked}
                 />
                 <MapLayer layerDisplayName={"OpenStreetMap - Standard Mapnik"}
                           mapLayerUrl={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-                          checked={false}
+                          checked={mapProps.mapnikChecked}
                 />
-                <WeatherLayer layerDisplayName={"Temperature"} omwLayerName={"temp_new"}/>
-                <WeatherLayer layerDisplayName={"Clouds"} omwLayerName={"clouds_new"}/>
-                <WeatherLayer layerDisplayName={"Precipitation"} omwLayerName={"precipitation_new"}/>
-                <WeatherLayer layerDisplayName={"Pressure"} omwLayerName={"pressure_new"}/>
-                <WeatherLayer layerDisplayName={"Wind"} omwLayerName={"wind_new"}/>
+                <WeatherLayer layerDisplayName={"Temperature"} omwLayerName={"temp_new"}
+                              checked={mapProps.temperatureChecked}/>
+                <WeatherLayer layerDisplayName={"Clouds"} omwLayerName={"clouds_new"} checked={mapProps.cloudsChecked}/>
+                <WeatherLayer layerDisplayName={"Precipitation"} omwLayerName={"precipitation_new"}
+                              checked={mapProps.precipitationChecked}/>
+                <WeatherLayer layerDisplayName={"Pressure"} omwLayerName={"pressure_new"}
+                              checked={mapProps.pressureChecked}/>
+                <WeatherLayer layerDisplayName={"Wind"} omwLayerName={"wind_new"} checked={mapProps.windChecked}/>
             </LayersControl>
         </MapContainer>
     )

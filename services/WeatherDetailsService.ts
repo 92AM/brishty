@@ -7,6 +7,7 @@ import {
     FeelLike,
     Hour,
     LocationCurrentWeather,
+    MapProps,
     NearbyLocation,
     Temperature,
     Weather,
@@ -18,14 +19,24 @@ import {
     getMoreStaticAmericasTopSearchLocations,
     getMoreStaticAsianTopSearchLocations,
     getMoreStaticEuropeanTopSearchLocations,
-    getMoreStaticUkTopSearchLocations, getMoreStaticWorldTopSearchLocations,
+    getMoreStaticUkTopSearchLocations,
+    getMoreStaticWorldTopSearchLocations,
     getStaticAfricaTopSearchLocations,
     getStaticAmericasTopSearchLocations,
     getStaticAsianTopSearchLocations,
-    getStaticEuropeanTopSearchLocations, getStaticRestOfWorldTopSearchLocations,
+    getStaticEuropeanTopSearchLocations,
+    getStaticRestOfWorldTopSearchLocations,
     getStaticUkTopSearchLocations
 } from "./StaticSearchLocationGeneratorService";
 import {nearbyLocationsRouteHandler} from "../webRouters/NearbyLocationsRouteHandler";
+import {
+    HOMEPAGE_MAP_HEIGHT,
+    HOMEPAGE_MAP_WIDTH,
+    HOMEPAGE_MAP_ZOOM_LEVEL,
+    WEATHER_DETAILS_PAGE_MAP_HEIGHT,
+    WEATHER_DETAILS_PAGE_MAP_WIDTH,
+    WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL
+} from "../utility/constants";
 
 const NEARBY_LOCATION_RADIUS = 100;
 const NEARBY_LOCATIONS_LIMIT = 10;
@@ -422,4 +433,38 @@ export const getAfricaMoreTopLocationsCurrentWeathers = async (): Promise<Locati
         africaTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
     }
     return africaTopLocationsCurrentWeathers;
+}
+
+export const getWeatherDetailsPageStaticMapProps = () : MapProps => {
+    return {
+        blackAndWhiteChecked: true,
+        mapnikChecked: false,
+        zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
+        width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
+        height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
+        displayMarker: true,
+        classNames: "z-0",
+        temperatureChecked: false,
+        cloudsChecked : false,
+        precipitationChecked : false,
+        pressureChecked: false,
+        windChecked: false
+    };
+}
+
+export const getHomePageStaticMapProps = () : MapProps => {
+    return {
+        blackAndWhiteChecked: true,
+        mapnikChecked: false,
+        zoomLevel: HOMEPAGE_MAP_ZOOM_LEVEL,
+        width: HOMEPAGE_MAP_WIDTH,
+        height: HOMEPAGE_MAP_HEIGHT,
+        displayMarker: false,
+        classNames: "z-0 rounded-3xl",
+        temperatureChecked: true,
+        cloudsChecked : false,
+        precipitationChecked : false,
+        pressureChecked: false,
+        windChecked: false
+    };
 }

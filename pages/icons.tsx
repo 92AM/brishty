@@ -36,8 +36,8 @@ export default function Icons() {
                     <span className="text-xl">
                         Below are the list of weather icons used in Brishty, these icons are all sourced by Open Weather Map. For more information please visit the below link.
                     </span>
-                    <span className="text-blue-900 hover:underline text-2xl">
-                        <Link href={"https://openweathermap.org/weather-conditions"}>{"Open Weather MapPage Icon List >"}</Link>
+                    <span className="text-blue-900 hover:underline text-xl">
+                        <Link href={"https://openweathermap.org/weather-conditions"}>{"Open Weather Map Page Icon List >"}</Link>
                     </span>
                 </div>
 
