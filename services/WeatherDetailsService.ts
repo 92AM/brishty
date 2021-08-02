@@ -460,7 +460,7 @@ export const getHomePageStaticMapProps = () : MapProps => {
         width: HOMEPAGE_MAP_WIDTH,
         height: HOMEPAGE_MAP_HEIGHT,
         displayMarker: false,
-        classNames: "z-0 rounded-3xl",
+        classNames: "z-0 rounded-3xl shadow-lg",
         temperatureChecked: true,
         cloudsChecked : false,
         precipitationChecked : false,
