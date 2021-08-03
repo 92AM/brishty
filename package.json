@@ -4,7 +4,7 @@
   "author": "Arka Mitra",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "npm run lint && npm run type-check && next build",
     "start": "next start",
     "type-check": "tsc",
     "lint": "eslint --ext .js,.ts,.tsx .",
