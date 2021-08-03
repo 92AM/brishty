@@ -6,7 +6,7 @@ const Header = () => {
   const [isBurgerMenuOpen, setBurgerMenuState] = useState(false);
   const [displayNavSearch, setDisplayNavSearch] = useState(false);
   const [clickedOnSearchForm, setClickedOnSearchFormState] = useState(false);
-  const searchContentNode = useRef();
+  const searchContentNode = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     getDocument().addEventListener('mousedown', checkIfSearchContentIsClicked);
