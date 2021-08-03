@@ -1,5 +1,5 @@
-import { locationDetailsRouteHandler } from '../webRouters/LocationDetailsRouteHandler';
-import { weatherDetailsRouteHandler } from '../webRouters/WeatherDetailsRouteHandler';
+import { openWeatherMapLocationDetailsClient } from '../api/OpenWeatherMapLocationDetailsClient';
+import { openWeatherMapWeatherDetailsClient } from '../api/OpenWeatherMapWeatherDetailsClient';
 import {
   Coordinate,
   Current,
@@ -31,7 +31,7 @@ import {
   getStaticRestOfWorldTopSearchLocations,
   getStaticUkTopSearchLocations,
 } from './StaticSearchLocationGeneratorService';
-import { nearbyLocationsRouteHandler } from '../webRouters/NearbyLocationsRouteHandler';
+import { geoDbNearbyLocationsClient } from '../api/GeoDbNearbyLocationsClient';
 import {
   HOMEPAGE_MAP_HEIGHT,
   HOMEPAGE_MAP_WIDTH,
@@ -220,7 +220,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
 export const getLocationCurrentWeather = async (
   locationName: string | string[] | undefined
 ): Promise<LocationCurrentWeather> => {
-  const locationDetailsAsJson = await locationDetailsRouteHandler(locationName);
+  const locationDetailsAsJson = await openWeatherMapLocationDetailsClient(locationName);
   return mapLocationDetailsJsonToLocationCurrentWeather(locationDetailsAsJson);
 };
 
@@ -232,7 +232,7 @@ export const getNearbyLocations = async (
   countryCode: string | string[] | undefined,
   type: string
 ): Promise<NearbyLocation[]> => {
-  const nearbyLocationsAsJson = await nearbyLocationsRouteHandler(
+  const nearbyLocationsAsJson = await geoDbNearbyLocationsClient(
     sanitiseCoordinate(latitude),
     sanitiseCoordinate(longitude),
     radius,
@@ -249,7 +249,7 @@ export const getWeatherDetailsByLocationName = async (
   const searchedLocationCurrentWeather = await getLocationCurrentWeather(
     locationName
   );
-  const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
+  const weatherDetailForGivenLocationAsJson = await openWeatherMapWeatherDetailsClient(
     searchedLocationCurrentWeather.coordinate.latitude,
     searchedLocationCurrentWeather.coordinate.longitude
   );
@@ -278,7 +278,7 @@ export const getWeatherDetailsByGeoLocation = async (
   longitude: string | string[] | undefined,
   countryCode: string | string[] | undefined
 ): Promise<WeatherDetails> => {
-  const weatherDetailForGivenLocationAsJson = await weatherDetailsRouteHandler(
+  const weatherDetailForGivenLocationAsJson = await openWeatherMapWeatherDetailsClient(
     latitude,
     longitude
   );

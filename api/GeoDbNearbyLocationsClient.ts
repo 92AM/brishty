@@ -3,7 +3,7 @@ import { geoDbCitiesApiKey } from '../services/ApiKeyService';
 const GEO_DB_CITIES_API_KEY = geoDbCitiesApiKey ? geoDbCitiesApiKey : '';
 const X_RAPID_API_HOST_VALUE = 'wft-geo-db.p.rapidapi.com';
 
-export const nearbyLocationsRouteHandler = async (
+export const geoDbNearbyLocationsClient = async (
   latitude: string | string[] | undefined,
   longitude: string | string[] | undefined,
   radius: number,
@@ -11,16 +11,14 @@ export const nearbyLocationsRouteHandler = async (
   countryCode: string | string[] | undefined,
   type: string
 ): Promise<any> => {
-  const nearbyLocations = await fetch(
-    `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}${longitude}/nearbyCities?radius=${radius}&limit=${limit}&countryIds=${countryCode}&types=${type}`,
-    {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-key': GEO_DB_CITIES_API_KEY,
-        'x-rapidapi-host': X_RAPID_API_HOST_VALUE,
-      },
-    }
-  );
+  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}${longitude}/nearbyCities?radius=${radius}&limit=${limit}&countryIds=${countryCode}&types=${type}`;
+  const nearbyLocations = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': GEO_DB_CITIES_API_KEY,
+      'x-rapidapi-host': X_RAPID_API_HOST_VALUE,
+    },
+  });
 
   return await nearbyLocations.json();
 };
