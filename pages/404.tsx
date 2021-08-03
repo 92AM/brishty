@@ -27,8 +27,8 @@ export default function Custom404() {
       >
         <div className="grid grid-cols-1 gap-4 container mx-auto">
           <span className="pt-12 text-4xl">
-            Sorry, something went wrong! We couldn't find what you were looking
-            for.
+            Sorry, something went wrong! We couldn&apos;t find what you were
+            looking for.
           </span>
           <span className="py-3 pb-10 text-xl">
             Here are few suggestions for you.
