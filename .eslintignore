@@ -7,3 +7,4 @@ next.config.js
 next-env.d.ts
 tailwind.config.js
 postcss.config.js
+pages/_app.js

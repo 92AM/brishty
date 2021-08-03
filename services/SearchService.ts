@@ -1,6 +1,6 @@
 import { getWindow } from './BrowserService';
 
-export const validateAndExecuteSearch = (input: any) => {
+export const validateAndExecuteSearch: (input: any) => void = (input: any) => {
   try {
     if (!input) {
       throw 'Please insert a valid city name and search again.';
@@ -13,12 +13,19 @@ export const validateAndExecuteSearch = (input: any) => {
   }
 };
 
-export const searchWeatherByLocationName = (input: string) => {
+export const searchWeatherByLocationName: (input: string) => void = (
+  input: string
+) => {
   const windowLocation = getWindow().location;
   windowLocation.assign('/weather/' + input);
 };
 
-export const searchWeatherByGeoLocation = (
+export const searchWeatherByGeoLocation: (
+  locationName: string,
+  latitude: string,
+  longitude: string,
+  countryCode: string
+) => void = (
   locationName: string,
   latitude: string,
   longitude: string,

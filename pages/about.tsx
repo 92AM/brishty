@@ -26,7 +26,7 @@ export default function About() {
           <span className="pt-12 text-4xl">About us</span>
           <span className="text-2xl">
             An overview of the Brishty website, including who we are and where
-            we're based, the services we provide.
+            we&apos;re based, the services we provide.
           </span>
 
           <div className="py-3 text-xl">
@@ -37,7 +37,8 @@ export default function About() {
               successfully.
             </p>
             <p className="italic font-semibold py-3">
-              "The word Brishty means rain in the Indian language Bengali"
+              &quot;The word Brishty means rain in the Indian language
+              Bengali&quot;
             </p>
             <p className="py-3">
               The weather related information on Brishty website are all

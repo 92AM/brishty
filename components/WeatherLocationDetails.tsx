@@ -30,7 +30,7 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
       )}
       {weatherDetails?.nearbyLocations &&
       weatherDetails?.nearbyLocations.length != 0 ? (
-        <NearbyLocations items={weatherDetails?.nearbyLocations!} />
+        <NearbyLocations items={weatherDetails?.nearbyLocations} />
       ) : (
         <div className="bg-gray-800 border-b border-gray-100 p-1" />
       )}

@@ -4,7 +4,10 @@ import {
   getWeatherDetailsByLocationName,
 } from '../../../services/WeatherDetailsService';
 
-const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
+export const handler: (
+  _req: NextApiRequest,
+  res: NextApiResponse
+) => Promise<void> = async (_req: NextApiRequest, res: NextApiResponse) => {
   const location = _req.query.location;
   const latitude = _req.query.latitude;
   const longitude = _req.query.longitude;
@@ -34,5 +37,3 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     res.status(500).json({ statusCode: 500, message: err.message });
   }
 };
-
-export default handler;

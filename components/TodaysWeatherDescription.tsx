@@ -17,8 +17,8 @@ const TodaysWeatherDescription = ({ item: weatherDetails }: Props) => {
         temperature in {weatherDetails.locationName} is{' '}
         {weatherDetails.current.currentTemp}C. The high will be{' '}
         {weatherDetails.current.maxTemp}C and the low tonight will be{' '}
-        {weatherDetails.current.minTemp}C. Check out today's detailed weather
-        and the whole week's weather breakdown below.
+        {weatherDetails.current.minTemp}C. Check out today&apos;s detailed
+        weather and the whole week&apos;s weather breakdown below.
       </div>
       <hr className="mt-8 border-solid border-1 border-gray-400" />
       <div className="text-gray-800 text-2xl text-left mt-8 p-2 pb-4">

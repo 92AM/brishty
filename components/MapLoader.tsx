@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-non-null-assertion */
+
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { MapProps, WeatherDetails } from '../interfaces';

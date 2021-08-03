@@ -11,14 +11,18 @@ const PageContentWrapper = ({
   classNameCustomAttributes,
   addDefaultAttributes,
 }: Props) => {
+  let shouldAddDefaultAttributes;
+
   if (addDefaultAttributes === undefined) {
-    addDefaultAttributes = true;
+    shouldAddDefaultAttributes = true;
+  } else {
+    shouldAddDefaultAttributes = addDefaultAttributes;
   }
 
-  const defaultClassNameAttributes = addDefaultAttributes
+  const defaultClassNameAttributes = shouldAddDefaultAttributes
     ? 'md:container md:mx-auto'
     : '';
-  const defaultClassNameAttributesToAdd = addDefaultAttributes
+  const defaultClassNameAttributesToAdd = shouldAddDefaultAttributes
     ? defaultClassNameAttributes + ' px-4 pt-20 pb-4'
     : '';
 
