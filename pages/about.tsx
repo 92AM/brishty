@@ -25,10 +25,9 @@ export default function About() {
         <div className="grid grid-cols-1 gap-4 container mx-auto">
           <span className="pt-12 text-4xl">About us</span>
           <span className="text-2xl">
-            An overview of the Brishty website, including who we are and where
-            we&apos;re based, the services we provide.
+            An overview of the Brishty website, including who we are and the
+            services we provide.
           </span>
-
           <div className="py-3 text-xl">
             <p className="py-3">
               All across the world people make important decisions based on the
@@ -42,7 +41,7 @@ export default function About() {
             </p>
             <p className="py-3">
               The weather related information on Brishty website are all
-              provided by the following external companies :
+              provided by the following external organisations :
               <ul className="list-disc pl-8">
                 <li>
                   Weather information are provided by{' '}
