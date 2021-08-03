@@ -12,7 +12,7 @@ Example weather page : http://localhost:3000/weather/Soho,%20GB
 
 ## Building in production
 
-`next build && next start`
+`npm run build && next start`
 
 ## Brishty API support
 
