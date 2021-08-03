@@ -1,12 +1,13 @@
-import {openWeatherMapApiKey} from "../services/ApiKeyService";
+import { openWeatherMapApiKey } from '../services/ApiKeyService';
 
 const API_KEY = openWeatherMapApiKey;
 
-export const locationDetailsRouteHandler = async (locationName: string | string[] | undefined): Promise<any> => {
+export const locationDetailsRouteHandler = async (
+  locationName: string | string[] | undefined
+): Promise<any> => {
+  const locationDetails = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${locationName}&appid=${API_KEY}`
+  );
 
-    const locationDetails = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${locationName}&appid=${API_KEY}`
-    )
-
-    return await locationDetails.json()
+  return await locationDetails.json();
 };
