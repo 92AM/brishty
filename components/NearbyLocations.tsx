@@ -27,7 +27,9 @@ const NearbyLocations = ({ items: nearbyLocations }: Props) => {
   nearbyLocations.forEach((eachNearbyLocation) => {
     slideComponents.push(
       <button
-        className="whitespace-nowrap w-auto px-6 shadow-md no-underline rounded-full bg-gray-200 text-gray-800 font-sans font-semibold text-sm border-blue btn-primary hover:text-black hover:bg-gray-400 focus:outline-none active:shadow-none"
+        className="whitespace-nowrap w-auto px-6 shadow-md no-underline rounded-full bg-gray-200 text-gray-800
+        font-sans font-semibold text-sm border-blue btn-primary hover:text-black hover:bg-gray-400
+        focus:outline-none active:shadow-none"
         onClick={() =>
           onClickLoadNearbyLocationWeather(
             eachNearbyLocation.name,
