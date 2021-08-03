@@ -59,7 +59,7 @@ const NavSearch = ({
             onBlur={(e) => handleOnBlurEvent(e)}
             onKeyUp={handleSearchInputKeyUp}
             required
-          ></input>
+          />
         </div>
       </form>
     );

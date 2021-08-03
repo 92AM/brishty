@@ -20,7 +20,7 @@ const TopLocationsWeatherPreviews = ({
           src={locationWeather.imageLink}
           title={location}
           alt={location}
-        ></img>
+        />
         <div
           className="container mw-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b
                     lg:rounded-tl-none lg:border-l-0 lg:border-t lg:border-gray-300 lg:rounded-b-none lg:rounded-r
