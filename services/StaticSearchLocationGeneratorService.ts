@@ -1,197 +1,190 @@
 const topUkCities: string[] = [
-  'London, GB',
-  'Manchester, GB',
-  'Birmingham, GB',
-  'Belfast, GB',
-  'Edinburgh, GB',
-  'Glasgow, GB',
+    'London, GB',
+    'Manchester, GB',
+    'Birmingham, GB',
+    'Belfast, GB',
+    'Edinburgh, GB',
+    'Glasgow, GB',
 ];
 
 const topEuropeanCities: string[] = [
-  'Paris, FR',
-  'Moscow, RU',
-  'Rome, IT',
-  'Madrid, ES',
-  'Amsterdam, NL',
-  'Prague, CZ',
+    'Paris, FR',
+    'Moscow, RU',
+    'Rome, IT',
+    'Madrid, ES',
+    'Amsterdam, NL',
+    'Prague, CZ',
 ];
 
-const topAsianCities: string[] = [
-  'Shanghai, CN',
-  'Dubai, AE',
-  'Beijing, CN',
-  'Delhi, IN',
-  'Seoul, KR',
-  'Tokyo, JP',
-];
+const topAsianCities: string[] = ['Shanghai, CN', 'Dubai, AE', 'Beijing, CN', 'Delhi, IN', 'Seoul, KR', 'Tokyo, JP'];
 
 const topRestOfTheWorldCities: string[] = [
-  'Shanghai, CN',
-  'Dubai, AE',
-  'New York, US',
-  'Los Angeles, US',
-  'Chicago, US',
-  'Tokyo, JP',
+    'Shanghai, CN',
+    'Dubai, AE',
+    'New York, US',
+    'Los Angeles, US',
+    'Chicago, US',
+    'Tokyo, JP',
 ];
 
 const topAmericasCities: string[] = [
-  'Chicago, US',
-  'Sao Paulo, BR',
-  'New York, US',
-  'Mexico City, MX',
-  'Buenos Aires, AR',
-  'Los Angeles, US',
+    'Chicago, US',
+    'Sao Paulo, BR',
+    'New York, US',
+    'Mexico City, MX',
+    'Buenos Aires, AR',
+    'Los Angeles, US',
 ];
 
 const topAfricaCities: string[] = [
-  'Cape Town, ZA',
-  'Nairobi, KE',
-  'Lagos, NG',
-  'Johannesburg, ZA',
-  'Addis Ababa, ET',
-  'Cairo, EG',
+    'Cape Town, ZA',
+    'Nairobi, KE',
+    'Lagos, NG',
+    'Johannesburg, ZA',
+    'Addis Ababa, ET',
+    'Cairo, EG',
 ];
 
 const moreTopEuropeanCities: string[] = [
-  'Milan, IT',
-  'Barcelona, ES',
-  'London, GB',
-  'Istanbul, TR',
-  'Brussels, BE',
-  'Zurich, CH',
-  'Reykjavik, IS',
-  'Berlin, DE',
-  'Vienna, AT',
-  'Lisbon, PT',
-  'Budapest, Romania',
-  'Athens, GR',
-  'Venice, IT',
-  'Copenhagen, DK',
-  'Edinburgh, GB',
+    'Milan, IT',
+    'Barcelona, ES',
+    'London, GB',
+    'Istanbul, TR',
+    'Brussels, BE',
+    'Zurich, CH',
+    'Reykjavik, IS',
+    'Berlin, DE',
+    'Vienna, AT',
+    'Lisbon, PT',
+    'Budapest, Romania',
+    'Athens, GR',
+    'Venice, IT',
+    'Copenhagen, DK',
+    'Edinburgh, GB',
 ];
 
 const moreTopUkCities: string[] = [
-  'Liverpool, GB',
-  'Coventry, GB',
-  'Cornwall, GB',
-  'Leeds, GB',
-  'Kent, GB',
-  'Milton Keynes, GB',
-  'Newcastle Upon Tyne, GB',
-  'Bristol, GB',
-  'Cambridge, GB',
-  'Nottingham, GB',
-  'Sheffield, GB',
-  'Leicester, GB',
-  'Oxford, GB',
-  'Cardiff, GB',
-  'Bath, GB',
+    'Liverpool, GB',
+    'Coventry, GB',
+    'Cornwall, GB',
+    'Leeds, GB',
+    'Kent, GB',
+    'Milton Keynes, GB',
+    'Newcastle Upon Tyne, GB',
+    'Bristol, GB',
+    'Cambridge, GB',
+    'Nottingham, GB',
+    'Sheffield, GB',
+    'Leicester, GB',
+    'Oxford, GB',
+    'Cardiff, GB',
+    'Bath, GB',
 ];
 
 const moreTopAsianCities: string[] = [
-  'Hong Kong',
-  'Bangkok',
-  'Chennai',
-  'Singapore',
-  'Ho Chi Minh City',
-  'Abu Dhabi',
-  'Dhaka',
-  'Osaka',
-  'Lahore',
-  'Karachi',
-  'Kolkata',
-  'Bengaluru',
-  'Yangon',
-  'Mumbai',
-  'Jakarta',
+    'Hong Kong',
+    'Bangkok',
+    'Chennai',
+    'Singapore',
+    'Ho Chi Minh City',
+    'Abu Dhabi',
+    'Dhaka',
+    'Osaka',
+    'Lahore',
+    'Karachi',
+    'Kolkata',
+    'Bengaluru',
+    'Yangon',
+    'Mumbai',
+    'Jakarta',
 ];
 
 const moreTopAmericasCities: string[] = [
-  'Lima',
-  'Bogota',
-  'Rio de Janeiro',
-  'Santiago',
-  'Salvador',
-  'Toronto',
-  'Fortaleza',
-  'Medellin',
-  'Cali',
-  'Houston',
-  'Brasilia',
-  'Montreal',
-  'Phoenix',
-  'Philadelphia',
-  'Guadalajara',
+    'Lima',
+    'Bogota',
+    'Rio de Janeiro',
+    'Santiago',
+    'Salvador',
+    'Toronto',
+    'Fortaleza',
+    'Medellin',
+    'Cali',
+    'Houston',
+    'Brasilia',
+    'Montreal',
+    'Phoenix',
+    'Philadelphia',
+    'Guadalajara',
 ];
 
 const moreTopAfricaCities: string[] = [
-  'Kinshasa',
-  'Giza',
-  'Alexandria',
-  'Dar es Salaam',
-  'Casablanca',
-  'Accra',
-  'Durban',
-  'Kano',
-  'Tripoli',
-  'Algiers',
-  'Mogadishu',
-  'Mombasa',
-  'Harare',
-  'Antananarivo',
-  'Tunis',
+    'Kinshasa',
+    'Giza',
+    'Alexandria',
+    'Dar es Salaam',
+    'Casablanca',
+    'Accra',
+    'Durban',
+    'Kano',
+    'Tripoli',
+    'Algiers',
+    'Mogadishu',
+    'Mombasa',
+    'Harare',
+    'Antananarivo',
+    'Tunis',
 ];
 
 export const getStaticUkTopSearchLocations = (): string[] => {
-  return [...topUkCities];
+    return [...topUkCities];
 };
 
 export const getStaticEuropeanTopSearchLocations = (): string[] => {
-  return [...topEuropeanCities];
+    return [...topEuropeanCities];
 };
 
 export const getStaticAsianTopSearchLocations = (): string[] => {
-  return [...topAsianCities];
+    return [...topAsianCities];
 };
 
 export const getStaticRestOfWorldTopSearchLocations = (): string[] => {
-  return [...topRestOfTheWorldCities];
+    return [...topRestOfTheWorldCities];
 };
 
 export const getMoreStaticWorldTopSearchLocations = (): string[] => {
-  return [
-    ...topAsianCities,
-    ...moreTopAsianCities,
-    ...topAfricaCities,
-    ...topAmericasCities,
-    // ...moreTopAmericasCities
-  ];
+    return [
+        ...topAsianCities,
+        ...moreTopAsianCities,
+        ...topAfricaCities,
+        ...topAmericasCities,
+        // ...moreTopAmericasCities
+    ];
 };
 
 export const getStaticAmericasTopSearchLocations = (): string[] => {
-  return [...topAmericasCities];
+    return [...topAmericasCities];
 };
 
 export const getStaticAfricaTopSearchLocations = (): string[] => {
-  return [...topAfricaCities];
+    return [...topAfricaCities];
 };
 
 export const getMoreStaticEuropeanTopSearchLocations = (): string[] => {
-  return [...topEuropeanCities, ...moreTopEuropeanCities];
+    return [...topEuropeanCities, ...moreTopEuropeanCities];
 };
 
 export const getMoreStaticUkTopSearchLocations = (): string[] => {
-  return [...topUkCities, ...moreTopUkCities];
+    return [...topUkCities, ...moreTopUkCities];
 };
 
 export const getMoreStaticAsianTopSearchLocations = (): string[] => {
-  return [...topAsianCities, ...moreTopAsianCities];
+    return [...topAsianCities, ...moreTopAsianCities];
 };
 
 export const getMoreStaticAmericasTopSearchLocations = (): string[] => {
-  return [...topAmericasCities, ...moreTopAmericasCities];
+    return [...topAmericasCities, ...moreTopAmericasCities];
 };
 
 export const getMoreStaticAfricaTopSearchLocations = (): string[] => {
-  return [...topAfricaCities, ...moreTopAfricaCities];
+    return [...topAfricaCities, ...moreTopAfricaCities];
 };

@@ -7,46 +7,41 @@ import { ParsedUrlQuery } from 'querystring';
 import WeatherLocationDetails from '../../components/WeatherLocationDetails';
 
 type Props = {
-  weatherDetails: WeatherDetails;
-  errors?: string;
+    weatherDetails: WeatherDetails;
+    errors?: string;
 };
 
 interface UrlParams extends ParsedUrlQuery {
-  slug: string[];
+    slug: string[];
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: [], fallback: 'blocking' };
+    return { paths: [], fallback: 'blocking' };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  try {
-    const { slug } = params as UrlParams;
-    const locationName = slug[0];
-    const latitude = slug[1];
-    const longitude = slug[2];
-    const countryCode = slug[3];
-    const weatherDetails = await getWeatherDetailsByGeoLocation(
-      locationName,
-      latitude,
-      longitude,
-      countryCode
-    );
-    return {
-      props: {
-        weatherDetails,
-      },
-      revalidate: 60,
-    };
-  } catch (err) {
-    return {
-      notFound: true,
-    };
-  }
+    try {
+        const { slug } = params as UrlParams;
+        const locationName = slug[0];
+        const latitude = slug[1];
+        const longitude = slug[2];
+        const countryCode = slug[3];
+        const weatherDetails = await getWeatherDetailsByGeoLocation(locationName, latitude, longitude, countryCode);
+        return {
+            props: {
+                weatherDetails,
+            },
+            revalidate: 60,
+        };
+    } catch (err) {
+        return {
+            notFound: true,
+        };
+    }
 };
 
 const Weather = ({ weatherDetails }: Props) => {
-  return <WeatherLocationDetails weatherDetails={weatherDetails} />;
+    return <WeatherLocationDetails weatherDetails={weatherDetails} />;
 };
 
 export default Weather;
