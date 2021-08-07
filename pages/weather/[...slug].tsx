@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { WeatherDetails } from '../../interfaces';
 import { getWeatherDetailsByGeoLocation } from '../../services/WeatherDetailsService';
 import { ParsedUrlQuery } from 'querystring';
 import WeatherLocationDetails from '../../components/WeatherLocationDetails';
+import { setPageModel } from '../../services/PageModelService';
 
 type Props = {
     weatherDetails: WeatherDetails;
@@ -41,6 +41,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 const Weather = ({ weatherDetails }: Props) => {
+    useEffect(() => {
+        setPageModel(weatherDetails);
+    }, []);
+
     return <WeatherLocationDetails weatherDetails={weatherDetails} />;
 };
 

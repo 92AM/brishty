@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageContentWrapper from '../components/PageContentWrapper';
 import SearchBox from '../components/SearchBox';
 import { LocationCurrentWeather } from '../interfaces';
@@ -11,6 +11,7 @@ import {
 } from '../services/WeatherDetailsService';
 import TopLocationsWeatherPreviewsCarousel from '../components/TopLocationsWeatherPreviewsCarousel';
 import { MapLoader } from '../components/MapLoader';
+import { setPageModel } from '../services/PageModelService';
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -33,23 +34,29 @@ const IndexPage = ({
     ukTopLocationsWeathers,
     europeTopLocationsWeathers,
     worldTopLocationWeathers,
-}: IndexPageProps) => (
-    <Layout title="Brishty - search for weather">
-        <SearchBox />
-        <PageContentWrapper classNameCustomAttributes={'py-6'}>
-            <HomePageWeatherMap />
-            {ukTopLocationsWeathers && (
-                <TopLocationsWeatherPreviewsCarousel items={ukTopLocationsWeathers} mainLocation={'UK'} />
-            )}
-            {europeTopLocationsWeathers && (
-                <TopLocationsWeatherPreviewsCarousel items={europeTopLocationsWeathers} mainLocation={'Europe'} />
-            )}
-            {worldTopLocationWeathers && (
-                <TopLocationsWeatherPreviewsCarousel items={worldTopLocationWeathers} mainLocation={'World'} />
-            )}
-        </PageContentWrapper>
-    </Layout>
-);
+}: IndexPageProps) => {
+    useEffect(() => {
+        setPageModel([ukTopLocationsWeathers, europeTopLocationsWeathers, worldTopLocationWeathers]);
+    }, []);
+
+    return (
+        <Layout title="Brishty - search for weather">
+            <SearchBox />
+            <PageContentWrapper classNameCustomAttributes={'py-6'}>
+                <HomePageWeatherMap />
+                {ukTopLocationsWeathers && (
+                    <TopLocationsWeatherPreviewsCarousel items={ukTopLocationsWeathers} mainLocation={'UK'} />
+                )}
+                {europeTopLocationsWeathers && (
+                    <TopLocationsWeatherPreviewsCarousel items={europeTopLocationsWeathers} mainLocation={'Europe'} />
+                )}
+                {worldTopLocationWeathers && (
+                    <TopLocationsWeatherPreviewsCarousel items={worldTopLocationWeathers} mainLocation={'World'} />
+                )}
+            </PageContentWrapper>
+        </Layout>
+    );
+};
 
 IndexPage.getInitialProps = async () => {
     return {
