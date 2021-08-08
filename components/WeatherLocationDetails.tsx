@@ -12,7 +12,10 @@ import { getWeatherDetailsPageStaticMapProps } from '../services/WeatherDetailsS
 
 const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
     return (
-        <Layout title={`Brishty - ${weatherDetails && weatherDetails.locationName} weather`}>
+        <Layout
+            title={`Brishty - ${weatherDetails && weatherDetails.locationName} weather`}
+            searchTerm={weatherDetails.locationName}
+        >
             <PageContentWrapper>
                 {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails} />}
             </PageContentWrapper>
@@ -22,7 +25,7 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
             {weatherDetails?.nearbyLocations && weatherDetails?.nearbyLocations.length != 0 ? (
                 <NearbyLocations items={weatherDetails?.nearbyLocations} />
             ) : (
-                <div className="bg-gray-800 border-b border-gray-100 p-1" />
+                <div className="bg-gray-800 border border-gray-100 pt-1" />
             )}
             <PageContentWrapper classNameCustomAttributes={'py-8 px-2'}>
                 {weatherDetails && <TodaysWeatherDescription item={weatherDetails} />}

@@ -8,7 +8,7 @@ import {
 
 const slideComponents: any = [];
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 4; i++) {
     slideComponents.push(
         <div className="p-2 w-60 bg-gray-300 text-gray-100 rounded-2xl">
             <span className="p-1 bg-gray-100 block w-56">&nbsp;</span>
