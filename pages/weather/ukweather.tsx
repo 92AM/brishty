@@ -10,8 +10,9 @@ type UkWeatherProps = {
 };
 
 const UkWeather = ({ ukTopLocationsWeathers }: UkWeatherProps) => {
+    const searchTerms = 'UK Weather, England weather, Scotland weather, Wales weather, Northern Ireland weather';
     return (
-        <Layout title="Brishty - search for weather">
+        <Layout title="Brishty - search for weather" searchTerm={searchTerms}>
             <PageContentWrapper classNameCustomAttributes={'px-4 pt-24 pb-20 min-h-screen'}>
                 <span className="block pt-3 text-center text-2xl text-gray-800">Top UK forecasts</span>
                 {ukTopLocationsWeathers && <TopLocationsWeatherPreviews items={ukTopLocationsWeathers} />}

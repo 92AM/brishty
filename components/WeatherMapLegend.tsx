@@ -178,11 +178,11 @@ const PrecipitationIndex = () => {
 const WeatherMapLegend = () => {
     const slideComponents: any = [];
 
-    slideComponents.push(<WindIndex />);
     slideComponents.push(<TemperatureIndex />);
-    slideComponents.push(<PressureIndex />);
     slideComponents.push(<CloudIndex />);
     slideComponents.push(<PrecipitationIndex />);
+    slideComponents.push(<PressureIndex />);
+    slideComponents.push(<WindIndex />);
 
     return (
         <div className="bg-gray-100 border-b border-gray-100 p-2">

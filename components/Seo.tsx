@@ -1,19 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import Head from 'next/head';
 
 type Props = {
-    title?: string;
+    searchTerm?: string;
 };
 
-const Seo = ({ title = 'Brishty' }: Props) => {
+const Seo = ({ searchTerm = '' }: Props) => {
+    const description = `Displaying weather in ${searchTerm} - Find weather about any city in the world.`;
+    const keywords = `${searchTerm} weather, weather, brishty, weather website, uk weather, world weather ${
+        searchTerm && ', ' + searchTerm
+    }`;
     return (
-        <Fragment>
-            <title>{title}</title>
-            <meta charSet="utf-8" />
+        <Head>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            <meta name="description" content="Brishty - find weather about any city." />
+            <meta name="description" content={description} />
             <meta name="author" content="Arka Mitra" />
-            <meta name="keywords" content="weather, brishty, weather website" />
-        </Fragment>
+            <meta name="keywords" content={keywords} />
+        </Head>
     );
 };
 
