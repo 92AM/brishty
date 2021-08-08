@@ -35,9 +35,7 @@ export default function Icons() {
                         Map. For more information please visit the below link.
                     </span>
                     <span className="text-blue-900 hover:underline text-xl">
-                        <Link href={'https://openweathermap.org/weather-conditions'}>
-                            {'Open Weather Map >'}
-                        </Link>
+                        <Link href={'https://openweathermap.org/weather-conditions'}>{'Open Weather Map >'}</Link>
                     </span>
                 </div>
 
