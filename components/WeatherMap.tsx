@@ -2,9 +2,10 @@ import { LayersControl, MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { MapProps, WeatherDetails } from '../interfaces';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { WEATHER_MAP_ICON_SIZE } from '../utility/constants';
 import { openWeatherMapApiKey } from '../services/ApiKeyService';
+import WeatherMapLegend from './WeatherMapLegend';
 
 const OWM_API_KEY = openWeatherMapApiKey;
 
@@ -65,58 +66,61 @@ const WeatherMap = ({ weatherDetails: weatherDetails, mapProps: mapProps }: Prop
     const longitude: number = parseInt(weatherDetails?.longitude) || londonLongitude;
 
     return (
-        <MapContainer
-            center={[latitude, longitude]}
-            zoom={mapProps.zoomLevel}
-            scrollWheelZoom={false}
-            style={{ height: mapProps.height, width: mapProps.width }}
-            className={mapProps.classNames}
-        >
-            {mapProps.displayMarker && (
-                <Marker
-                    position={[latitude, longitude]}
-                    icon={L.divIcon({
-                        iconSize: [WEATHER_MAP_ICON_SIZE, WEATHER_MAP_ICON_SIZE],
-                        iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
-                        className: '',
-                        html: getLocationPinSvgIcon(),
-                    })}
-                />
-            )}
-            <LayersControl position="topright">
-                <MapLayer
-                    layerDisplayName={'OpenStreetMap - Black And White'}
-                    mapLayerUrl={'https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'}
-                    checked={mapProps.blackAndWhiteChecked}
-                />
-                <MapLayer
-                    layerDisplayName={'OpenStreetMap - Standard Mapnik'}
-                    mapLayerUrl={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
-                    checked={mapProps.mapnikChecked}
-                />
-                <WeatherLayer
-                    layerDisplayName={'Temperature'}
-                    omwLayerName={'temp_new'}
-                    checked={mapProps.temperatureChecked}
-                />
-                <WeatherLayer
-                    layerDisplayName={'Clouds'}
-                    omwLayerName={'clouds_new'}
-                    checked={mapProps.cloudsChecked}
-                />
-                <WeatherLayer
-                    layerDisplayName={'Precipitation'}
-                    omwLayerName={'precipitation_new'}
-                    checked={mapProps.precipitationChecked}
-                />
-                <WeatherLayer
-                    layerDisplayName={'Pressure'}
-                    omwLayerName={'pressure_new'}
-                    checked={mapProps.pressureChecked}
-                />
-                <WeatherLayer layerDisplayName={'Wind'} omwLayerName={'wind_new'} checked={mapProps.windChecked} />
-            </LayersControl>
-        </MapContainer>
+        <Fragment>
+            <MapContainer
+                center={[latitude, longitude]}
+                zoom={mapProps.zoomLevel}
+                scrollWheelZoom={false}
+                style={{ height: mapProps.height, width: mapProps.width }}
+                className={mapProps.classNames}
+            >
+                {mapProps.displayMarker && (
+                    <Marker
+                        position={[latitude, longitude]}
+                        icon={L.divIcon({
+                            iconSize: [WEATHER_MAP_ICON_SIZE, WEATHER_MAP_ICON_SIZE],
+                            iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
+                            className: '',
+                            html: getLocationPinSvgIcon(),
+                        })}
+                    />
+                )}
+                <LayersControl position="topright">
+                    <MapLayer
+                        layerDisplayName={'OpenStreetMap - Black And White'}
+                        mapLayerUrl={'https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'}
+                        checked={mapProps.blackAndWhiteChecked}
+                    />
+                    <MapLayer
+                        layerDisplayName={'OpenStreetMap - Standard Mapnik'}
+                        mapLayerUrl={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+                        checked={mapProps.mapnikChecked}
+                    />
+                    <WeatherLayer
+                        layerDisplayName={'Temperature'}
+                        omwLayerName={'temp_new'}
+                        checked={mapProps.temperatureChecked}
+                    />
+                    <WeatherLayer
+                        layerDisplayName={'Clouds'}
+                        omwLayerName={'clouds_new'}
+                        checked={mapProps.cloudsChecked}
+                    />
+                    <WeatherLayer
+                        layerDisplayName={'Precipitation'}
+                        omwLayerName={'precipitation_new'}
+                        checked={mapProps.precipitationChecked}
+                    />
+                    <WeatherLayer
+                        layerDisplayName={'Pressure'}
+                        omwLayerName={'pressure_new'}
+                        checked={mapProps.pressureChecked}
+                    />
+                    <WeatherLayer layerDisplayName={'Wind'} omwLayerName={'wind_new'} checked={mapProps.windChecked} />
+                </LayersControl>
+            </MapContainer>
+            <WeatherMapLegend />
+        </Fragment>
     );
 };
 
