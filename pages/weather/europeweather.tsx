@@ -10,7 +10,7 @@ type EuropeWeatherProps = {
 };
 
 const EuropeWeather = ({ europeTopLocationsWeathers }: EuropeWeatherProps) => {
-    const searchTerms = "Europe Weather, european weather"
+    const searchTerms = 'Europe Weather, european weather';
     return (
         <Layout title="Brishty - search for weather" searchTerm={searchTerms}>
             <PageContentWrapper classNameCustomAttributes={'px-4 pt-24 pb-20 min-h-screen'}>
