@@ -25,7 +25,9 @@ const HomePageWeatherMap = () => {
             <div className="pb-4">
                 <div className="text-black p-2 text-2xl text-center">World Weather Map</div>
             </div>
-            <MapLoader mapProps={getHomePageStaticMapProps()} />
+            <div className={'p-2 z-0 relative'}>
+                <MapLoader mapProps={getHomePageStaticMapProps()} />
+            </div>
         </div>
     );
 };

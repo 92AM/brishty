@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'landscape': "url('/images/landscape.jpg')",
+      }),
+      zIndex: theme => ({
+        '-10': '-10',
       })
     },
   },

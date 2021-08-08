@@ -185,7 +185,7 @@ const WeatherMapLegend = () => {
     slideComponents.push(<WindIndex />);
 
     return (
-        <div className="bg-gray-100 border-b border-gray-100 p-2">
+        <div className="z-0 bg-gray-100 border-b border-gray-100 p-2">
             <div className="max-w-xl mx-auto max-w-screen-xl">
                 <div className="flex overflow-x-scroll p-2 hide-scroll-bar ">
                     <div className="flex flex-nowrap space-x-6">{slideComponents}</div>

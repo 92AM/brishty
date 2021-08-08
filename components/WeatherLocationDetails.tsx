@@ -20,7 +20,9 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
                 {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails} />}
             </PageContentWrapper>
             {weatherDetails.latitude && weatherDetails.longitude && (
-                <MapLoader weatherDetails={weatherDetails} mapProps={getWeatherDetailsPageStaticMapProps()} />
+                <div className={'z-0 relative'}>
+                    <MapLoader weatherDetails={weatherDetails} mapProps={getWeatherDetailsPageStaticMapProps()} />
+                </div>
             )}
             {weatherDetails?.nearbyLocations && weatherDetails?.nearbyLocations.length != 0 ? (
                 <NearbyLocations items={weatherDetails?.nearbyLocations} />
