@@ -17,6 +17,20 @@ for (let i = 0; i < 5; i++) {
     );
 }
 
+const MapLegendPlaceholder = () => {
+    return (
+        <div className="z-0 bg-gray-200">
+            <div className="bg-gray-200 border-b border-gray-100 p-2">
+                <div className="max-w-xl mx-auto max-w-screen-xl">
+                    <div className="flex overflow-x-scroll p-2 hide-scroll-bar ">
+                        <div className="flex flex-nowrap space-x-4">{slideComponents}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const MapPlaceholder = () => {
     return (
         <Fragment>
@@ -25,17 +39,9 @@ const MapPlaceholder = () => {
                     height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
                     width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
                 }}
-                className="z-0 bg-gray-200"
+                className="z-0 bg-gray-200 border-t border-b border-gray-300"
             />
-            <div className="z-0 bg-gray-200 border-t border-gray-400">
-                <div className="bg-gray-200 border-b border-gray-100 p-2">
-                    <div className="max-w-xl mx-auto max-w-screen-xl">
-                        <div className="flex overflow-x-scroll p-2 hide-scroll-bar ">
-                            <div className="flex flex-nowrap space-x-6">{slideComponents}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <MapLegendPlaceholder />
         </Fragment>
     );
 };

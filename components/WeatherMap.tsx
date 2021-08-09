@@ -1,7 +1,7 @@
 import { LayersControl, MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { MapProps, WeatherDetails } from '../interfaces';
+import { Coordinate, MapProps } from '../interfaces';
 import React, { Fragment } from 'react';
 import { WEATHER_MAP_ICON_SIZE } from '../utility/constants';
 import { openWeatherMapApiKey } from '../services/ApiKeyService';
@@ -54,16 +54,20 @@ const MapLayer = ({ layerDisplayName, mapLayerUrl, checked }: MapLayerProps) => 
 };
 
 type Props = {
-    weatherDetails: WeatherDetails;
+    coordinate: Coordinate;
     mapProps: MapProps;
 };
 
-const WeatherMap = ({ weatherDetails: weatherDetails, mapProps: mapProps }: Props) => {
-    const londonLatitude = 51.5074;
-    const londonLongitude = 0.1278;
+const WeatherMap = ({ coordinate: coordinate, mapProps: mapProps }: Props) => {
+    const londonLatitude = 0;
+    const londonLongitude = 0;
 
-    const latitude: number = parseInt(weatherDetails?.latitude) || londonLatitude;
-    const longitude: number = parseInt(weatherDetails?.longitude) || londonLongitude;
+    const latitude: number = Number(coordinate?.latitude) || londonLatitude;
+    const longitude: number = Number(coordinate?.longitude) || londonLongitude;
+
+    if (latitude === 0 || longitude === 0) {
+        return null;
+    }
 
     return (
         <Fragment>

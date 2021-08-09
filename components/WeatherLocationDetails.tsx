@@ -1,5 +1,5 @@
 import React from 'react';
-import { WeatherDetailsProps } from '../interfaces';
+import { Coordinate, WeatherDetailsProps } from '../interfaces';
 import Layout from './Layout';
 import PageContentWrapper from './PageContentWrapper';
 import BasicCurrentlyAndHourlyWeather from './BasicCurrentlyAndHourlyWeather';
@@ -11,6 +11,7 @@ import { MapLoader } from './MapLoader';
 import { getWeatherDetailsPageStaticMapProps } from '../services/WeatherDetailsService';
 
 const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
+    const coordinate = { latitude: weatherDetails?.latitude, longitude: weatherDetails?.longitude } as Coordinate;
     return (
         <Layout
             title={`Brishty - ${weatherDetails && weatherDetails.locationName} weather`}
@@ -19,9 +20,9 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
             <PageContentWrapper>
                 {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails} />}
             </PageContentWrapper>
-            {weatherDetails.latitude && weatherDetails.longitude && (
+            {coordinate.latitude && coordinate.longitude && (
                 <div className={'z-0 relative'}>
-                    <MapLoader weatherDetails={weatherDetails} mapProps={getWeatherDetailsPageStaticMapProps()} />
+                    <MapLoader coordinate={coordinate} mapProps={getWeatherDetailsPageStaticMapProps()} />
                 </div>
             )}
             {weatherDetails?.nearbyLocations && weatherDetails?.nearbyLocations.length != 0 ? (

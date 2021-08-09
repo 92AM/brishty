@@ -2,15 +2,15 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { MapProps, WeatherDetails } from '../interfaces';
+import { Coordinate, MapProps } from '../interfaces';
 import MapPlaceholder from './MapPlaceholder';
 
 type Props = {
-    weatherDetails?: WeatherDetails;
+    coordinate?: Coordinate;
     mapProps: MapProps;
 };
 
-export const MapLoader = ({ weatherDetails: weatherDetails, mapProps: mapProps }: Props) => {
+export const MapLoader = ({ coordinate: coordinate, mapProps: mapProps }: Props) => {
     const MapComponent = React.useMemo(
         () =>
             dynamic(() => import('./WeatherMap'), {
@@ -19,5 +19,5 @@ export const MapLoader = ({ weatherDetails: weatherDetails, mapProps: mapProps }
             }),
         [],
     );
-    return <MapComponent weatherDetails={weatherDetails!} mapProps={mapProps} />;
+    return <MapComponent coordinate={coordinate!} mapProps={mapProps} />;
 };
