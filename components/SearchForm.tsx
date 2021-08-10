@@ -23,7 +23,6 @@ const SearchForm = () => {
             }
         } catch (err) {
             alert(err);
-            console.log(err);
         }
     };
 

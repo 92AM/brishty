@@ -9,7 +9,6 @@ export const validateAndExecuteSearch: (input: any) => void = (input: any) => {
         }
     } catch (err) {
         alert(err);
-        console.log(err);
     }
 };
 

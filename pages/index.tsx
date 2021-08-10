@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import React, { useEffect } from 'react';
 import PageContentWrapper from '../components/PageContentWrapper';
 import SearchBox from '../components/SearchBox';
-import { Coordinate, LocationCurrentWeather } from '../interfaces';
+import { Coordinate, LocationCurrentWeather, MainLocationForMap } from '../interfaces';
 import {
     getEuropeTopLocationsCurrentWeathers,
     getHomePageStaticMapProps,
@@ -20,14 +20,18 @@ type IndexPageProps = {
 };
 
 const HomePageWeatherMap = () => {
-    const coordinate = { latitude: '51.5074', longitude: '0.1278' } as Coordinate;
+    const mainLocationForMap: MainLocationForMap = {
+        coordinate: { latitude: '51.5074', longitude: '0.1278' } as Coordinate,
+        locationName: '',
+        temperature: '',
+    };
     return (
         <div className="pb-8">
             <div className="pb-4">
                 <div className="text-black p-2 text-2xl text-center">World Weather Map</div>
             </div>
             <div className={'p-2 z-0 relative'}>
-                <MapLoader mapProps={getHomePageStaticMapProps()} coordinate={coordinate} />
+                <MapLoader mapProps={getHomePageStaticMapProps()} mainLocationForMap={mainLocationForMap} />
             </div>
         </div>
     );

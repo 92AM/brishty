@@ -26,7 +26,6 @@ const NavSearch = ({ searchContentNode, displayNavSearch, setDisplayNavSearch }:
     };
 
     const handleOnBlurEvent = (e: any) => {
-        console.log('displayNavSearch in NavSearch status : ' + displayNavSearch);
         e.preventDefault();
         input && validateAndExecuteSearch(input);
         setDisplayNavSearch(false);
