@@ -121,3 +121,16 @@ export type MapProps = {
     pressureChecked: boolean;
     windChecked: boolean;
 };
+
+export interface MainLocationForMap {
+    coordinate: Coordinate;
+    locationName: string;
+    temperature: string;
+}
+
+export interface NearbyLocationForMap {
+    locationName: string;
+    countryCode: string;
+    distance: string;
+    coordinate: Coordinate;
+}

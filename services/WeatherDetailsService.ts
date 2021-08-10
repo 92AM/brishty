@@ -419,8 +419,8 @@ export const getAfricaMoreTopLocationsCurrentWeathers = async (): Promise<Locati
 
 export const getWeatherDetailsPageStaticMapProps = (): MapProps => {
     return {
-        blackAndWhiteChecked: true,
-        mapnikChecked: false,
+        blackAndWhiteChecked: false,
+        mapnikChecked: true,
         zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
         width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
         height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
@@ -436,8 +436,8 @@ export const getWeatherDetailsPageStaticMapProps = (): MapProps => {
 
 export const getHomePageStaticMapProps = (): MapProps => {
     return {
-        blackAndWhiteChecked: true,
-        mapnikChecked: false,
+        blackAndWhiteChecked: false,
+        mapnikChecked: true,
         zoomLevel: HOMEPAGE_MAP_ZOOM_LEVEL,
         width: HOMEPAGE_MAP_WIDTH,
         height: HOMEPAGE_MAP_HEIGHT,

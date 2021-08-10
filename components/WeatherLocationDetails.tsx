@@ -1,5 +1,5 @@
 import React from 'react';
-import { Coordinate, WeatherDetailsProps } from '../interfaces';
+import { Coordinate, MainLocationForMap, NearbyLocationForMap, WeatherDetailsProps } from '../interfaces';
 import Layout from './Layout';
 import PageContentWrapper from './PageContentWrapper';
 import BasicCurrentlyAndHourlyWeather from './BasicCurrentlyAndHourlyWeather';
@@ -11,7 +11,24 @@ import { MapLoader } from './MapLoader';
 import { getWeatherDetailsPageStaticMapProps } from '../services/WeatherDetailsService';
 
 const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
-    const coordinate = { latitude: weatherDetails?.latitude, longitude: weatherDetails?.longitude } as Coordinate;
+    const mainLocationForMap: MainLocationForMap = {
+        coordinate: { latitude: weatherDetails?.latitude, longitude: weatherDetails?.longitude } as Coordinate,
+        locationName: weatherDetails.locationName,
+        temperature: weatherDetails.current.currentTemp,
+    };
+
+    const nearbyLocationsForMap: NearbyLocationForMap[] = [];
+
+    weatherDetails?.nearbyLocations.forEach((location) => {
+        const nearbyLocationForMap: NearbyLocationForMap = {
+            coordinate: location.coordinate,
+            locationName: location.name,
+            distance: location.distance,
+            countryCode: location.countryCode,
+        };
+        nearbyLocationsForMap.push(nearbyLocationForMap);
+    });
+
     return (
         <Layout
             title={`Brishty - ${weatherDetails && weatherDetails.locationName} weather`}
@@ -20,9 +37,13 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
             <PageContentWrapper>
                 {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails} />}
             </PageContentWrapper>
-            {coordinate.latitude && coordinate.longitude && (
+            {mainLocationForMap && (
                 <div className={'z-0 relative'}>
-                    <MapLoader coordinate={coordinate} mapProps={getWeatherDetailsPageStaticMapProps()} />
+                    <MapLoader
+                        mainLocationForMap={mainLocationForMap}
+                        mapProps={getWeatherDetailsPageStaticMapProps()}
+                        nearbyLocationsForMap={nearbyLocationsForMap}
+                    />
                 </div>
             )}
             {weatherDetails?.nearbyLocations && weatherDetails?.nearbyLocations.length != 0 ? (
