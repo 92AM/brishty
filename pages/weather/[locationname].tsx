@@ -4,6 +4,7 @@ import { WeatherDetails } from '../../interfaces';
 import { getWeatherDetailsByLocationName } from '../../services/WeatherDetailsService';
 import WeatherLocationDetails from '../../components/WeatherLocationDetails';
 import { setPageModel } from '../../services/PageModelService';
+import { parseSearchedLocationNameOrDefault } from '../../services/GenericUtilityService';
 
 type Props = {
     weatherDetails: WeatherDetails;
@@ -16,7 +17,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
-        const locationName = params?.locationname;
+        const locationName = parseSearchedLocationNameOrDefault(params?.locationname as string);
         const weatherDetails = await getWeatherDetailsByLocationName(locationName);
 
         return {

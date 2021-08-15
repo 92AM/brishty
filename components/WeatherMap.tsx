@@ -3,10 +3,11 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { MainLocationForMap, MapProps, NearbyLocationForMap } from '../interfaces';
 import React, { Fragment } from 'react';
-import { WEATHER_MAP_ICON_SIZE } from '../utility/constants';
+import { MAIN_LOCATION_MAP_ICON_SIZE, NEARBY_LOCATION_MAP_ICON_SIZE } from '../utility/constants';
 import { openWeatherMapApiKey } from '../services/ApiKeyService';
 import WeatherMapLegend from './WeatherMapLegend';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
+import MapPositionResetController from './MapPositionResetController';
 
 const OWM_API_KEY = openWeatherMapApiKey;
 
@@ -85,8 +86,8 @@ const NearbyLocationsMarkers = ({ nearbyLocationsForMap }: NearbyLocationsCoordi
                         key={index}
                         position={[Number(each.coordinate.latitude), Number(each.coordinate.longitude)]}
                         icon={L.divIcon({
-                            iconSize: [30, 30],
-                            iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
+                            iconSize: [NEARBY_LOCATION_MAP_ICON_SIZE, NEARBY_LOCATION_MAP_ICON_SIZE],
+                            iconAnchor: [NEARBY_LOCATION_MAP_ICON_SIZE / 2, NEARBY_LOCATION_MAP_ICON_SIZE + 9],
                             className: '',
                             html: getNearbyLocationPinSvgIcon(),
                         })}
@@ -96,7 +97,9 @@ const NearbyLocationsMarkers = ({ nearbyLocationsForMap }: NearbyLocationsCoordi
                                 <span className={'p-1 text-gray-800 text-lg'}>{each.locationName}</span> <br />
                                 <span className={'p-1 text-gray-800 text-sm'}>{each.distance} miles away</span> <br />
                                 <button
-                                    className={'p-1 text-gray-800 text-base'}
+                                    className={
+                                        'p-1 text-gray-100 bg-gray-800 mt-3 text-base rounded-xl border border-gray-800'
+                                    }
                                     onClick={() =>
                                         onClickLoadNearbyLocationWeather(
                                             each.locationName,
@@ -106,7 +109,7 @@ const NearbyLocationsMarkers = ({ nearbyLocationsForMap }: NearbyLocationsCoordi
                                         )
                                     }
                                 >
-                                    {'View Weather >'}
+                                    <span className={'p-2'}>{'View Weather >'}</span>
                                 </button>
                             </Popup>
                         )}
@@ -146,13 +149,24 @@ const WeatherMap = ({
                 scrollWheelZoom={false}
                 style={{ height: mapProps.height, width: mapProps.width }}
                 className={mapProps.classNames}
+                doubleClickZoom={true}
+                zoomAnimation={true}
             >
+                {mapProps.displayPositionResetController && (
+                    <MapPositionResetController
+                        controllerName={'Reset Position'}
+                        resetMapPosition={[latitude, longitude]}
+                        resetZoomLevel={mapProps.zoomLevel}
+                        controllerClassName="bg-gray-800 text-white rounded-xl p-2 text-base hover:bg-gray-200 hover:text-black"
+                        renderPosition={{ position: 'bottomright' }}
+                    />
+                )}
                 {mapProps.displayMarker && (
                     <Marker
                         position={[latitude, longitude]}
                         icon={L.divIcon({
-                            iconSize: [WEATHER_MAP_ICON_SIZE, WEATHER_MAP_ICON_SIZE],
-                            iconAnchor: [WEATHER_MAP_ICON_SIZE / 2, WEATHER_MAP_ICON_SIZE + 9],
+                            iconSize: [MAIN_LOCATION_MAP_ICON_SIZE, MAIN_LOCATION_MAP_ICON_SIZE],
+                            iconAnchor: [MAIN_LOCATION_MAP_ICON_SIZE / 2, MAIN_LOCATION_MAP_ICON_SIZE + 9],
                             className: '',
                             html: getMainLocationPinSvgIcon(),
                         })}

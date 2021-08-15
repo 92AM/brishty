@@ -425,12 +425,13 @@ export const getWeatherDetailsPageStaticMapProps = (): MapProps => {
         width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
         height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
         displayMarker: true,
-        classNames: '-z-10 border-t border-b border-gray-900',
+        classNames: '-z-10',
         temperatureChecked: false,
         cloudsChecked: false,
         precipitationChecked: false,
         pressureChecked: false,
         windChecked: false,
+        displayPositionResetController: true,
     };
 };
 
@@ -448,5 +449,6 @@ export const getHomePageStaticMapProps = (): MapProps => {
         precipitationChecked: true,
         pressureChecked: false,
         windChecked: false,
+        displayPositionResetController: false,
     };
 };

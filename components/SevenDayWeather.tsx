@@ -7,10 +7,32 @@ type DailyWeatherProps = {
     item: Daily[];
 };
 
-const SevenDayWeather = ({ item: daily }: DailyWeatherProps) => {
-    const slideComponents: any = [];
+const daysInWeek = new Array(7);
+daysInWeek[0] = 'Sunday';
+daysInWeek[1] = 'Monday';
+daysInWeek[2] = 'Tuesday';
+daysInWeek[3] = 'Wednesday';
+daysInWeek[4] = 'Thursday';
+daysInWeek[5] = 'Friday';
+daysInWeek[6] = 'Saturday';
 
-    daily.forEach((eachDay) => {
+const slideComponents: any = [];
+const dateTimeFormat = 'dddd';
+const today = daysInWeek[new Date().getDay()];
+
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+const dayTomorrow = daysInWeek[tomorrow.getDay()];
+
+const SevenDayWeather = ({ item: daily }: DailyWeatherProps) => {
+    daily.forEach((eachDay, index) => {
+        let day = moment.unix(Number(eachDay.dateTime)).format(dateTimeFormat);
+        if (day === today && index !== daily.length) {
+            day = 'Today';
+        } else if (day === dayTomorrow) {
+            day = 'Tomorrow';
+        }
+
         slideComponents.push(
             <div className="inline-block px-3 my-4">
                 <div
@@ -24,9 +46,7 @@ const SevenDayWeather = ({ item: daily }: DailyWeatherProps) => {
                             alt={eachDay.weather.description}
                             loading={'lazy'}
                         />
-                        <h2 className="text-center text-xl text-gray-900 font-medium title-font mb-4">
-                            {moment.unix(Number(eachDay.dateTime)).format('dddd')}
-                        </h2>
+                        <h2 className="text-center text-xl text-gray-900 font-medium title-font mb-4">{day}</h2>
 
                         <div className="grid gap-4 grid-cols-2">
                             <div className="divide-y space-y-2">

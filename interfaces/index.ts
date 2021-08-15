@@ -120,6 +120,7 @@ export type MapProps = {
     precipitationChecked: boolean;
     pressureChecked: boolean;
     windChecked: boolean;
+    displayPositionResetController: boolean;
 };
 
 export interface MainLocationForMap {

@@ -1,3 +1,5 @@
+import querystring from 'querystring';
+
 export const convertKelvinToCelsius = (kelvin: number): string => {
     return `${Math.round(kelvin - 273.15)}°`;
 };
@@ -42,4 +44,14 @@ export const windDegreeToText = (windDegree: number): string => {
 export const sanitiseCoordinate = (coordinate: string | string[] | undefined): string => {
     const coordinateStr = String(coordinate);
     return (coordinateStr.indexOf('-') > -1 ? coordinateStr : '+' + coordinateStr).toString();
+};
+
+export const parseSearchedLocationNameOrDefault = (searchedLocationName: string | undefined): string => {
+    const defaultValue = '';
+    const decodedParameter = querystring.unescape(searchedLocationName || defaultValue);
+
+    if (!decodedParameter) {
+        return defaultValue;
+    }
+    return decodedParameter.replace(/[&\\#!^=;`|@+()$€£~%.'":*?<>{}]/g, '') || defaultValue;
 };

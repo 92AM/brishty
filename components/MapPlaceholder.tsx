@@ -3,7 +3,9 @@ import { WEATHER_DETAILS_PAGE_MAP_HEIGHT, WEATHER_DETAILS_PAGE_MAP_WIDTH } from 
 
 const slideComponents: any = [];
 
-for (let i = 0; i < 5; i++) {
+const maxNoOfPlaceholdersToRender = 5;
+
+for (let i = 1; i <= maxNoOfPlaceholdersToRender; i++) {
     slideComponents.push(
         <div className="p-2 w-60 bg-gray-300 text-gray-100 rounded-2xl">
             <span className="p-1 bg-gray-100 w-56 block h-5">&nbsp;</span>
