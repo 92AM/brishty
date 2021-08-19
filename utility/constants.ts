@@ -8,3 +8,7 @@ export const HOMEPAGE_MAP_WIDTH = '100%';
 
 export const MAIN_LOCATION_MAP_ICON_SIZE = 50;
 export const NEARBY_LOCATION_MAP_ICON_SIZE = 30;
+
+export const NEARBY_LOCATION_RADIUS = 100;
+export const NEARBY_LOCATIONS_LIMIT = 10;
+export const NEARBY_LOCATION_TYPE = 'CITY';

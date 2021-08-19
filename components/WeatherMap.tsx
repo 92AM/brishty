@@ -8,6 +8,8 @@ import { openWeatherMapApiKey } from '../services/ApiKeyService';
 import WeatherMapLegend from './WeatherMapLegend';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
 import MapPositionResetController from './MapPositionResetController';
+import MapExpandController from './DetailedWeatherMapExpandController';
+import BasicMapExpandController from './BasicMapExpandController';
 
 const OWM_API_KEY = openWeatherMapApiKey;
 
@@ -124,12 +126,16 @@ type Props = {
     mainLocationForMap?: MainLocationForMap;
     mapProps: MapProps;
     nearbyLocationsForMap?: NearbyLocationForMap[];
+    useFullViewport?: boolean;
+    height?: number;
 };
 
 const WeatherMap = ({
     mainLocationForMap: mainLocationForMap,
     mapProps: mapProps,
     nearbyLocationsForMap: nearbyLocationsForMap,
+    useFullViewport: useFullViewport,
+    height: height,
 }: Props) => {
     const londonLatitude = 0;
     const londonLongitude = 0;
@@ -147,9 +153,8 @@ const WeatherMap = ({
                 center={[latitude, longitude]}
                 zoom={mapProps.zoomLevel}
                 scrollWheelZoom={false}
-                style={{ height: mapProps.height, width: mapProps.width }}
+                style={{ height: useFullViewport ? height : mapProps.height, width: mapProps.width }}
                 className={mapProps.classNames}
-                doubleClickZoom={true}
                 zoomAnimation={true}
             >
                 {mapProps.displayPositionResetController && (
@@ -157,10 +162,33 @@ const WeatherMap = ({
                         controllerName={'Reset Position'}
                         resetMapPosition={[latitude, longitude]}
                         resetZoomLevel={mapProps.zoomLevel}
-                        controllerClassName="bg-gray-800 text-white rounded-xl p-2 text-base hover:bg-gray-200 hover:text-black"
+                        controllerClassName="bg-gray-800 text-gray-100 rounded-xl p-2 text-base"
                         renderPosition={{ position: 'bottomright' }}
                     />
                 )}
+
+                {mapProps.displayDetailedWeatherExpandMapController && (
+                    <MapExpandController
+                        controllerName={'Expand Map'}
+                        controllerClassName="bg-gray-800 text-gray-100 rounded-xl p-2 text-base"
+                        renderPosition={{ position: 'bottomright' }}
+                        locationName={mainLocationForMap && mainLocationForMap.locationName}
+                        latitude={mainLocationForMap && mainLocationForMap.coordinate?.latitude}
+                        longitude={mainLocationForMap && mainLocationForMap.coordinate?.longitude}
+                        temperature={mainLocationForMap && mainLocationForMap.temperature}
+                        countryCode={'GB'}
+                        shouldLoadDetailsPageWeather={'true'}
+                    />
+                )}
+
+                {mapProps.displayBasicMapExpandController && (
+                    <BasicMapExpandController
+                        controllerName={'Expand Map'}
+                        controllerClassName={'bg-gray-800 text-gray-100 rounded-xl p-2 text-base'}
+                        renderPosition={{ position: 'bottomright' }}
+                    />
+                )}
+
                 {mapProps.displayMarker && (
                     <Marker
                         position={[latitude, longitude]}

@@ -100,6 +100,7 @@ export interface WeatherDetails {
     hourly: Hour[];
     daily: Daily[];
     nearbyLocations: NearbyLocation[];
+    countryCode: string;
 }
 
 export type WeatherDetailsProps = {
@@ -121,12 +122,15 @@ export type MapProps = {
     pressureChecked: boolean;
     windChecked: boolean;
     displayPositionResetController: boolean;
+    displayDetailedWeatherExpandMapController?: boolean;
+    displayBasicMapExpandController?: boolean;
 };
 
 export interface MainLocationForMap {
     coordinate: Coordinate;
     locationName: string;
     temperature: string;
+    countryCode?: string;
 }
 
 export interface NearbyLocationForMap {
@@ -134,4 +138,8 @@ export interface NearbyLocationForMap {
     countryCode: string;
     distance: string;
     coordinate: Coordinate;
+}
+
+export interface MapSize {
+    height: number;
 }

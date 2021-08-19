@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import { WEATHER_DETAILS_PAGE_MAP_HEIGHT, WEATHER_DETAILS_PAGE_MAP_WIDTH } from '../utility/constants';
+import { MapSize } from '../interfaces';
+import { useWindowSize } from '../services/GenericUtilityService';
 
 const slideComponents: any = [];
 
@@ -33,12 +35,17 @@ const MapLegendPlaceholder = () => {
     );
 };
 
-const MapPlaceholder = () => {
+type Props = {
+    useFullViewport?: boolean;
+};
+
+const MapPlaceholder = ({ useFullViewport: useFullViewport }: Props) => {
+    const size: MapSize = useWindowSize();
     return (
         <Fragment>
             <div
                 style={{
-                    height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
+                    height: useFullViewport && size.height ? size.height : WEATHER_DETAILS_PAGE_MAP_HEIGHT,
                     width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
                 }}
                 className="z-0 bg-gray-200 border-t border-b border-gray-300"

@@ -45,11 +45,9 @@ class MapPositionResetController extends React.Component<PositionResetProps> {
     }
 }
 
-function withMap(Component: any) {
-    return function WrappedComponent(props: PositionResetProps) {
-        const map = useMap();
-        return <Component {...props} map={map} />;
-    };
-}
+const withMap = (Component: any) => (props: PositionResetProps) => {
+    const map = useMap();
+    return <Component {...props} map={map} />;
+};
 
 export default withMap(MapPositionResetController);

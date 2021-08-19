@@ -33,14 +33,13 @@ import {
     HOMEPAGE_MAP_HEIGHT,
     HOMEPAGE_MAP_WIDTH,
     HOMEPAGE_MAP_ZOOM_LEVEL,
+    NEARBY_LOCATION_RADIUS,
+    NEARBY_LOCATION_TYPE,
+    NEARBY_LOCATIONS_LIMIT,
     WEATHER_DETAILS_PAGE_MAP_HEIGHT,
     WEATHER_DETAILS_PAGE_MAP_WIDTH,
     WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
 } from '../utility/constants';
-
-const NEARBY_LOCATION_RADIUS = 100;
-const NEARBY_LOCATIONS_LIMIT = 10;
-const NEARBY_LOCATION_TYPE = 'CITY';
 
 const mapToTemperature = (temperature: any): Temperature => {
     return {
@@ -190,6 +189,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
     locationName: string | string[] | undefined,
     weatherDetailsJson: any,
     nearbyLocations: NearbyLocation[],
+    countryCode: string | undefined | string[]
 ): WeatherDetails => {
     const currentWeather = mapToCurrentWeather(weatherDetailsJson);
     const hourly = mapToHourlyWeather(weatherDetailsJson);
@@ -204,6 +204,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
         hourly: hourly,
         daily: daily,
         nearbyLocations: nearbyLocations,
+        countryCode: countryCode
     } as WeatherDetails;
 };
 
@@ -256,6 +257,7 @@ export const getWeatherDetailsByLocationName = async (
         locationName,
         weatherDetailForGivenLocationAsJson,
         nearbyLocationsWithSourceRemoved,
+        searchedLocationCurrentWeather.countryCode
     );
 };
 
@@ -281,6 +283,7 @@ export const getWeatherDetailsByGeoLocation = async (
         locationName,
         weatherDetailForGivenLocationAsJson,
         nearbyLocationsWithSourceRemoved,
+        countryCode,
     );
 };
 
@@ -432,6 +435,26 @@ export const getWeatherDetailsPageStaticMapProps = (): MapProps => {
         pressureChecked: false,
         windChecked: false,
         displayPositionResetController: true,
+        displayDetailedWeatherExpandMapController: true,
+    };
+};
+
+export const getExpandedMapPageStaticMapProps = (): MapProps => {
+    return {
+        blackAndWhiteChecked: false,
+        mapnikChecked: true,
+        zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
+        width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
+        height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
+        displayMarker: true,
+        classNames: '-z-10',
+        temperatureChecked: false,
+        cloudsChecked: false,
+        precipitationChecked: false,
+        pressureChecked: false,
+        windChecked: false,
+        displayPositionResetController: true,
+        displayDetailedWeatherExpandMapController: false,
     };
 };
 
@@ -450,5 +473,25 @@ export const getHomePageStaticMapProps = (): MapProps => {
         pressureChecked: false,
         windChecked: false,
         displayPositionResetController: false,
+        displayBasicMapExpandController: true,
+    };
+};
+
+export const getExpandedHomePageStaticMapProps = (): MapProps => {
+    return {
+        blackAndWhiteChecked: false,
+        mapnikChecked: true,
+        zoomLevel: HOMEPAGE_MAP_ZOOM_LEVEL,
+        width: HOMEPAGE_MAP_WIDTH,
+        height: HOMEPAGE_MAP_HEIGHT,
+        displayMarker: false,
+        classNames: '-z-10 rounded-2xl shadow-lg',
+        temperatureChecked: true,
+        cloudsChecked: true,
+        precipitationChecked: true,
+        pressureChecked: false,
+        windChecked: false,
+        displayPositionResetController: false,
+        displayBasicMapExpandController: false,
     };
 };

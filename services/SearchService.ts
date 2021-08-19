@@ -26,3 +26,35 @@ export const searchWeatherByGeoLocation: (
     const windowLocation = getWindow().location;
     windowLocation.assign('/weather/' + locationName + '/' + latitude + '/' + longitude + '/' + countryCode);
 };
+
+export const executeExpandedMapSearch: (
+    locationName: string | undefined,
+    latitude: string | undefined,
+    longitude: string | undefined,
+    temperature: string | undefined,
+    countryCode: string | undefined,
+    shouldLoadDetailsPageWeather: string | undefined,
+) => void = (
+    locationName: string | undefined,
+    latitude: string | undefined,
+    longitude: string | undefined,
+    temperature: string | undefined,
+    countryCode: string | undefined,
+    shouldLoadDetailsPageWeather: string | undefined,
+) => {
+    const windowLocation = getWindow().location;
+    windowLocation.assign(
+        '/weather/map/' +
+            locationName +
+            '/' +
+            latitude +
+            '/' +
+            longitude +
+            '/' +
+            temperature +
+            '/' +
+            countryCode +
+            '/' +
+            shouldLoadDetailsPageWeather,
+    );
+};

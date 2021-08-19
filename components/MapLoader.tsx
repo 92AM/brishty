@@ -9,17 +9,22 @@ type Props = {
     mainLocationForMap?: MainLocationForMap;
     mapProps: MapProps;
     nearbyLocationsForMap?: NearbyLocationForMap[];
+    useFullViewport?: boolean;
+    height?: number;
 };
 
 export const MapLoader = ({
     mainLocationForMap: mainLocationForMap,
     mapProps: mapProps,
     nearbyLocationsForMap: nearbyLocationsForMap,
+    useFullViewport: useFullViewport,
+    height: height,
 }: Props) => {
     const MapComponent = React.useMemo(
         () =>
             dynamic(() => import('./WeatherMap'), {
-                loading: () => <MapPlaceholder />,
+                loading: () =>
+                    useFullViewport ? <MapPlaceholder useFullViewport={useFullViewport} /> : <MapPlaceholder />,
                 ssr: false,
             }),
         [],
@@ -29,6 +34,8 @@ export const MapLoader = ({
             mainLocationForMap={mainLocationForMap!}
             mapProps={mapProps}
             nearbyLocationsForMap={nearbyLocationsForMap}
+            useFullViewport={useFullViewport}
+            height={height}
         />
     );
 };
