@@ -189,7 +189,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
     locationName: string | string[] | undefined,
     weatherDetailsJson: any,
     nearbyLocations: NearbyLocation[],
-    countryCode: string | undefined | string[]
+    countryCode: string | undefined | string[],
 ): WeatherDetails => {
     const currentWeather = mapToCurrentWeather(weatherDetailsJson);
     const hourly = mapToHourlyWeather(weatherDetailsJson);
@@ -204,7 +204,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
         hourly: hourly,
         daily: daily,
         nearbyLocations: nearbyLocations,
-        countryCode: countryCode
+        countryCode: countryCode,
     } as WeatherDetails;
 };
 
@@ -257,7 +257,7 @@ export const getWeatherDetailsByLocationName = async (
         locationName,
         weatherDetailForGivenLocationAsJson,
         nearbyLocationsWithSourceRemoved,
-        searchedLocationCurrentWeather.countryCode
+        searchedLocationCurrentWeather.countryCode,
     );
 };
 

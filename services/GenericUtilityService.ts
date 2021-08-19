@@ -1,6 +1,6 @@
 import querystring from 'querystring';
-import {useEffect, useState} from "react";
-import {MapSize} from "../interfaces";
+import { useEffect, useState } from 'react';
+import { MapSize } from '../interfaces';
 
 export const convertKelvinToCelsius = (kelvin: number): string => {
     return `${Math.round(kelvin - 273.15)}°`;
@@ -68,15 +68,15 @@ export const parseBooleanStringOrDefault = (booleanAsString: string | undefined)
     return booleanAsString.toLowerCase() === 'true';
 };
 
-export const calculateWindowHeightValueForMap = (windowHeight:number):number => {
+export const calculateWindowHeightValueForMap = (windowHeight: number): number => {
     if (windowHeight <= 500) {
-        return windowHeight - (windowHeight/100)*40;
+        return windowHeight - (windowHeight / 100) * 40;
     }
     if (windowHeight > 500 || windowHeight <= 800) {
-        return windowHeight - (windowHeight/100)*25;
+        return windowHeight - (windowHeight / 100) * 25;
     }
     return windowHeight;
-}
+};
 
 export const useWindowSize = (): MapSize => {
     const [windowSize, setWindowSize] = useState<MapSize>({
@@ -88,9 +88,9 @@ export const useWindowSize = (): MapSize => {
                 height: calculateWindowHeightValueForMap(window.innerHeight),
             });
         }
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
         handleResize();
-        return () => window.removeEventListener("resize", handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
     return windowSize;
 };
