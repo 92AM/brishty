@@ -147,7 +147,6 @@ const WeatherMap = ({
         return null;
     }
 
-    console.log('Country code ===> ', mainLocationForMap?.countryCode);
     return (
         <Fragment>
             <MapContainer
