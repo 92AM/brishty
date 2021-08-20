@@ -13,7 +13,6 @@ import { NEARBY_LOCATION_RADIUS, NEARBY_LOCATION_TYPE, NEARBY_LOCATIONS_LIMIT } 
 import { parseBooleanStringOrDefault, useWindowSize } from '../../../services/GenericUtilityService';
 import { setPageModel } from '../../../services/PageModelService';
 import PageContentWrapper from '../../../components/PageContentWrapper';
-import Link from 'next/link';
 
 interface ExpandedWeatherMapProperties {
     mainLocationForMap: MainLocationForMap;
@@ -122,29 +121,27 @@ const Weather = ({ expandedWeatherMapProperties }: Props) => {
         >
             <PageContentWrapper>
                 <span className={'text-blue-900 hover:underline'}>
-                    <Link href={backLink}>
-                        <a className={'flex flex-row'}>
-                            <span className={'pt-4'}>
-                                <svg
-                                    className="h-7 w-7"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                                    />
-                                </svg>
-                            </span>
-                            <span className={'pl-2 pt-4 text-xl'}>
-                                {`Back to weather for`} {expandedWeatherMapProperties.mainLocationForMap.locationName}
-                            </span>
-                        </a>
-                    </Link>
+                    <a className={'flex flex-row'} href={backLink}>
+                        <span className={'pt-4'}>
+                            <svg
+                                className="h-7 w-7"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                                />
+                            </svg>
+                        </span>
+                        <span className={'pl-2 pt-4 text-xl'}>
+                            {`Back to weather for`} {expandedWeatherMapProperties.mainLocationForMap.locationName}
+                        </span>
+                    </a>
                 </span>
             </PageContentWrapper>
             {expandedWeatherMapProperties.mainLocationForMap && (
