@@ -1,6 +1,6 @@
 module.exports = {
     env: {
-        openWeatherMapApiKey: 'c6f231152f837713d9fdedee2f8d47e2',
+        openWeatherMapApiKey: '540394c97baab280ccc24c48b9ed8224',
         geoDbCitiesApiKey: '5cdf7ea234msh953d12f1242d084p1b8e54jsn14d641cc6f52',
     },
     target: 'serverless',

@@ -14,7 +14,9 @@
   "dependencies": {
     "@headlessui/react": "^1.1.1",
     "@heroicons/react": "^1.0.1",
+    "@types/memory-cache": "^0.2.1",
     "leaflet": "^1.7.1",
+    "memory-cache": "^0.2.0",
     "moment": "^2.29.1",
     "next": "^11.0.0",
     "react": "^17.0.2",
