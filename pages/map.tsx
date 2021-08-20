@@ -32,7 +32,7 @@ function Map() {
     return (
         <Layout title="Brishty - search for weather" background={'bg-white'}>
             <PageContentWrapper>
-                <span className={'text-blue-900 hover:underline'}>
+                <span className={'text-gray-900 hover:underline'}>
                     <Link href={'/'}>
                         <a className={'flex flex-row'}>
                             <span className={'pt-4'}>

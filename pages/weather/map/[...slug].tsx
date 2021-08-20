@@ -6,6 +6,7 @@ import {
     getExpandedMapPageStaticMapProps,
     getHomePageStaticMapProps,
     getNearbyLocations,
+    removeSourceLocationFromNearbyLocation,
 } from '../../../services/WeatherDetailsService';
 import { Coordinate, MainLocationForMap, MapProps, MapSize, NearbyLocationForMap } from '../../../interfaces';
 import { ParsedUrlQuery } from 'querystring';
@@ -59,9 +60,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             NEARBY_LOCATION_TYPE,
         );
 
+        const nearbyLocationsWithSourceRemoved = removeSourceLocationFromNearbyLocation(nearbyLocations, locationName);
+
         const nearbyLocationsForMap: NearbyLocationForMap[] = [];
 
-        nearbyLocations.forEach((location) => {
+        nearbyLocationsWithSourceRemoved.forEach((location) => {
             const nearbyLocationForMap: NearbyLocationForMap = {
                 coordinate: location.coordinate,
                 locationName: location.name,
@@ -120,7 +123,7 @@ const Weather = ({ expandedWeatherMapProperties }: Props) => {
             searchTerm={expandedWeatherMapProperties.mainLocationForMap.locationName}
         >
             <PageContentWrapper>
-                <span className={'text-blue-900 hover:underline'}>
+                <span className={'text-gray-900 hover:underline'}>
                     <a className={'flex flex-row'} href={backLink}>
                         <span className={'pt-4'}>
                             <svg

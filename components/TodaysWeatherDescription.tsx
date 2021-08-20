@@ -25,7 +25,7 @@ const TodaysWeatherDescription = ({ item: weatherDetails }: Props) => {
                 to look at the icons page where we have outlined the meaning of each icon.
             </div>
 
-            <div className="text-blue-900 text-lg text-left p-2 hover:underline">
+            <div className="text-gray-900 text-lg text-left p-2 hover:underline">
                 <Link href={'/icons'}>{'Weather icons >'}</Link>
             </div>
         </div>

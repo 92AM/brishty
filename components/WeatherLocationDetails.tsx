@@ -15,6 +15,7 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
         coordinate: { latitude: weatherDetails?.latitude, longitude: weatherDetails?.longitude } as Coordinate,
         locationName: weatherDetails.locationName,
         temperature: weatherDetails.current.currentTemp,
+        countryCode: weatherDetails.countryCode,
     };
 
     const nearbyLocationsForMap: NearbyLocationForMap[] = [];

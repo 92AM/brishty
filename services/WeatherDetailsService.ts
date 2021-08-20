@@ -287,7 +287,7 @@ export const getWeatherDetailsByGeoLocation = async (
     );
 };
 
-const removeSourceLocationFromNearbyLocation = (
+export const removeSourceLocationFromNearbyLocation = (
     nearbyLocations: NearbyLocation[],
     sourceLocationName: string | string[] | undefined,
 ): NearbyLocation[] => {

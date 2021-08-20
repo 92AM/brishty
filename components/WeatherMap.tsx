@@ -147,6 +147,7 @@ const WeatherMap = ({
         return null;
     }
 
+    console.log('Country code ===> ', mainLocationForMap?.countryCode);
     return (
         <Fragment>
             <MapContainer
@@ -176,7 +177,7 @@ const WeatherMap = ({
                         latitude={mainLocationForMap && mainLocationForMap.coordinate?.latitude}
                         longitude={mainLocationForMap && mainLocationForMap.coordinate?.longitude}
                         temperature={mainLocationForMap && mainLocationForMap.temperature}
-                        countryCode={'GB'}
+                        countryCode={mainLocationForMap?.countryCode}
                         shouldLoadDetailsPageWeather={'true'}
                     />
                 )}
