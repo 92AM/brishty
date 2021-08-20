@@ -1,6 +1,6 @@
 import cache from 'memory-cache';
 
-export const getResponseFromClientOrCache = async (
+export const fetchResponseFromClientOrCache = async (
     url: any,
     cacheExpiryInMillisecond: number,
     requestInitializer?: any | undefined,

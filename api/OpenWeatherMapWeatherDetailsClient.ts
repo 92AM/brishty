@@ -1,5 +1,5 @@
 import { openWeatherMapApiKey } from '../services/ApiKeyService';
-import { getResponseFromClientOrCache } from '../services/CacheService';
+import { fetchResponseFromClientOrCache } from '../services/CacheService';
 
 const OPEN_WEATHER_MAP_API_KEY = openWeatherMapApiKey;
 
@@ -12,5 +12,5 @@ export const openWeatherMapWeatherDetailsClient = async (
 
     const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${OPEN_WEATHER_MAP_API_KEY}`;
 
-    return await getResponseFromClientOrCache(url, cacheExpiryInMillisecond);
+    return await fetchResponseFromClientOrCache(url, cacheExpiryInMillisecond);
 };
