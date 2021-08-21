@@ -9,7 +9,7 @@ import DetailedCurrentWeather from './DetailedCurrentWeather';
 import SevenDayWeather from './SevenDayWeather';
 import { MapLoader } from './MapLoader';
 import { getWeatherDetailsPageStaticMapProps } from '../services/WeatherDetailsService';
-import Link from "next/link";
+import Link from 'next/link';
 
 const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
     const mainLocationForMap: MainLocationForMap = {

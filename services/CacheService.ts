@@ -1,7 +1,7 @@
 import cache from 'memory-cache';
 
 export const fetchResponseFromClientOrCache = async (
-    url: any,
+    url: string,
     cacheExpiryInMillisecond: number,
     requestInitializer?: any | undefined,
 ): Promise<any> => {
