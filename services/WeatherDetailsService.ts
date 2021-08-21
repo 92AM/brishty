@@ -443,7 +443,7 @@ export const getExpandedMapPageStaticMapProps = (): MapProps => {
     return {
         blackAndWhiteChecked: false,
         mapnikChecked: true,
-        zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
+        zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL + 2,
         width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
         height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
         displayMarker: true,
