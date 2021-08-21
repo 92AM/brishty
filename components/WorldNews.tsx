@@ -16,7 +16,7 @@ const WorldNews = ({ items }: WorldNewProps) => {
             news.facets.forEach((facet) => {
                 facet &&
                     facetsComponentList.push(
-                        <span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-900 mr-2 mb-2 shadow-sm">
+                        <span className="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 shadow-sm">
                             {facet}
                         </span>,
                     );
@@ -41,12 +41,12 @@ const WorldNews = ({ items }: WorldNewProps) => {
                 </div>
                 <div className="px-6 pt-2 pb-2">
                     {news.section && (
-                        <span className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
+                        <span className="inline-block bg-gray-600 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
                             {news.section}
                         </span>
                     )}
                     {news.subsection && (
-                        <span className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
+                        <span className="inline-block bg-gray-600 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
                             {news.subsection}
                         </span>
                     )}
