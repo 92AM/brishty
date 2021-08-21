@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import React, { useEffect } from 'react';
 import PageContentWrapper from '../components/PageContentWrapper';
 import SearchBox from '../components/SearchBox';
-import { Coordinate, LocationCurrentWeather, MainLocationForMap } from '../interfaces';
+import { Coordinate, LocationCurrentWeather, MainLocationForMap, News } from '../interfaces';
 import {
     getEuropeTopLocationsCurrentWeathers,
     getHomePageStaticMapProps,
@@ -12,11 +12,14 @@ import {
 import TopLocationsWeatherPreviewsCarousel from '../components/TopLocationsWeatherPreviewsCarousel';
 import { MapLoader } from '../components/MapLoader';
 import { setPageModel } from '../services/PageModelService';
+import { getNews } from '../services/NewsService';
+import WorldNews from '../components/WorldNews';
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
     europeTopLocationsWeathers: LocationCurrentWeather[];
     worldTopLocationWeathers: LocationCurrentWeather[];
+    worldNews: News[];
 };
 
 const HomePageWeatherMap = () => {
@@ -28,7 +31,7 @@ const HomePageWeatherMap = () => {
     return (
         <div className="pb-8">
             <div className="pb-4">
-                <div className="text-black p-2 text-2xl text-center">World Weather Map</div>
+                <div className="text-black p-2 pt-10 text-3xl text-center">World Weather Map</div>
             </div>
             <div className={'p-2 z-0 relative'}>
                 <MapLoader mapProps={getHomePageStaticMapProps()} mainLocationForMap={mainLocationForMap} />
@@ -41,6 +44,7 @@ const IndexPage = ({
     ukTopLocationsWeathers,
     europeTopLocationsWeathers,
     worldTopLocationWeathers,
+    worldNews,
 }: IndexPageProps) => {
     useEffect(() => {
         setPageModel([ukTopLocationsWeathers, europeTopLocationsWeathers, worldTopLocationWeathers]);
@@ -60,6 +64,7 @@ const IndexPage = ({
                 {worldTopLocationWeathers && (
                     <TopLocationsWeatherPreviewsCarousel items={worldTopLocationWeathers} mainLocation={'World'} />
                 )}
+                {worldNews && <WorldNews items={worldNews} />}
             </PageContentWrapper>
         </Layout>
     );
@@ -70,6 +75,7 @@ IndexPage.getInitialProps = async () => {
         ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
         europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
         worldTopLocationWeathers: await getWorldTopLocationsCurrentWeathers(),
+        worldNews: await getNews(),
     };
 };
 
