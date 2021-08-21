@@ -143,3 +143,16 @@ export interface NearbyLocationForMap {
 export interface MapSize {
     height: number;
 }
+
+export interface News {
+    section: string;
+    subsection?: string;
+    title: string;
+    byLine: string;
+    newsDescription: string;
+    publishedDate: string;
+    imageSource: string;
+    imageCaption: string;
+    imageCopyright: string;
+    facets: string[];
+}

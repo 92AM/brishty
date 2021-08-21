@@ -10,7 +10,7 @@ type Props = {
 
 const BasicCurrentlyAndHourlyWeather = ({ item: weatherDetails }: Props) => {
     return (
-        <div className="md:flex">
+        <div className="md:flex pt-1 pb-1">
             <BasicCurrentWeather item={weatherDetails} />
             <HourlyWeather item={weatherDetails.hourly} />
         </div>
