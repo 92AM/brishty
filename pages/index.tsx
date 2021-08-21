@@ -3,17 +3,17 @@ import React, { useEffect } from 'react';
 import PageContentWrapper from '../components/PageContentWrapper';
 import SearchBox from '../components/SearchBox';
 import { Coordinate, LocationCurrentWeather, MainLocationForMap, News } from '../interfaces';
-import {
-    getEuropeTopLocationsCurrentWeathers,
-    getHomePageStaticMapProps,
-    getUkTopLocationsCurrentWeathers,
-    getWorldTopLocationsCurrentWeathers,
-} from '../services/WeatherDetailsService';
 import TopLocationsWeatherPreviewsCarousel from '../components/TopLocationsWeatherPreviewsCarousel';
 import { MapLoader } from '../components/MapLoader';
 import { setPageModel } from '../services/PageModelService';
-import { getNews } from '../services/NewsService';
+import { getWorldNews } from '../services/WorldNewsService';
 import WorldNews from '../components/WorldNews';
+import { getHomePageStaticMapProps } from '../services/StaticMapPropsProviderService';
+import {
+    getEuropeTopLocationsCurrentWeathers,
+    getUkTopLocationsCurrentWeathers,
+    getWorldTopLocationsCurrentWeathers,
+} from '../services/BulkWeatherLocationExtractionService';
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -75,7 +75,7 @@ IndexPage.getInitialProps = async () => {
         ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
         europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
         worldTopLocationWeathers: await getWorldTopLocationsCurrentWeathers(),
-        worldNews: await getNews(),
+        worldNews: await getWorldNews(),
     };
 };
 

@@ -3,7 +3,7 @@ import { LocationCurrentWeather } from '../../interfaces';
 import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
-import { getEuropeMoreTopLocationsCurrentWeathers } from '../../services/WeatherDetailsService';
+import { getEuropeMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
 
 type EuropeWeatherProps = {
     europeTopLocationsWeathers: LocationCurrentWeather[];

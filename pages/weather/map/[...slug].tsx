@@ -2,18 +2,17 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import React, { useEffect } from 'react';
 import Layout from '../../../components/Layout';
 import { MapLoader } from '../../../components/MapLoader';
-import {
-    getExpandedMapPageStaticMapProps,
-    getHomePageStaticMapProps,
-    getNearbyLocations,
-    removeSourceLocationFromNearbyLocation,
-} from '../../../services/WeatherDetailsService';
 import { Coordinate, MainLocationForMap, MapProps, MapSize, NearbyLocationForMap } from '../../../interfaces';
 import { ParsedUrlQuery } from 'querystring';
 import { NEARBY_LOCATION_RADIUS, NEARBY_LOCATION_TYPE, NEARBY_LOCATIONS_LIMIT } from '../../../utility/constants';
 import { parseBooleanStringOrDefault, useWindowSize } from '../../../services/GenericUtilityService';
 import { setPageModel } from '../../../services/PageModelService';
 import PageContentWrapper from '../../../components/PageContentWrapper';
+import { getNearbyLocations, removeSourceLocationFromNearbyLocation } from '../../../services/NearbyLocationsService';
+import {
+    getExpandedMapPageStaticMapProps,
+    getHomePageStaticMapProps,
+} from '../../../services/StaticMapPropsProviderService';
 
 interface ExpandedWeatherMapProperties {
     mainLocationForMap: MainLocationForMap;

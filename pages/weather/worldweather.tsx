@@ -3,7 +3,7 @@ import { LocationCurrentWeather } from '../../interfaces';
 import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
-import { getWorldMoreTopLocationsCurrentWeathers } from '../../services/WeatherDetailsService';
+import { getWorldMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
 
 type WorldWeatherProps = {
     worldTopLocationsWeathers: LocationCurrentWeather[];

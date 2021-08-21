@@ -1,7 +1,7 @@
 import { News } from '../interfaces';
 import { nyTimesNewsClient } from '../api/NyTimesNewsClient';
 
-export const getNews = async (): Promise<News[]> => {
+export const getWorldNews = async (): Promise<News[]> => {
     const nearbyLocationsAsJson = await nyTimesNewsClient();
 
     const mapNewsJsonToNews = (nearbyLocationsAsJson: any) => {

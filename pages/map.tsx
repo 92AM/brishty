@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import { useWindowSize } from '../services/GenericUtilityService';
 import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
-import { getExpandedHomePageStaticMapProps } from '../services/WeatherDetailsService';
+import { getExpandedHomePageStaticMapProps } from '../services/StaticMapPropsProviderService';
 
 const WeatherMap = () => {
     const mainLocationForMap: MainLocationForMap = {

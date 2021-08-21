@@ -7,39 +7,14 @@ import {
     FeelLike,
     Hour,
     LocationCurrentWeather,
-    MapProps,
     NearbyLocation,
     Temperature,
     Weather,
     WeatherDetails,
 } from '../interfaces';
-import { convertKelvinToCelsius, sanitiseCoordinate } from './GenericUtilityService';
-import {
-    getMoreStaticAfricaTopSearchLocations,
-    getMoreStaticAmericasTopSearchLocations,
-    getMoreStaticAsianTopSearchLocations,
-    getMoreStaticEuropeanTopSearchLocations,
-    getMoreStaticUkTopSearchLocations,
-    getMoreStaticWorldTopSearchLocations,
-    getStaticAfricaTopSearchLocations,
-    getStaticAmericasTopSearchLocations,
-    getStaticAsianTopSearchLocations,
-    getStaticEuropeanTopSearchLocations,
-    getStaticRestOfWorldTopSearchLocations,
-    getStaticUkTopSearchLocations,
-} from './StaticSearchLocationGeneratorService';
-import { geoDbNearbyLocationsClient } from '../api/GeoDbNearbyLocationsClient';
-import {
-    HOMEPAGE_MAP_HEIGHT,
-    HOMEPAGE_MAP_WIDTH,
-    HOMEPAGE_MAP_ZOOM_LEVEL,
-    NEARBY_LOCATION_RADIUS,
-    NEARBY_LOCATION_TYPE,
-    NEARBY_LOCATIONS_LIMIT,
-    WEATHER_DETAILS_PAGE_MAP_HEIGHT,
-    WEATHER_DETAILS_PAGE_MAP_WIDTH,
-    WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
-} from '../utility/constants';
+import { convertKelvinToCelsius } from './GenericUtilityService';
+import { NEARBY_LOCATION_RADIUS, NEARBY_LOCATION_TYPE, NEARBY_LOCATIONS_LIMIT } from '../utility/constants';
+import { getNearbyLocations, removeSourceLocationFromNearbyLocation } from './NearbyLocationsService';
 
 const mapToTemperature = (temperature: any): Temperature => {
     return {
@@ -137,7 +112,7 @@ const mapToDailyWeather = (weatherDetailsJson: any): Daily[] => {
     return daily;
 };
 
-const mapToCoordinate = (coordinate: any): Coordinate => {
+export const mapToCoordinate = (coordinate: any): Coordinate => {
     return {
         latitude: coordinate.lat,
         longitude: coordinate.lon,
@@ -158,31 +133,6 @@ const mapLocationDetailsJsonToLocationCurrentWeather = (locationDetailsJson: any
         countryCode: locationDetailsJson.sys.country,
         imageLink: imageLink,
     } as LocationCurrentWeather;
-};
-
-const mapNearbyLocationsJsonToNearbyLocations = (nearbyLocationsJson: any): NearbyLocation[] => {
-    const nearbyLocationsRaw = nearbyLocationsJson.data;
-    const nearbyLocations: NearbyLocation[] = [];
-
-    nearbyLocationsRaw.forEach((eachNearbyLocation: any) => {
-        const coordinate = {
-            lat: eachNearbyLocation.latitude,
-            lon: eachNearbyLocation.longitude,
-        };
-        const tempNearbyLocation: NearbyLocation = {
-            type: eachNearbyLocation.type,
-            name: eachNearbyLocation.name,
-            country: eachNearbyLocation.country,
-            countryCode: eachNearbyLocation.countryCode,
-            region: eachNearbyLocation.region,
-            regionCode: eachNearbyLocation.regionCode,
-            distance: eachNearbyLocation.distance,
-            coordinate: mapToCoordinate(coordinate),
-        };
-        nearbyLocations.push(tempNearbyLocation);
-    });
-
-    return nearbyLocations;
 };
 
 const mapWeatherDetailsJsonToWeatherDetailsObject = (
@@ -213,25 +163,6 @@ export const getLocationCurrentWeather = async (
 ): Promise<LocationCurrentWeather> => {
     const locationDetailsAsJson = await openWeatherMapLocationDetailsClient(locationName);
     return mapLocationDetailsJsonToLocationCurrentWeather(locationDetailsAsJson);
-};
-
-export const getNearbyLocations = async (
-    latitude: string | string[] | undefined,
-    longitude: string | string[] | undefined,
-    radius: number,
-    limit: number,
-    countryCode: string | string[] | undefined,
-    type: string,
-): Promise<NearbyLocation[]> => {
-    const nearbyLocationsAsJson = await geoDbNearbyLocationsClient(
-        sanitiseCoordinate(latitude),
-        sanitiseCoordinate(longitude),
-        radius,
-        limit,
-        countryCode,
-        type,
-    );
-    return mapNearbyLocationsJsonToNearbyLocations(nearbyLocationsAsJson);
 };
 
 export const getWeatherDetailsByLocationName = async (
@@ -285,213 +216,4 @@ export const getWeatherDetailsByGeoLocation = async (
         nearbyLocationsWithSourceRemoved,
         countryCode,
     );
-};
-
-export const removeSourceLocationFromNearbyLocation = (
-    nearbyLocations: NearbyLocation[],
-    sourceLocationName: string | string[] | undefined,
-): NearbyLocation[] => {
-    nearbyLocations.forEach((eachNearbyLocation, index) => {
-        if (String(sourceLocationName).indexOf(eachNearbyLocation.name) > -1) {
-            nearbyLocations.splice(index, 1);
-        }
-    });
-
-    return nearbyLocations;
-};
-
-export const getUkTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topUkStaticLocationSearchTerms = getStaticUkTopSearchLocations();
-    const ukTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topUkStaticLocationSearchTerms) {
-        ukTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return ukTopLocationsCurrentWeathers;
-};
-
-export const getUkMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topUkStaticLocationSearchTerms = getMoreStaticUkTopSearchLocations();
-    const ukTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topUkStaticLocationSearchTerms) {
-        ukTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return ukTopLocationsCurrentWeathers;
-};
-
-export const getEuropeTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topEuropeStaticLocationSearchTerms = getStaticEuropeanTopSearchLocations();
-    const europeTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topEuropeStaticLocationSearchTerms) {
-        europeTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return europeTopLocationsCurrentWeathers;
-};
-
-export const getEuropeMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topEuropeStaticLocationSearchTerms = getMoreStaticEuropeanTopSearchLocations();
-    const europeTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topEuropeStaticLocationSearchTerms) {
-        europeTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return europeTopLocationsCurrentWeathers;
-};
-
-export const getWorldTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topWorldStaticLocationSearchTerms = getStaticRestOfWorldTopSearchLocations();
-    const worldTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topWorldStaticLocationSearchTerms) {
-        worldTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return worldTopLocationsCurrentWeathers;
-};
-
-export const getWorldMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topWorldStaticLocationSearchTerms = getMoreStaticWorldTopSearchLocations();
-    const worldTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topWorldStaticLocationSearchTerms) {
-        worldTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return worldTopLocationsCurrentWeathers;
-};
-
-export const getAsiaTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topAsianStaticLocationSearchTerms = getStaticAsianTopSearchLocations();
-    const asianTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topAsianStaticLocationSearchTerms) {
-        asianTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return asianTopLocationsCurrentWeathers;
-};
-
-export const getAsiaMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topAsianStaticLocationSearchTerms = getMoreStaticAsianTopSearchLocations();
-    const asianTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topAsianStaticLocationSearchTerms) {
-        asianTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return asianTopLocationsCurrentWeathers;
-};
-
-export const getAmericasTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topAmericasStaticLocationSearchTerms = getStaticAmericasTopSearchLocations();
-    const americasTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topAmericasStaticLocationSearchTerms) {
-        americasTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return americasTopLocationsCurrentWeathers;
-};
-
-export const getAmericasMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topAmericasStaticLocationSearchTerms = getMoreStaticAmericasTopSearchLocations();
-    const americasTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topAmericasStaticLocationSearchTerms) {
-        americasTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return americasTopLocationsCurrentWeathers;
-};
-
-export const getAfricaTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topAfricaStaticLocationSearchTerms = getStaticAfricaTopSearchLocations();
-    const africaTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topAfricaStaticLocationSearchTerms) {
-        africaTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return africaTopLocationsCurrentWeathers;
-};
-
-export const getAfricaMoreTopLocationsCurrentWeathers = async (): Promise<LocationCurrentWeather[]> => {
-    const topAfricaStaticLocationSearchTerms = getMoreStaticAfricaTopSearchLocations();
-    const africaTopLocationsCurrentWeathers = [];
-
-    for (const locationName of topAfricaStaticLocationSearchTerms) {
-        africaTopLocationsCurrentWeathers.push(await getLocationCurrentWeather(locationName));
-    }
-    return africaTopLocationsCurrentWeathers;
-};
-
-export const getWeatherDetailsPageStaticMapProps = (): MapProps => {
-    return {
-        blackAndWhiteChecked: false,
-        mapnikChecked: true,
-        zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
-        width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
-        height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
-        displayMarker: true,
-        classNames: '-z-10',
-        temperatureChecked: false,
-        cloudsChecked: false,
-        precipitationChecked: false,
-        pressureChecked: false,
-        windChecked: false,
-        displayPositionResetController: true,
-        displayDetailedWeatherExpandMapController: true,
-    };
-};
-
-export const getExpandedMapPageStaticMapProps = (): MapProps => {
-    return {
-        blackAndWhiteChecked: false,
-        mapnikChecked: true,
-        zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL + 2,
-        width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
-        height: WEATHER_DETAILS_PAGE_MAP_HEIGHT,
-        displayMarker: true,
-        classNames: '-z-10',
-        temperatureChecked: false,
-        cloudsChecked: false,
-        precipitationChecked: false,
-        pressureChecked: false,
-        windChecked: false,
-        displayPositionResetController: true,
-        displayDetailedWeatherExpandMapController: false,
-    };
-};
-
-export const getHomePageStaticMapProps = (): MapProps => {
-    return {
-        blackAndWhiteChecked: false,
-        mapnikChecked: true,
-        zoomLevel: HOMEPAGE_MAP_ZOOM_LEVEL,
-        width: HOMEPAGE_MAP_WIDTH,
-        height: HOMEPAGE_MAP_HEIGHT,
-        displayMarker: false,
-        classNames: '-z-10 rounded-2xl shadow-lg',
-        temperatureChecked: false,
-        cloudsChecked: false,
-        precipitationChecked: false,
-        pressureChecked: false,
-        windChecked: false,
-        displayPositionResetController: false,
-        displayBasicMapExpandController: true,
-    };
-};
-
-export const getExpandedHomePageStaticMapProps = (): MapProps => {
-    return {
-        blackAndWhiteChecked: false,
-        mapnikChecked: true,
-        zoomLevel: HOMEPAGE_MAP_ZOOM_LEVEL,
-        width: HOMEPAGE_MAP_WIDTH,
-        height: HOMEPAGE_MAP_HEIGHT,
-        displayMarker: false,
-        classNames: '-z-10 rounded-2xl shadow-lg',
-        temperatureChecked: false,
-        cloudsChecked: false,
-        precipitationChecked: false,
-        pressureChecked: false,
-        windChecked: false,
-        displayPositionResetController: false,
-        displayBasicMapExpandController: false,
-    };
 };

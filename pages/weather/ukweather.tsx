@@ -3,7 +3,7 @@ import { LocationCurrentWeather } from '../../interfaces';
 import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
-import { getUkMoreTopLocationsCurrentWeathers } from '../../services/WeatherDetailsService';
+import { getUkMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
 
 type UkWeatherProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
