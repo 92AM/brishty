@@ -5,6 +5,7 @@ import { getWeatherDetailsByGeoLocation } from '../../services/WeatherDetailsSer
 import { ParsedUrlQuery } from 'querystring';
 import WeatherLocationDetails from '../../components/WeatherLocationDetails';
 import { setPageModel } from '../../services/PageModelService';
+import { parseSearchedLocationNameOrDefault } from '../../services/GenericUtilityService';
 
 type Props = {
     weatherDetails: WeatherDetails;
@@ -26,7 +27,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         const latitude = slug[1];
         const longitude = slug[2];
         const countryCode = slug[3];
-        const weatherDetails = await getWeatherDetailsByGeoLocation(locationName, latitude, longitude, countryCode);
+        const weatherDetails = await getWeatherDetailsByGeoLocation(
+            parseSearchedLocationNameOrDefault(locationName),
+            latitude,
+            longitude,
+            countryCode,
+        );
         return {
             props: {
                 weatherDetails,

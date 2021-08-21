@@ -145,14 +145,14 @@ export interface MapSize {
 }
 
 export interface News {
-    section: string;
+    section?: string;
     subsection?: string;
     title: string;
-    byLine: string;
-    newsDescription: string;
+    byLine?: string;
+    newsDescription?: string;
     publishedDate: string;
-    imageSource: string;
-    imageCaption: string;
-    imageCopyright: string;
+    imageSource?: string;
+    imageCaption?: string;
+    imageCopyright?: string;
     facets: string[];
 }

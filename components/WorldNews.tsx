@@ -35,18 +35,19 @@ const WorldNews = ({ items }: WorldNewProps) => {
                     {news.newsDescription && (
                         <span className="text-gray-700 h-4 text-base">{news.newsDescription}</span>
                     )}
+                    {news.byLine && <p className="text-gray-700 pt-5 text-base">{news.byLine} </p>}
                     <p className="text-gray-700 pt-5 text-base font-semibold">
                         Published on : <span className="text-base font-bold">{news.publishedDate}</span>
                     </p>
                 </div>
                 <div className="px-6 pt-2 pb-2">
                     {news.section && (
-                        <span className="inline-block bg-gray-600 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
+                        <span className="inline-block bg-gray-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
                             {news.section}
                         </span>
                     )}
                     {news.subsection && (
-                        <span className="inline-block bg-gray-600 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
+                        <span className="inline-block bg-gray-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 shadow-sm">
                             {news.subsection}
                         </span>
                     )}
