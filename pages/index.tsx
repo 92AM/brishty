@@ -47,7 +47,7 @@ const IndexPage = ({
     worldNews,
 }: IndexPageProps) => {
     useEffect(() => {
-        setPageModel([ukTopLocationsWeathers, europeTopLocationsWeathers, worldTopLocationWeathers]);
+        setPageModel([ukTopLocationsWeathers, europeTopLocationsWeathers, worldTopLocationWeathers, worldNews]);
     }, []);
 
     return (
