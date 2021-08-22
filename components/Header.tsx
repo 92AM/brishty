@@ -99,7 +99,7 @@ const Header = () => {
                     <div className="pl-4 flex items-center">
                         <a href={'/'}>
                             <img
-                                className="object-contain object-center w-11 h-11"
+                                className="object-contain object-center w-9 h-9 md:w-11 md:h-11"
                                 src="/images/brishty-logos/B-logos_white.png"
                                 alt="logo"
                                 loading={'lazy'}
