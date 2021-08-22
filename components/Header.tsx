@@ -97,12 +97,14 @@ const Header = () => {
             <div className="relative w-full z-50 fixed top-0 bg-gray-800 border-b border-grey-light">
                 <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-4">
                     <div className="pl-4 flex items-center">
-                        <img
-                            className="object-contain object-center w-11 h-11"
-                            src="/images/brishty-logos/B-logos_white.png"
-                            alt="logo"
-                            loading={'lazy'}
-                        />
+                        <a href={'/'}>
+                            <img
+                                className="object-contain object-center w-11 h-11"
+                                src="/images/brishty-logos/B-logos_white.png"
+                                alt="logo"
+                                loading={'lazy'}
+                            />
+                        </a>
                         <a
                             className="pl-7 text-white text-base no-underline hover:underline font-extrabold text-xl"
                             href="/"
