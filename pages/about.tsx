@@ -58,7 +58,9 @@ export default function About() {
 
                     <hr className="border-solid border-1 border-gray-400" />
 
-                    <h3 className="mt-6 text-2xl text-gray-900" id={'brishty-contact-form'}>Get in touch!</h3>
+                    <h3 className="mt-6 text-2xl text-gray-900" id={'brishty-contact-form'}>
+                        Get in touch!
+                    </h3>
                     <p className="py-3 text-xl">
                         Please feel free to send us questions and feedbacks by completing the below form.
                     </p>
