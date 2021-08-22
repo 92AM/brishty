@@ -6,6 +6,8 @@
     "dev": "next",
     "build": "npm run lint && npm run type-check && npm run test && next build",
     "start": "next start",
+    "start-prod": "NODE_ENV=production next start",
+    "prod": "npm run build && npm run start-prod",
     "type-check": "tsc",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "lint:fix": "eslint --ext .js,.ts,.tsx --fix .",

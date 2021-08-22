@@ -71,12 +71,18 @@ const IndexPage = ({
 };
 
 IndexPage.getInitialProps = async () => {
-    return {
-        ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
-        europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
-        worldTopLocationWeathers: await getWorldTopLocationsCurrentWeathers(),
-        worldNews: await getWorldNews(),
-    };
+    try {
+        return {
+            ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
+            europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
+            worldTopLocationWeathers: await getWorldTopLocationsCurrentWeathers(),
+            worldNews: await getWorldNews(),
+        };
+    } catch (err) {
+        return {
+            notFound: true,
+        };
+    }
 };
 
 export default IndexPage;
