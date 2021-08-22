@@ -1,7 +1,7 @@
 import PageContentWrapper from '../components/PageContentWrapper';
 import Layout from '../components/Layout';
 import React from 'react';
-import {getWindow} from "../services/BrowserService";
+import { getWindow } from '../services/BrowserService';
 
 type ErrorProps = {
     statusCode?: number;
@@ -50,7 +50,12 @@ function Error({ statusCode }: ErrorProps) {
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
                                 >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 5l7 7-7 7"
+                                    />
                                 </svg>
                             </div>
                         </div>
