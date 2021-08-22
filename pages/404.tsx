@@ -24,7 +24,7 @@ export default function Custom404() {
         <Layout title="Brishty - search for weather">
             <PageContentWrapper classNameCustomAttributes={'px-4 pt-20 pb-20 min-h-screen'}>
                 <div className="grid grid-cols-1 gap-4 container mx-auto">
-                    <span className="pt-12 text-4xl">
+                    <span className="pt-12 text-5xl">
                         Sorry, something went wrong! We couldn&apos;t find what you were looking for.
                     </span>
                     <span className="py-3 pb-10 text-xl">Here are few suggestions for you.</span>

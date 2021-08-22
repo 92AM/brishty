@@ -16,21 +16,60 @@ const onClickAboutUs = () => {
     getWindow().location.assign('/about');
 };
 
+const onClickReturnToHome = () => {
+    getWindow().location.assign('/');
+};
+
 function Error({ statusCode }: ErrorProps) {
     return (
         <Layout title="Brishty - search for weather">
             <PageContentWrapper classNameCustomAttributes={'px-4 pt-20 pb-20 min-h-screen'}>
                 <div className="grid grid-cols-1 gap-4 container mx-auto">
-                    <span className="pt-12 text-4xl">
+                    <span className="pt-12 text-5xl">
                         {statusCode
                             ? `Brishty is currently down, seems like an error ${statusCode} occurred on server.`
                             : 'Brishty is currently down, seems like an error occurred on client.'}
                     </span>
-                    <span className="py-3 pb-10 text-xl">
+                    <span className="py-3 pt-4 pb-10 text-xl">
                         We deeply apologies for any inconvenience this may cause, we are trying hard to fix Brishty and
-                        get it up and running again!
+                        get it back up and running again!
                     </span>
-                    <span className="py-3 pb-10 text-xl">Here are few suggestion(s) for you.</span>
+                    <span className="py-3 pb-4 text-2xl">Meanwhile, here are few suggestion(s) for you.</span>
+                    <div
+                        className="container mx-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b
+                    p-5 flex flex-col justify-between leading-normal drop-shadow-lg cursor-pointer mb-6"
+                        onClick={onClickReturnToHome}
+                    >
+                        <div className="flex space-x-2">
+                            <svg
+                                className="flex-none mx-4 h-7 w-7 mt-1"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1
+                                  1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                />
+                            </svg>
+                            <div className="flex-1">
+                                <p className="pt-1 text-lg text-gray-700 text-base">Back to home</p>
+                            </div>
+                            <div className="flex-2 float-right">
+                                <svg
+                                    className="pl-18 pt-1 flex-1 h-7 w-7"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                     <div
                         className="container mx-auto rounded-t border-r border-b border-l border-t border-gray-300 bg-white rounded-b
                     p-5 flex flex-col justify-between leading-normal drop-shadow-lg cursor-pointer mb-6"
