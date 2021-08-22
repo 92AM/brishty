@@ -17,8 +17,7 @@ const mapNewsJsonToNews = (nearbyLocationsAsJson: any) => {
             newsDescription: news.abstract,
             byLine: news.byline,
             publishedDate: new Date(news.published_date).toDateString(),
-            imageSource: news.multimedia[0]?.url,
-            // imageSource: isMultimediaAvailable(news) ? news.multimedia[0]?.url : '/images/placeholder-large.jpg',
+            imageSource: isMultimediaAvailable(news) ? news.multimedia[0]?.url : '/images/placeholder-large.jpg',
             imageCaption: isMultimediaAvailable(news) ? news.multimedia[0]?.caption : 'image caption unavailable',
             imageCopyright: isMultimediaAvailable(news)
                 ? news.multimedia[0]?.copyright
