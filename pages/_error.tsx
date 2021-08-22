@@ -30,6 +30,7 @@ function Error({ statusCode }: ErrorProps) {
                             ? `Brishty is currently down, seems like an error ${statusCode} occurred on server.`
                             : 'Brishty is currently down, seems like an error occurred on client.'}
                     </span>
+
                     <span className="py-3 pt-4 pb-10 text-xl">
                         We deeply apologies for any inconvenience this may cause, we are trying hard to fix Brishty and
                         get it back up and running again!
