@@ -17,7 +17,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
-        console.log('Parameter passed in weather : ', params);
         const locationName = parseSearchedLocationNameOrDefault(params?.locationname as string);
         const weatherDetails = await getWeatherDetailsByLocationName(locationName);
 
