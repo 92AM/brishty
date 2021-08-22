@@ -1,40 +1,20 @@
 import React from 'react';
 import { Daily } from '../interfaces';
-import moment from 'moment';
-import { windDegreeToText } from '../services/GenericUtilityService';
+import { getFormattedDateTime, windDegreeToText } from '../services/GenericUtilityService';
 
 type DailyWeatherProps = {
     item: Daily[];
 };
 
-const daysInWeek = new Array(7);
-daysInWeek[0] = 'Sunday';
-daysInWeek[1] = 'Monday';
-daysInWeek[2] = 'Tuesday';
-daysInWeek[3] = 'Wednesday';
-daysInWeek[4] = 'Thursday';
-daysInWeek[5] = 'Friday';
-daysInWeek[6] = 'Saturday';
-
 const slideComponents: any = [];
 const dateTimeFormat = 'dddd';
-const today = daysInWeek[new Date().getDay()];
-
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-const dayTomorrow = daysInWeek[tomorrow.getDay()];
 
 const SevenDayWeather = ({ item: daily }: DailyWeatherProps) => {
     daily.forEach((eachDay, index) => {
-        let day = moment.unix(Number(eachDay.dateTime)).format(dateTimeFormat);
-        if (day === today && index !== daily.length) {
-            day = 'Today';
-        } else if (day === dayTomorrow) {
-            day = 'Tomorrow';
-        }
+        const day = getFormattedDateTime(eachDay.dateTime, dateTimeFormat);
 
         slideComponents.push(
-            <div className="inline-block px-3 my-4">
+            <div key={index} className="inline-block px-3 my-4">
                 <div
                     className="w-96 h-full max-w-xs overflow-hidden rounded-3xl
                     shadow-md bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
@@ -101,13 +81,13 @@ const SevenDayWeather = ({ item: daily }: DailyWeatherProps) => {
                                 <div>
                                     <p className="text-center leading-relaxed text-base pt-1">Sunrise</p>
                                     <p className="text-center">
-                                        <b>{moment.unix(Number(eachDay.sunrise)).format('HH:MM')}</b>
+                                        <b>{getFormattedDateTime(eachDay.sunrise, 'HH:MM')}</b>
                                     </p>
                                 </div>
                                 <div>
                                     <p className="text-center leading-relaxed text-base pt-1">Sunset</p>
                                     <p className="text-center">
-                                        <b>{moment.unix(Number(eachDay.sunset)).format('HH:MM')}</b>
+                                        <b>{getFormattedDateTime(eachDay.sunset, 'HH:MM')}</b>
                                     </p>
                                 </div>
                                 <div>
