@@ -3,15 +3,6 @@ import Layout from '../components/Layout';
 import React from 'react';
 import { getWindow } from '../services/BrowserService';
 
-type ErrorProps = {
-    statusCode?: number;
-};
-
-type InitialPropsProps = {
-    res?: { statusCode?: number };
-    err?: { statusCode?: number };
-};
-
 const onClickAboutUs = () => {
     getWindow().location.assign('/about');
 };
@@ -20,7 +11,7 @@ const onClickReturnToHome = () => {
     getWindow().location.assign('/');
 };
 
-function Error({ statusCode }: ErrorProps) {
+function Error({ statusCode }) {
     return (
         <Layout title="Brishty - search for weather">
             <PageContentWrapper classNameCustomAttributes={'px-4 pt-20 pb-20 min-h-screen'}>
@@ -111,7 +102,7 @@ function Error({ statusCode }: ErrorProps) {
     );
 }
 
-Error.getInitialProps = ({ res, err }: InitialPropsProps) => {
+Error.getInitialProps = ({ res, err }) => {
     const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
     return { statusCode };
 };
