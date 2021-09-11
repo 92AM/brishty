@@ -4,14 +4,14 @@ import L from 'leaflet';
 import { MainLocationForMap, MapProps, NearbyLocationForMap } from '../interfaces';
 import React, { Fragment } from 'react';
 import { MAIN_LOCATION_MAP_ICON_SIZE, NEARBY_LOCATION_MAP_ICON_SIZE } from '../utility/constants';
-import { openWeatherMapApiKey } from '../services/ApiKeyService';
+import { openWeatherMapApiKeyForMap } from '../services/ApiKeyService';
 import WeatherMapLegend from './WeatherMapLegend';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
 import MapPositionResetController from './MapPositionResetController';
 import MapExpandController from './DetailedWeatherMapExpandController';
 import BasicMapExpandController from './BasicMapExpandController';
 
-const OWM_API_KEY = openWeatherMapApiKey;
+const OWM_API_KEY = openWeatherMapApiKeyForMap;
 
 const getMainLocationPinSvgIcon = () => {
     return (
