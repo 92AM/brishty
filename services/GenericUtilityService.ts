@@ -1,9 +1,14 @@
 import querystring from 'querystring';
 import { useEffect, useState } from 'react';
 import { MapSize } from '../interfaces';
+import moment from 'moment';
 
 export const convertKelvinToCelsius = (kelvin: number): string => {
     return `${Math.round(kelvin - 273.15)}°`;
+};
+
+export const getFormattedDateTime = (dateTime: string, format: string): string => {
+    return moment.unix(Number(dateTime)).format(format);
 };
 
 export const windDegreeToText = (windDegree: number): string => {

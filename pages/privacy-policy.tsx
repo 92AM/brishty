@@ -38,6 +38,11 @@ export default function PrivacyPolicy() {
                             </a>
                             .
                         </p>
+                        <p>
+                            If you contact us using the above link then we will securely hold the information you choose
+                            to provide us, but be assured we will not be sharing your information with any third
+                            parties.
+                        </p>
                     </span>
 
                     <hr className="mt-8 mb-8 border-solid border-1 border-gray-400" />
