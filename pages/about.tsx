@@ -35,8 +35,8 @@ export default function About() {
                             &quot;The word Brishty means rain in the Indian language Bengali&quot;
                         </p>
                         <p className="py-3">
-                            The weather related information on Brishty website are all provided by the following
-                            external organisations :
+                            The weather related information and news on Brishty website are all provided by the
+                            following external organisations :
                             <ul className="list-disc pl-8">
                                 <li>
                                     Weather information are provided by{' '}
@@ -50,6 +50,12 @@ export default function About() {
                                         <Link href={'https://rapidapi.com/wirefreethought/api/geodb-cities'}>
                                             GeoDB Cities
                                         </Link>
+                                    </span>
+                                </li>
+                                <li>
+                                    The news on the homepage is powered by NY Times{' '}
+                                    <span className="text-blue-900 hover:underline">
+                                        <Link href={'https://www.nytimes.com/'}>NY Times</Link>
                                     </span>
                                 </li>
                             </ul>
