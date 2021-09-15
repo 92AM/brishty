@@ -58,7 +58,7 @@ export default function TypeaheadPrototype() {
                     renderMenu={(option, props) => (
                         <Menu {...props}>
                             {option.map((each: any, index) => (
-                                <div className={'flex flex-col'}>
+                                <div key={index} className={'flex flex-col'}>
                                     <MenuItem
                                         className={'p-2'}
                                         onClick={() => console.log('click!')}
