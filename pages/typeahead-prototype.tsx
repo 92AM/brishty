@@ -1,38 +1,50 @@
 import React, { useState } from 'react';
 import { AsyncTypeahead, Menu, MenuItem } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
+import { algoliaPlacesClient } from '../api/AlgoliaPlacesClient';
+import {searchWeatherByGeoLocation} from "../services/SearchService";
 
-const SEARCH_URI = 'https://api.github.com/search/users';
+type LocationSearch = {
+    displayableLocation: string;
+    searchLocation: string;
+    latitude : string;
+    longitude : string;
+    countryCode: string;
+};
 
-export default function TypeaheadPrototype() {
+const getLocationDetails = (hits: any) => {
+    return hits.map((hit: any) => ({
+        displayableLocation: hit.locale_names[0] + ', ' + hit.administrative[0] + ', ' + hit.country,
+        searchLocation : hit.locale_names[0],
+        latitude : hit._geoloc.lat,
+        longitude : hit._geoloc.lng,
+        countryCode : hit.country_code,
+    } as LocationSearch));
+};
+
+const TypeaheadPrototype = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
 
-    const handleSearch = (query: any) => {
+    const handleSearch = (query: string) => {
         setIsLoading(true);
 
-        fetch(`${SEARCH_URI}?q=${query}+in:login&page=1&per_page=5`)
+        algoliaPlacesClient(query)
             .then((resp) => resp.json())
-            .then(({ items }) => {
-                const options = items.map((item: any) => ({
-                    login: item.login,
-                }));
-
+            .then(({ hits }) => {
+                const options = getLocationDetails(hits);
                 setOptions(options);
                 setIsLoading(false);
             });
     };
 
-    // Bypass client-side filtering by returning `true`. Results are already
-    // filtered by the search endpoint, so no need to do it again.
-    const filterBy = () => true;
+    const labelKey: any = 'displayableLocation';
 
-    const labelKey: any = 'login';
-
-    const handleSearchInputKeyUp = (e: any) => {
+    const handleSearchInputKeyUp = (e: any, each: LocationSearch) => {
         if (e.keyCode === 13) {
-            console.log('key up event fired, pressed enter!');
+            searchWeatherByGeoLocation(each.searchLocation, each.latitude, each.longitude, each.countryCode);
         }
     };
 
@@ -42,9 +54,9 @@ export default function TypeaheadPrototype() {
                 <AsyncTypeahead
                     inputProps={{
                         className:
-                            'rounded-l-full h-16 w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none',
+                            'h-16 w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none',
                     }}
-                    filterBy={filterBy}
+                    filterBy={() => true}
                     className={'bg-gray-900'}
                     id="async-example"
                     isLoading={isLoading}
@@ -52,24 +64,27 @@ export default function TypeaheadPrototype() {
                     minLength={4}
                     onSearch={handleSearch}
                     delay={100}
-                    // useCache={true}
+                    useCache={true}
                     options={options}
-                    placeholder="Search for a Github user..."
+                    placeholder="Search for a location..."
+                    clearButton
+                    // onChange={() => searchWeatherByGeoLocation(each.searchLocation, each.latitude, each.longitude, each.countryCode)}
                     renderMenu={(option, props) => (
                         <Menu {...props}>
-                            {option.map((each: any, index) => (
+                            {option.map((each: LocationSearch, index) => (
                                 <div key={index} className={'flex flex-col'}>
                                     <MenuItem
                                         className={'p-2'}
-                                        onClick={() => console.log('click!')}
-                                        onChange={() => console.log('change event fired!')}
-                                        onBlur={() => console.log('blur event fired!')}
-                                        onKeyUp={handleSearchInputKeyUp}
+                                        onClick={() => searchWeatherByGeoLocation(each.searchLocation, each.latitude, each.longitude, each.countryCode)}
+                                        onChange={() => console.log("onChange ...")}
+                                        onBlur={() => console.log("onBlur ...")}
+                                        onKeyUp={(e) => handleSearchInputKeyUp(e , each)}
+                                        onSelect={() => console.log("onChange ...")}
                                         option={each}
                                         position={index}
                                         key={index}
                                     >
-                                        {each.login}
+                                        {each.displayableLocation}
                                     </MenuItem>
                                 </div>
                             ))}
@@ -79,4 +94,6 @@ export default function TypeaheadPrototype() {
             </PageContentWrapper>
         </Layout>
     );
-}
+};
+
+export default TypeaheadPrototype;
