@@ -4,24 +4,27 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import { algoliaPlacesClient } from '../api/AlgoliaPlacesClient';
-import {searchWeatherByGeoLocation} from "../services/SearchService";
+import { searchWeatherByGeoLocation } from '../services/SearchService';
 
 type LocationSearch = {
     displayableLocation: string;
     searchLocation: string;
-    latitude : string;
-    longitude : string;
+    latitude: string;
+    longitude: string;
     countryCode: string;
 };
 
 const getLocationDetails = (hits: any) => {
-    return hits.map((hit: any) => ({
-        displayableLocation: hit.locale_names[0] + ', ' + hit.administrative[0] + ', ' + hit.country,
-        searchLocation : hit.locale_names[0],
-        latitude : hit._geoloc.lat,
-        longitude : hit._geoloc.lng,
-        countryCode : hit.country_code,
-    } as LocationSearch));
+    return hits.map(
+        (hit: any) =>
+            ({
+                displayableLocation: hit.locale_names[0] + ', ' + hit.administrative[0] + ', ' + hit.country,
+                searchLocation: hit.locale_names[0],
+                latitude: hit._geoloc.lat,
+                longitude: hit._geoloc.lng,
+                countryCode: hit.country_code,
+            } as LocationSearch),
+    );
 };
 
 const TypeaheadPrototype = () => {
@@ -53,8 +56,7 @@ const TypeaheadPrototype = () => {
             <PageContentWrapper classNameCustomAttributes={'px-4 pt-20 pb-5 min-h-screen'}>
                 <AsyncTypeahead
                     inputProps={{
-                        className:
-                            'h-16 w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none',
+                        className: 'h-16 w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none',
                     }}
                     filterBy={() => true}
                     className={'bg-gray-900'}
@@ -75,11 +77,18 @@ const TypeaheadPrototype = () => {
                                 <div key={index} className={'flex flex-col'}>
                                     <MenuItem
                                         className={'p-2'}
-                                        onClick={() => searchWeatherByGeoLocation(each.searchLocation, each.latitude, each.longitude, each.countryCode)}
-                                        onChange={() => console.log("onChange ...")}
-                                        onBlur={() => console.log("onBlur ...")}
-                                        onKeyUp={(e) => handleSearchInputKeyUp(e , each)}
-                                        onSelect={() => console.log("onChange ...")}
+                                        onClick={() =>
+                                            searchWeatherByGeoLocation(
+                                                each.searchLocation,
+                                                each.latitude,
+                                                each.longitude,
+                                                each.countryCode,
+                                            )
+                                        }
+                                        onChange={() => console.log('onChange ...')}
+                                        onBlur={() => console.log('onBlur ...')}
+                                        onKeyUp={(e) => handleSearchInputKeyUp(e, each)}
+                                        onSelect={() => console.log('onChange ...')}
                                         option={each}
                                         position={index}
                                         key={index}

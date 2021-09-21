@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import algoliaPlacesClient from "../../../api/AlgoliaPlacesClient";
+import algoliaPlacesClient from '../../../api/AlgoliaPlacesClient';
 
 export const handler: (_req: NextApiRequest, res: NextApiResponse) => Promise<void> = async (
     _req: NextApiRequest,
