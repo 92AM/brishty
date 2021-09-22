@@ -3,8 +3,8 @@ import { AsyncTypeahead, Menu, MenuItem } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
-import { algoliaPlacesClient } from '../api/AlgoliaPlacesClient';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
+import { algoliaPlacesClient } from '../api/AlgoliaPlacesClient';
 
 type LocationSearch = {
     displayableLocation: string;
