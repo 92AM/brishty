@@ -29,8 +29,6 @@ export const handler: (_req: NextApiRequest, res: NextApiResponse) => Promise<vo
         }
         res.status(200).json(result);
     } catch (err) {
-        console.log('HELLO!!! ==>');
-
         res.status(500).json({ statusCode: 500, message: err.message });
     }
 };

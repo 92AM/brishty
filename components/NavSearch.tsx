@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { validateAndExecuteSearch } from '../services/SearchService';
+import AsyncLocationSearchTypeahead from './AsyncLocationSearchTypeahead';
+import Cookies from 'js-cookie';
 
 export interface NavSearchProps {
     searchContentNode?: any;
     displayNavSearch: any;
     setDisplayNavSearch: any;
 }
+
+const useTypeaheadLocationSearchCookieValue: boolean =
+    Cookies.get('use-typeahead-location-search')?.toLowerCase() == 'true';
+const inputItemClassName = 'h-14 w-full p-6 text-xl text-gray-700 leading-tight focus:outline-none';
+const menuItemClassName = 'p-6 bg-white text-xl truncate';
 
 const NavSearch = ({ searchContentNode, displayNavSearch, setDisplayNavSearch }: NavSearchProps) => {
     const [input, setInput] = useState('');
@@ -44,17 +51,25 @@ const NavSearch = ({ searchContentNode, displayNavSearch, setDisplayNavSearch }:
                 ref={searchContentNode}
             >
                 <div className="container mx-auto py-3 text-black">
-                    <input
-                        className={cxSearchInput}
-                        id="searchfield"
-                        type="search"
-                        placeholder="Search by city name ..."
-                        value={input}
-                        onChange={(e) => onSearchChange(e)}
-                        onBlur={(e) => handleOnBlurEvent(e)}
-                        onKeyUp={handleSearchInputKeyUp}
-                        required
-                    />
+                    {!useTypeaheadLocationSearchCookieValue && (
+                        <input
+                            className={cxSearchInput}
+                            id="searchfield"
+                            type="search"
+                            placeholder="Search by city name ..."
+                            value={input}
+                            onChange={(e) => onSearchChange(e)}
+                            onBlur={(e) => handleOnBlurEvent(e)}
+                            onKeyUp={handleSearchInputKeyUp}
+                            required
+                        />
+                    )}
+                    {useTypeaheadLocationSearchCookieValue && (
+                        <AsyncLocationSearchTypeahead
+                            inputClassName={inputItemClassName}
+                            menuItemClassName={menuItemClassName}
+                        />
+                    )}
                 </div>
             </form>
         );

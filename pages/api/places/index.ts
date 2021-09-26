@@ -7,8 +7,6 @@ export const handler: (_req: NextApiRequest, res: NextApiResponse) => Promise<vo
 ) => {
     const searchedTerm = _req.query.searchedTerm as string;
 
-    console.log('searchedTerm ==>', searchedTerm);
-
     const placesResponse = await algoliaPlacesClient(searchedTerm);
 
     res.status(200).json(placesResponse);
