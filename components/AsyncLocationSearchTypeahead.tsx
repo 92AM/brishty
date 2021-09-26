@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-// TODO : This page needs to be removed soon, once I am happy.
 
 import React, { useState } from 'react';
 import { AsyncTypeahead, Highlighter, TypeaheadMenuProps, TypeaheadResult } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import Layout from '../components/Layout';
-import PageContentWrapper from '../components/PageContentWrapper';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
 import { algoliaPlacesClient } from '../api/AlgoliaPlacesClient';
 
@@ -16,6 +13,11 @@ type LocationSearch = {
     latitude: string;
     longitude: string;
     countryCode: string;
+};
+
+type AsyncLocationSearchTypeaheadProps = {
+    inputClassName: string;
+    menuItemClassName: string;
 };
 
 const getLocationDetails = (hits: any) => {
@@ -50,7 +52,7 @@ const onSelected = (selected: LocationSearch) => {
     }
 };
 
-const TypeaheadPrototype = () => {
+const AsyncLocationSearchTypeahead = ({ inputClassName, menuItemClassName }: AsyncLocationSearchTypeaheadProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
 
@@ -68,44 +70,38 @@ const TypeaheadPrototype = () => {
     const labelKey: any = 'displayableLocation';
 
     return (
-        <Layout title="Brishty - search for weather">
-            <PageContentWrapper classNameCustomAttributes={'px-4 pt-28 pb-5 min-h-screen'}>
-                <AsyncTypeahead
-                    inputProps={{
-                        className: 'h-16 w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none',
-                    }}
-                    filterBy={() => true}
-                    className={'bg-gray-900'}
-                    id="async-location-search"
-                    isLoading={isLoading}
-                    labelKey={labelKey}
-                    minLength={0}
-                    onSearch={handleSearch}
-                    delay={5}
-                    useCache={false}
-                    options={options}
-                    placeholder="Search for a location..."
-                    clearButton
-                    emptyLabel=""
-                    onChange={(selected: LocationSearch[]) => {
-                        if (selected && selected.length === 1) {
-                            onSelected(selected[0]);
-                        }
-                    }}
-                    renderMenuItemChildren={(
-                        option: TypeaheadResult<LocationSearch>,
-                        props: TypeaheadMenuProps<LocationSearch>,
-                    ) => (
-                        <div className={'p-2 bg-gray-200 text-base'}>
-                            <Highlighter search={props.text ? props.text : ''}>
-                                {option[String(props.labelKey)]}
-                            </Highlighter>
-                        </div>
-                    )}
-                />
-            </PageContentWrapper>
-        </Layout>
+        <AsyncTypeahead
+            inputProps={{
+                className: inputClassName,
+            }}
+            filterBy={() => true}
+            className={'bg-gray-900'}
+            id="async-typeahead-location-search"
+            isLoading={isLoading}
+            labelKey={labelKey}
+            minLength={0}
+            onSearch={handleSearch}
+            delay={0}
+            useCache={false}
+            options={options}
+            placeholder="Search for a location..."
+            onMenuToggle={() => {}}
+            onChange={(selected: LocationSearch[]) => {
+                if (selected && selected.length === 1) {
+                    onSelected(selected[0]);
+                }
+            }}
+            clearButton={true}
+            renderMenuItemChildren={(
+                option: TypeaheadResult<LocationSearch>,
+                props: TypeaheadMenuProps<LocationSearch>,
+            ) => (
+                <div className={menuItemClassName}>
+                    <Highlighter search={props.text ? props.text : ''}>{option[String(props.labelKey)]}</Highlighter>
+                </div>
+            )}
+        />
     );
 };
 
-export default TypeaheadPrototype;
+export default AsyncLocationSearchTypeahead;
