@@ -11,7 +11,7 @@ export interface NavSearchProps {
 
 const useTypeaheadLocationSearchCookieValue: boolean =
     Cookies.get('use-typeahead-location-search')?.toLowerCase() == 'true';
-const inputItemClassName = 'h-14 w-full p-6 text-xl text-gray-700 leading-tight focus:outline-none';
+const inputItemClassName = 'h-12 w-full p-6 text-xl text-gray-700 leading-tight focus:outline-none';
 const menuItemClassName = 'p-6 bg-white text-xl truncate';
 
 const NavSearch = ({ searchContentNode, displayNavSearch, setDisplayNavSearch }: NavSearchProps) => {
