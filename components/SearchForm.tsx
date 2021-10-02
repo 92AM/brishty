@@ -11,7 +11,8 @@ const searchWeatherByLocation = (input: any) => {
 const useTypeaheadLocationSearchCookieValue: boolean =
     Cookies.get('use-typeahead-location-search')?.toLowerCase() == 'true';
 
-const inputItemClassName = 'border-b-2 rounded-sm h-14 w-full p-6 text-xl text-gray-700 leading-tight focus:outline-none';
+const inputItemClassName =
+    'border-b-2 rounded-sm h-14 w-full p-6 text-xl text-gray-700 leading-tight focus:outline-none';
 const menuItemClassName = 'p-6 bg-white text-xl truncate';
 
 const SearchForm = () => {
