@@ -18,7 +18,13 @@ type LocationSearch = {
 type AsyncLocationSearchTypeaheadProps = {
     inputClassName: string;
     menuItemClassName: string;
+    typeAheadClassName: string;
 };
+
+const EMPTY_STRING = '';
+const PLACEHOLDER_TEXT = 'Search for a location...';
+const SEARCH_DELAY = 250;
+const SHOULD_USE_CACHE = true;
 
 const getLocationDetails = (hits: any) => {
     return hits.map(
@@ -39,7 +45,6 @@ const onDeselect = () => {
 
 const onSelected = (selected: LocationSearch) => {
     // onChange is called when deselected
-
     if (!selected || !selected.displayableLocation) {
         onDeselect();
     } else {
@@ -52,7 +57,11 @@ const onSelected = (selected: LocationSearch) => {
     }
 };
 
-const AsyncLocationSearchTypeahead = ({ inputClassName, menuItemClassName }: AsyncLocationSearchTypeaheadProps) => {
+const AsyncLocationSearchTypeahead = ({
+    inputClassName,
+    menuItemClassName,
+    typeAheadClassName,
+}: AsyncLocationSearchTypeaheadProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
 
@@ -75,29 +84,32 @@ const AsyncLocationSearchTypeahead = ({ inputClassName, menuItemClassName }: Asy
                 className: inputClassName,
             }}
             filterBy={() => true}
-            className={'bg-gray-900'}
+            className={typeAheadClassName}
             id="async-typeahead-location-search"
             isLoading={isLoading}
             labelKey={labelKey}
-            minLength={0}
+            minLength={3}
             onSearch={handleSearch}
-            delay={0}
-            useCache={false}
+            promptText={EMPTY_STRING}
+            searchText={EMPTY_STRING}
+            delay={SEARCH_DELAY}
+            useCache={SHOULD_USE_CACHE}
             options={options}
-            placeholder="Search for a location..."
+            placeholder={PLACEHOLDER_TEXT}
             onMenuToggle={() => {}}
             onChange={(selected: LocationSearch[]) => {
                 if (selected && selected.length === 1) {
                     onSelected(selected[0]);
                 }
             }}
-            clearButton={true}
             renderMenuItemChildren={(
                 option: TypeaheadResult<LocationSearch>,
                 props: TypeaheadMenuProps<LocationSearch>,
             ) => (
                 <div className={menuItemClassName}>
-                    <Highlighter search={props.text ? props.text : ''}>{option[String(props.labelKey)]}</Highlighter>
+                    <Highlighter search={props.text ? props.text : EMPTY_STRING}>
+                        {option[String(props.labelKey)]}
+                    </Highlighter>
                 </div>
             )}
         />
