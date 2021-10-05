@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 const setTypeaheadCookie = (useTypeaheadLocationSearchCurrentValue) => {
     return useTypeaheadLocationSearchCurrentValue === undefined || useTypeaheadLocationSearchCurrentValue === false
-        ? false
+        ? true
         : useTypeaheadLocationSearchCurrentValue;
 };
 
