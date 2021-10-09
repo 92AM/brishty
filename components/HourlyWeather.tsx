@@ -52,18 +52,21 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
                 <>
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-100">
+                                <div className="flex items-start justify-between p-7 border-b border-solid border-gray-300 rounded-t">
                                     <span className="text-xl font-semibold pr-4">
                                         {displayableTime === 'Now'
                                             ? 'Weather ' + displayableTime.toLowerCase()
                                             : 'Weather at ' + displayableTime}
                                     </span>
-                                    <button
-                                        className="p-1 ml-auto border-0 text-black opacity-5 float-right text-3xl leading-none outline-none focus:outline-none"
-                                        onClick={() => setShowModal(false)}
-                                    >
-                                        <span className="text-gray-900 h-6 w-6 text-2xl block">X</span>
+                                    <button onClick={() => setShowModal(false)}>
+                                        <svg
+                                            className="fill-current pointer-events-none text-gray-900 w-5 h-5 inline"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M.324 1.909C-.105 1.48-.105.766.324.322c.444-.429 1.143-.429 1.587 0l9.523 9.539L20.973.322c.429-.429 1.143-.429 1.571 0 .444.444.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c.444.429.444 1.143 0 1.587-.429.429-1.143.429-1.571 0l-9.539-9.539-9.523 9.539c-.444.429-1.143.429-1.587 0-.429-.444-.429-1.159 0-1.587l9.523-9.539L.324 1.909z" />
+                                        </svg>
                                     </button>
                                 </div>
                                 <div className="relative p-6 flex-auto">
