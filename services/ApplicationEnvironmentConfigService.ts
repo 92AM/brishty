@@ -5,3 +5,11 @@ export const openWeatherMapApiKeyForMap: string | undefined = process.env.openWe
 export const geoDbCitiesApiKey: string | undefined = process.env.geoDbCitiesApiKey;
 
 export const nyTimesApiKey: string | undefined = process.env.nyTimesApiKey;
+
+export const useTypeaheadLocationSearch = (): boolean => {
+    return (
+        process.env.useTypeaheadLocationSearch !== undefined &&
+        process.env.useTypeaheadLocationSearch !== null &&
+        process.env.useTypeaheadLocationSearch.toLowerCase() === 'true'
+    );
+};

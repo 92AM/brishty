@@ -1,4 +1,4 @@
-import { openWeatherMapApiKey } from '../services/ApiKeyService';
+import { openWeatherMapApiKey } from '../services/ApplicationEnvironmentConfigService';
 import { fetchResponseFromClientOrCache } from '../services/CacheService';
 
 const OPEN_WEATHER_MAP_API_KEY = openWeatherMapApiKey;

@@ -1,5 +1,5 @@
 import { fetchResponseFromClientOrCache } from '../services/CacheService';
-import { nyTimesApiKey } from '../services/ApiKeyService';
+import { nyTimesApiKey } from '../services/ApplicationEnvironmentConfigService';
 
 const NY_TIMES_API_KEY = nyTimesApiKey;
 

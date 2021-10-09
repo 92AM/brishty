@@ -4,7 +4,7 @@ import L from 'leaflet';
 import { MainLocationForMap, MapProps, NearbyLocationForMap } from '../interfaces';
 import React, { Fragment } from 'react';
 import { MAIN_LOCATION_MAP_ICON_SIZE, NEARBY_LOCATION_MAP_ICON_SIZE } from '../utility/constants';
-import { openWeatherMapApiKeyForMap } from '../services/ApiKeyService';
+import { openWeatherMapApiKeyForMap } from '../services/ApplicationEnvironmentConfigService';
 import WeatherMapLegend from './WeatherMapLegend';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
 import MapPositionResetController from './MapPositionResetController';

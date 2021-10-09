@@ -1,4 +1,4 @@
-import { geoDbCitiesApiKey } from '../services/ApiKeyService';
+import { geoDbCitiesApiKey } from '../services/ApplicationEnvironmentConfigService';
 import { fetchResponseFromClientOrCache } from '../services/CacheService';
 
 const GEO_DB_CITIES_API_KEY = geoDbCitiesApiKey ? geoDbCitiesApiKey : '';

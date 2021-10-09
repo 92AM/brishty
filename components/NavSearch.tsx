@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { validateAndExecuteSearch } from '../services/SearchService';
 import AsyncLocationSearchTypeahead from './AsyncLocationSearchTypeahead';
-import Cookies from 'js-cookie';
+import { useTypeaheadLocationSearch } from '../services/ApplicationEnvironmentConfigService';
 
 export interface NavSearchProps {
     searchContentNode?: any;
@@ -9,8 +9,6 @@ export interface NavSearchProps {
     setDisplayNavSearch: any;
 }
 
-const useTypeaheadLocationSearchCookieValue: boolean =
-    Cookies.get('use-typeahead-location-search')?.toLowerCase() == 'true';
 const inputItemClassName = 'h-12 w-full p-6 text-xl text-gray-700 leading-tight focus:outline-none';
 const menuItemClassName = 'p-4 bg-white text-xl truncate';
 const typeAheadClassName = 'bg-gray-900';
@@ -52,7 +50,7 @@ const NavSearch = ({ searchContentNode, displayNavSearch, setDisplayNavSearch }:
                 ref={searchContentNode}
             >
                 <div className="container mx-auto py-3 text-black">
-                    {!useTypeaheadLocationSearchCookieValue && (
+                    {!useTypeaheadLocationSearch() && (
                         <input
                             className={cxSearchInput}
                             id="searchfield"
@@ -65,7 +63,7 @@ const NavSearch = ({ searchContentNode, displayNavSearch, setDisplayNavSearch }:
                             required
                         />
                     )}
-                    {useTypeaheadLocationSearchCookieValue && (
+                    {useTypeaheadLocationSearch() && (
                         <AsyncLocationSearchTypeahead
                             inputClassName={inputItemClassName}
                             menuItemClassName={menuItemClassName}
