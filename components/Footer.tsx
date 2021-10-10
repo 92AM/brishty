@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="bg-gray-800 pb-12">
                 <div className="mx-auto container pt-12 flex flex-col items-center justify-center">
                     <div>
-                        <img className={'w-44 h-44'} src={'/images/brishty-logos/B-logos_white.png'} />
+                        <img className={'w-44 h-44'} alt={'brishty-logo'} src={'/images/brishty-logos/B-logos_white.png'} />
                     </div>
                     <div className="text-black flex flex-col md:items-center f-f-l pt-3">
                         <h1 className="text-2xl font-bold text-white">Find weather today!</h1>

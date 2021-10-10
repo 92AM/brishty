@@ -8,7 +8,7 @@ type Props = {
     item: WeatherDetails;
 };
 
-const BasicCurrentlyAndHourlyWeather = ({ item: weatherDetails }: Props) => {
+const BasicCurrentAndHourlyWeather = ({ item: weatherDetails }: Props) => {
     return (
         <div className="md:flex pt-1 pb-1">
             <BasicCurrentWeather item={weatherDetails} />
@@ -17,4 +17,4 @@ const BasicCurrentlyAndHourlyWeather = ({ item: weatherDetails }: Props) => {
     );
 };
 
-export default BasicCurrentlyAndHourlyWeather;
+export default BasicCurrentAndHourlyWeather;

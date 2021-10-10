@@ -2,7 +2,7 @@ import React from 'react';
 import { Coordinate, MainLocationForMap, NearbyLocationForMap, WeatherDetailsProps } from '../interfaces';
 import Layout from './Layout';
 import PageContentWrapper from './PageContentWrapper';
-import BasicCurrentlyAndHourlyWeather from './BasicCurrentlyAndHourlyWeather';
+import BasicCurrentAndHourlyWeather from './BasicCurrentAndHourlyWeather';
 import NearbyLocations from './NearbyLocations';
 import TodaysWeatherDescription from './TodaysWeatherDescription';
 import DetailedCurrentWeather from './DetailedCurrentWeather';
@@ -48,7 +48,7 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
                         </a>
                     </Link>
                 </span>
-                {weatherDetails && <BasicCurrentlyAndHourlyWeather item={weatherDetails} />}
+                {weatherDetails && <BasicCurrentAndHourlyWeather item={weatherDetails} />}
             </PageContentWrapper>
             {mainLocationForMap && (
                 <div className={'z-0 relative'}>

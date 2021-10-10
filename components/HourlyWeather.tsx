@@ -13,7 +13,6 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
     const [displayableTime, setDisplayableTime] = useState<string | undefined>(undefined);
 
     const onClickDisplayModal: (hour: Hour, time: string) => void = (hour: Hour, time: string) => {
-        console.log('weather ===> ', hour);
         setShowModal(true);
         setHourToRenderOnModal(hour);
         setDisplayableTime(time);

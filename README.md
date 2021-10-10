@@ -1,8 +1,14 @@
-# brishty [WIP]
+# brishty
 
-Brishty is a simple web application that displays weather related details based on a searched location (i.e. a city), the site is using NextJS, TypeScript, ReactJS and Tailwind CSS for UI.
+Brishty is a web application that displays weather of a searched location (i.e. a city), the site is built using NextJS, TypeScript, ReactJS and Tailwind CSS for UI.
 
-## Running locally
+## Live link
+
+https://www.brishty.net 
+
+## Running
+
+### Starting locally
 
 `npm run dev`
 
@@ -10,18 +16,23 @@ The app should start locally here : http://localhost:3000/
 
 Example weather page : http://localhost:3000/weather/Soho,%20GB
 
-## Building in production
+### Building in production
 
 `npm run build && next start`
 
-## Brishty API support
+### Running lint / lint fix command
 
-To view the data returned by Brishty visit : http://localhost:3000/api/weather?location=Soho,%20GB
+Running with Eslint : `npm run lint`
 
-Note : In order to get weather details of a different location just change the location, see below.
-`http://localhost:3000/api/weather?location={ENTER_YOUR_LOCATION_HERE}`
+Fixing lint issues : `npm run lint:fix`
+
+### Running tests
+
+`npm run test`
 
 ## Third-party APIs used in Brishty
 
 * OpenWeather : https://openweathermap.org/api 
-* GeoDB Cities : https://rapidapi.com/wirefreethought/api/geodb-cities  
+* GeoDB Cities : https://rapidapi.com/wirefreethought/api/geodb-cities
+* Algolia places (getting deprecated soon) : https://community.algolia.com/places/ 
+* NY Times : https://developer.nytimes.com/docs/top-stories-product/1/overview 
