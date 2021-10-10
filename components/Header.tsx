@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import NavSearch from './NavSearch';
 import { getDocument } from '../services/BrowserService';
+import { BurgerMenuSvg, CloseSvg, SearchIconSvg } from './SvgFactory';
 
 const Header = () => {
     const [isBurgerMenuOpen, setBurgerMenuState] = useState(false);
@@ -52,22 +53,16 @@ const Header = () => {
                 onBlur={(e) => handleSearchButtonOnBlurEvent(e)}
             >
                 {!displayNavSearch && (
-                    <svg
-                        className="fill-current pointer-events-none text-white w-4 h-4 inline"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                    >
-                        <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-                    </svg>
+                    <SearchIconSvg
+                        viewBox={'0 0 20 20'}
+                        className={'fill-current pointer-events-none text-white w-4 h-4 inline'}
+                    />
                 )}
                 {displayNavSearch && (
-                    <svg
-                        className="fill-current pointer-events-none text-white w-4 h-4 inline"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M.324 1.909C-.105 1.48-.105.766.324.322c.444-.429 1.143-.429 1.587 0l9.523 9.539L20.973.322c.429-.429 1.143-.429 1.571 0 .444.444.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c.444.429.444 1.143 0 1.587-.429.429-1.143.429-1.571 0l-9.539-9.539-9.523 9.539c-.444.429-1.143.429-1.587 0-.429-.444-.429-1.159 0-1.587l9.523-9.539L.324 1.909z" />
-                    </svg>
+                    <CloseSvg
+                        viewBox={'0 0 24 24'}
+                        className={'fill-current pointer-events-none text-white w-4 h-4 inline'}
+                    />
                 )}
             </button>
         );
@@ -82,12 +77,11 @@ const Header = () => {
                                 focus:outline-none"
                 onClick={handleBurgerMenuOnClickEvent}
             >
-                <svg className="fill-current h-3 w-3" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-                    {!isBurgerMenuOpen && <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />}
-                    {isBurgerMenuOpen && (
-                        <path d="M.324 1.909C-.105 1.48-.105.766.324.322c.444-.429 1.143-.429 1.587 0l9.523 9.539L20.973.322c.429-.429 1.143-.429 1.571 0 .444.444.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c.444.429.444 1.143 0 1.587-.429.429-1.143.429-1.571 0l-9.539-9.539-9.523 9.539c-.444.429-1.143.429-1.587 0-.429-.444-.429-1.159 0-1.587l9.523-9.539L.324 1.909z" />
-                    )}
-                </svg>
+                <BurgerMenuSvg
+                    isBurgerMenuOpen={isBurgerMenuOpen}
+                    className={'fill-current h-3 w-3'}
+                    viewBox={'0 0 22 22'}
+                />
             </button>
         );
     };

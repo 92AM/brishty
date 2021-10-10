@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Hour } from '../interfaces';
 import moment from 'moment';
+import { CloseSvg } from './SvgFactory';
 
 type HourlyWeatherProps = {
     item: Hour[];
@@ -60,13 +61,10 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
                                             : 'Weather at ' + displayableTime}
                                     </span>
                                     <button onClick={() => setShowModal(false)}>
-                                        <svg
-                                            className="fill-current pointer-events-none text-gray-900 w-5 h-5 inline"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path d="M.324 1.909C-.105 1.48-.105.766.324.322c.444-.429 1.143-.429 1.587 0l9.523 9.539L20.973.322c.429-.429 1.143-.429 1.571 0 .444.444.444 1.159 0 1.587l-9.523 9.524 9.523 9.539c.444.429.444 1.143 0 1.587-.429.429-1.143.429-1.571 0l-9.539-9.539-9.523 9.539c-.444.429-1.143.429-1.587 0-.429-.444-.429-1.159 0-1.587l9.523-9.539L.324 1.909z" />
-                                        </svg>
+                                        <CloseSvg
+                                            viewBox={'0 0 24 24'}
+                                            className={'fill-current pointer-events-none text-gray-900 w-5 h-5 inline'}
+                                        />
                                     </button>
                                 </div>
                                 <div className="relative p-6 flex-auto">

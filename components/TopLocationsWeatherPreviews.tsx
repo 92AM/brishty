@@ -1,5 +1,6 @@
 import React from 'react';
 import { LocationCurrentWeather } from '../interfaces';
+import { RightChevronSvg } from './SvgFactory';
 
 type TopLocationsWeatherPreviewsProps = {
     items: LocationCurrentWeather[];
@@ -43,14 +44,7 @@ const TopLocationsWeatherPreviews = ({ items: locationsWeathers }: TopLocationsW
                     <div className="items-center">
                         <a className="flex space-x-4" href={'/weather/' + location}>
                             <p className="flex-1 text-gray-800 text-lg hover:underline">View Weather</p>
-                            <svg
-                                className="flex-2 pt-1 float-right h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                            <RightChevronSvg className={'flex-2 pt-1 float-right h-6 w-6'} viewBox={'0 0 24 24'} />
                         </a>
                     </div>
                 </div>

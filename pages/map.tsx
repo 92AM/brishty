@@ -6,6 +6,7 @@ import { useWindowSize } from '../services/GenericUtilityService';
 import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
 import { getExpandedHomePageStaticMapProps } from '../services/StaticMapPropsProviderService';
+import { LeftArrowSvg } from '../components/SvgFactory';
 
 const WeatherMap = () => {
     const mainLocationForMap: MainLocationForMap = {
@@ -36,20 +37,7 @@ function Map() {
                     <Link href={'/'}>
                         <a className={'flex flex-row'}>
                             <span className={'pt-4'}>
-                                <svg
-                                    className="h-7 w-7"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                                    />
-                                </svg>
+                                <LeftArrowSvg className={'h-7 w-7'} viewBox={'0 0 24 24'} />
                             </span>
                             <span className={'pl-2 pt-4 text-xl'}>{`Back to home`}</span>
                         </a>

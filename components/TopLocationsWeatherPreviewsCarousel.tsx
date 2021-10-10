@@ -2,6 +2,7 @@ import React from 'react';
 import { LocationCurrentWeather } from '../interfaces';
 import { getWindow } from '../services/BrowserService';
 import HomePageRegionHeader from './HomePageRegionHeader';
+import { RightChevronSvg } from './SvgFactory';
 
 type TopLocationsWeatherPreviewsCarouselProps = {
     items: LocationCurrentWeather[];
@@ -52,14 +53,7 @@ const TopLocationsWeatherPreviewsCarousel = ({ items, mainLocation }: TopLocatio
                     <div className="items-center">
                         <a className="flex space-x-4" href={'/weather/' + location}>
                             <p className="flex-1 text-gray-800 text-lg hover:underline">View Weather</p>
-                            <svg
-                                className="flex-2 pt-1 float-right h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                            <RightChevronSvg className={'flex-2 pt-1 float-right h-6 w-6'} viewBox={'0 0 24 24'} />
                         </a>
                     </div>
                 </div>
@@ -79,14 +73,7 @@ const TopLocationsWeatherPreviewsCarousel = ({ items, mainLocation }: TopLocatio
                     <div className="flex-1">
                         <span className="block pt-16 text-center text-3xl text-gray-800">View More</span>
                     </div>
-                    <svg
-                        className="flex-2 mt-14 float-right h-12 w-12"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    <RightChevronSvg className={'flex-2 mt-14 float-right h-12 w-12'} viewBox={'0 0 24 24'} />
                 </div>
             </div>,
         );
