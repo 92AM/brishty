@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useState } from 'react';
+import React, { useState } from 'react';
 import { Hour } from '../interfaces';
 import moment from 'moment';
 import { CloseSvg } from './SvgFactory';
