@@ -18,10 +18,8 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
         setDisplayableTime(time);
     };
 
-    const slideComponents: React.DetailedHTMLProps<
-        React.ButtonHTMLAttributes<HTMLButtonElement>,
-        HTMLButtonElement
-    >[] = [];
+    const slideComponents: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>[] =
+        [];
 
     hourly.forEach((hour, index) => {
         const time = index === 0 ? 'Now' : moment.unix(Number(hour.dateTime)).format('HH:') + '00';
