@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { HTMLAttributes, useState } from 'react';
 import { Hour } from '../interfaces';
 import moment from 'moment';
 import { CloseSvg } from './SvgFactory';
@@ -18,7 +18,10 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
         setDisplayableTime(time);
     };
 
-    const slideComponents: any = [];
+    const slideComponents: React.DetailedHTMLProps<
+        React.ButtonHTMLAttributes<HTMLButtonElement>,
+        HTMLButtonElement
+    >[] = [];
 
     hourly.forEach((hour, index) => {
         const time = index === 0 ? 'Now' : moment.unix(Number(hour.dateTime)).format('HH:') + '00';
@@ -39,7 +42,7 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
                             alt={hour.weather.description}
                             loading={'lazy'}
                         />
-                        <h1 className="text-xl md:text-2xl pb-5 md:pb-10 text-center">{`${hour.temperature}C`}</h1>
+                        <h1 className="text-xl md:text-2xl pb-8 md:pb-10 text-center">{`${hour.temperature}C`}</h1>
                     </div>
                 </button>,
             );
@@ -47,58 +50,52 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
     });
 
     const HourlyWeatherModal = () => {
-        if (showModal) {
-            return (
-                <>
-                    <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-100">
-                                <div className="flex items-start justify-between p-7 border-b border-solid border-gray-300 rounded-t">
-                                    <span className="text-xl font-semibold pr-4">
-                                        {displayableTime === 'Now'
-                                            ? 'Weather ' + displayableTime.toLowerCase()
-                                            : 'Weather at ' + displayableTime}
-                                    </span>
-                                    <button onClick={() => setShowModal(false)}>
-                                        <CloseSvg
-                                            viewBox={'0 0 24 24'}
-                                            className={'fill-current pointer-events-none text-gray-900 w-5 h-5 inline'}
-                                        />
-                                    </button>
-                                </div>
-                                <div className="relative p-6 flex-auto">
-                                    <p className="my-4 text-gray-900 text-lg leading-relaxed">
-                                        Expect{' '}
-                                        <span className="font-semibold">
-                                            {hourToRenderOnModal?.weather.description}
-                                        </span>{' '}
-                                        {displayableTime === 'Now'
-                                            ? 'right ' + displayableTime.toLowerCase()
-                                            : ' at ' + displayableTime}
-                                        ; with{' '}
-                                        <span className="font-semibold">{`${Math.round(
-                                            Number(hourToRenderOnModal?.probabilityOfPrecipitation) * 100,
-                                        )}%`}</span>{' '}
-                                        chance of rain.
-                                    </p>
-                                </div>
+        return showModal ? (
+            <>
+                <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-100">
+                            <div className="flex items-start justify-between p-7 border-b border-solid border-gray-300 rounded-t">
+                                <span className="text-xl font-semibold pr-4">
+                                    {displayableTime === 'Now'
+                                        ? 'Weather ' + displayableTime.toLowerCase()
+                                        : 'Weather at ' + displayableTime}
+                                </span>
+                                <button onClick={() => setShowModal(false)}>
+                                    <CloseSvg
+                                        viewBox={'0 0 24 24'}
+                                        className={'fill-current pointer-events-none text-gray-900 w-5 h-5 inline'}
+                                    />
+                                </button>
+                            </div>
+                            <div className="relative p-6 flex-auto">
+                                <p className="my-4 text-gray-900 text-lg leading-relaxed">
+                                    Expect{' '}
+                                    <span className="font-semibold">{hourToRenderOnModal?.weather.description}</span>{' '}
+                                    {displayableTime === 'Now'
+                                        ? 'right ' + displayableTime.toLowerCase()
+                                        : ' at ' + displayableTime}
+                                    ; with{' '}
+                                    <span className="font-semibold">{`${Math.round(
+                                        Number(hourToRenderOnModal?.probabilityOfPrecipitation) * 100,
+                                    )}%`}</span>{' '}
+                                    chance of rain.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div className="opacity-50 fixed inset-0 z-40 bg-gray-900" />
-                </>
-            );
-        } else {
-            return null;
-        }
+                </div>
+                <div className="opacity-50 fixed inset-0 z-40 bg-gray-900" />
+            </>
+        ) : null;
     };
 
     return (
         <div
-            className="flex overflow-x-scroll pt-10 pb-10 hide-scroll-bar
-            md:ml-5 md:max-w-lg lg:max-w-xl xl:max-w-3xl 2xl:max-w-5xl"
+            className="flex overflow-x-scroll pt-10 pb-10 hide-scroll-bar mb-2
+            md:ml-5 md:mb-0 md:max-w-lg lg:max-w-xl xl:max-w-3xl 2xl:max-w-5xl"
         >
-            <div className="flex flex-nowrap ">{slideComponents}</div>
+            <div className="flex flex-nowrap py-4">{slideComponents}</div>
             <HourlyWeatherModal />
         </div>
     );
