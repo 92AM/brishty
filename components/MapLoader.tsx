@@ -1,5 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-non-null-assertion */
-
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { MainLocationForMap, MapProps, NearbyLocationForMap } from '../interfaces';
@@ -31,7 +29,7 @@ export const MapLoader = ({
     );
     return (
         <MapComponent
-            mainLocationForMap={mainLocationForMap!}
+            mainLocationForMap={mainLocationForMap}
             mapProps={mapProps}
             nearbyLocationsForMap={nearbyLocationsForMap}
             useFullViewport={useFullViewport}

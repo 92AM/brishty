@@ -5,6 +5,8 @@ import { AsyncTypeahead, Highlighter, TypeaheadMenuProps, TypeaheadResult } from
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
 import { algoliaPlacesClient } from '../api/AlgoliaPlacesClient';
+import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import { GA_EVENT_SEARCH_TYPE_LOCATION_SEARCH_USING_TYPEAHEAD_AUTOCOMPLETE_ID } from '../utility/constants';
 
 type LocationSearch = {
     [index: string]: string;
@@ -53,6 +55,12 @@ const onSelected = (selected: LocationSearch) => {
             selected.latitude,
             selected.longitude,
             selected.countryCode,
+        );
+        fireGoogleAnalyticsEvent(
+            'location-search-using-typeahead-autocomplete',
+            'search-type',
+            `Location details - locationName : ${selected.searchLocation} | latitude : ${selected.latitude} | longitude : ${selected.longitude} | countryCode : ${selected.countryCode}`,
+            GA_EVENT_SEARCH_TYPE_LOCATION_SEARCH_USING_TYPEAHEAD_AUTOCOMPLETE_ID,
         );
     }
 };

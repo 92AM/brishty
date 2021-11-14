@@ -2,6 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import NavSearch from './NavSearch';
 import { getDocument } from '../services/BrowserService';
 import { BurgerMenuSvg, CloseSvg, SearchIconSvg } from './SvgFactory';
+import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import {
+    GA_EVENT_INTERACTION_EXPAND_NAV_BAR_SEARCH_BOX_ID,
+    GA_EVENT_NAVIGATED_ABOUT_US_ID,
+    GA_EVENT_NAVIGATED_CONTACT_US_ID,
+    GA_EVENT_NAVIGATED_ICONS_ID,
+} from '../utility/constants';
 
 const Header = () => {
     const [isBurgerMenuOpen, setBurgerMenuState] = useState(false);
@@ -30,6 +37,12 @@ const Header = () => {
 
     const handleSearchButtonOnClickEvent = () => {
         displayNavSearch ? setDisplayNavSearch(false) : setDisplayNavSearch(true);
+        fireGoogleAnalyticsEvent(
+            'expand-nav-bar-search-box',
+            'interaction',
+            `User clicked on nav bar search icon to expand the search box.`,
+            GA_EVENT_INTERACTION_EXPAND_NAV_BAR_SEARCH_BOX_ID,
+        );
     };
 
     const handleSearchButtonOnBlurEvent = (e: any) => {
@@ -116,6 +129,14 @@ const Header = () => {
                                 <a
                                     className="inline-block text-white text-grey-dark no-underline hover:text-grey-dark hover:underline py-2 px-4"
                                     href="/about"
+                                    onClick={() =>
+                                        fireGoogleAnalyticsEvent(
+                                            'navigated-to-about-us-page',
+                                            'navigated',
+                                            `User clicked about us link to navigate to about us page.`,
+                                            GA_EVENT_NAVIGATED_ABOUT_US_ID,
+                                        )
+                                    }
                                 >
                                     About
                                 </a>
@@ -124,6 +145,14 @@ const Header = () => {
                                 <a
                                     className="inline-block text-white text-grey-dark no-underline hover:text-grey-dark hover:underline py-2 px-4"
                                     href="/about#brishty-contact-form"
+                                    onClick={() =>
+                                        fireGoogleAnalyticsEvent(
+                                            'navigated-to-contact-us-page',
+                                            'navigated',
+                                            `User clicked contact us link to navigate to contact us page.`,
+                                            GA_EVENT_NAVIGATED_CONTACT_US_ID,
+                                        )
+                                    }
                                 >
                                     Contact us
                                 </a>
@@ -132,6 +161,14 @@ const Header = () => {
                                 <a
                                     className="inline-block text-white text-grey-dark no-underline hover:text-grey-dark hover:underline py-2 px-4"
                                     href="/icons"
+                                    onClick={() =>
+                                        fireGoogleAnalyticsEvent(
+                                            'navigated-to-icons-page',
+                                            'navigated',
+                                            `User clicked icons link to navigate to icons page.`,
+                                            GA_EVENT_NAVIGATED_ICONS_ID,
+                                        )
+                                    }
                                 >
                                     Icons
                                 </a>
