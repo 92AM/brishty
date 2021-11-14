@@ -26,15 +26,21 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
         );
     };
 
-    const slideComponents: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>[] =
-        [];
+    const slideComponents: React.DetailedHTMLProps<
+        React.ButtonHTMLAttributes<HTMLButtonElement>,
+        HTMLButtonElement
+    >[] = [];
 
     hourly.forEach((hour, index) => {
         const time = index === 0 ? 'Now' : moment.unix(Number(hour.dateTime)).format('HH:') + '00';
 
         if (index <= 11) {
             slideComponents.push(
-                <button className="inline-block px-3" onClick={() => onClickDisplayModal(hour, time)}>
+                <button
+                    key={time + '_' + index}
+                    className="inline-block px-3"
+                    onClick={() => onClickDisplayModal(hour, time)}
+                >
                     <div
                         className="w-32 h-44 md:w-44 md:h-64 max-w-xs
                     overflow-hidden rounded-3xl shadow-md bg-white
