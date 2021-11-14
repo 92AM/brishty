@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/explicit-module-boundary-types */
+
 import { openWeatherMapLocationDetailsClient } from '../api/OpenWeatherMapLocationDetailsClient';
 import { openWeatherMapWeatherDetailsClient } from '../api/OpenWeatherMapWeatherDetailsClient';
 import {
