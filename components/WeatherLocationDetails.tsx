@@ -11,6 +11,7 @@ import { MapLoader } from './MapLoader';
 import Link from 'next/link';
 import { getWeatherDetailsPageStaticMapProps } from '../services/StaticMapPropsProviderService';
 import { LeftArrowSvg } from './SvgFactory';
+import { GoogleAdComponent } from './GoogleAdComponent';
 
 const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
     const mainLocationForMap: MainLocationForMap = {
@@ -49,6 +50,7 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
                     </Link>
                 </span>
                 {weatherDetails && <BasicCurrentAndHourlyWeather item={weatherDetails} />}
+                <GoogleAdComponent />
             </PageContentWrapper>
             {mainLocationForMap && (
                 <div className={'z-0 relative'}>
