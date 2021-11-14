@@ -9,7 +9,7 @@ const maxNoOfPlaceholdersToRender = 5;
 
 for (let i = 1; i <= maxNoOfPlaceholdersToRender; i++) {
     slideComponents.push(
-        <div className="p-2 w-60 bg-gray-300 text-gray-100 rounded-2xl">
+        <div key={i} className="p-2 w-60 bg-gray-300 text-gray-100 rounded-2xl">
             <span className="p-1 bg-gray-100 w-56 block h-5">&nbsp;</span>
             <div className="p-1 w-56 block text-xs space-x-5">
                 <span className="bg-gray-100 w-32 block h-4">&nbsp;</span>

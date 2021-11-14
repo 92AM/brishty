@@ -2,6 +2,8 @@ import querystring from 'querystring';
 import { useEffect, useState } from 'react';
 import { MapSize } from '../interfaces';
 import moment from 'moment';
+import { getWindow } from './BrowserService';
+import * as gtag from '../lib/gtag';
 
 export const convertKelvinToCelsius = (kelvin: number): string => {
     return `${Math.round(kelvin - 273.15)}°`;
@@ -90,12 +92,16 @@ export const useWindowSize = (): MapSize => {
     useEffect(() => {
         function handleResize() {
             setWindowSize({
-                height: calculateWindowHeightValueForMap(window.innerHeight),
+                height: calculateWindowHeightValueForMap(getWindow().innerHeight),
             });
         }
-        window.addEventListener('resize', handleResize);
+        getWindow().addEventListener('resize', handleResize);
         handleResize();
-        return () => window.removeEventListener('resize', handleResize);
+        return () => getWindow().removeEventListener('resize', handleResize);
     }, []);
     return windowSize;
+};
+
+export const fireGoogleAnalyticsEvent = (action: string, category: string, label: string, value: number): void => {
+    gtag.event({ action: action, category: category, label: label, value: value });
 };

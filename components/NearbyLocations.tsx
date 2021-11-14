@@ -1,6 +1,8 @@
 import React from 'react';
 import { NearbyLocation } from '../interfaces';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
+import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import { GA_EVENT_SEARCH_TYPE_NEARBY_LOCATION_SEARCH_ID } from '../utility/constants';
 
 type Props = {
     items: NearbyLocation[];
@@ -12,6 +14,12 @@ const onClickLoadNearbyLocationWeather = (
     longitude: string,
     countryCode: string,
 ) => {
+    fireGoogleAnalyticsEvent(
+        'nearby-location-search',
+        'search-type',
+        `Location details - locationName : ${locationName} | latitude : ${latitude} | longitude : ${longitude} | countryCode : ${countryCode}`,
+        GA_EVENT_SEARCH_TYPE_NEARBY_LOCATION_SEARCH_ID,
+    );
     searchWeatherByGeoLocation(locationName, latitude, longitude, countryCode);
 };
 

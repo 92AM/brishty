@@ -15,10 +15,10 @@ const onClickLoadViewMoreLocationPage = (location: string) => {
 
 const TopLocationsWeatherPreviewsCarousel = ({ items, mainLocation }: TopLocationsWeatherPreviewsCarouselProps) => {
     const topForecasts: any = [];
-    items.forEach((locationWeather) => {
+    items.forEach((locationWeather, index) => {
         const location = locationWeather.locationName + ', ' + locationWeather.countryCode;
         topForecasts.push(
-            <div className="inline-block flex px-3 my-4 w-max h-48">
+            <div key={locationWeather.locationName + '_' + index} className="inline-block flex px-3 my-4 w-max h-48">
                 <img
                     className="hidden lg:block h-full lg:h-46 lg:w-46 flex-none bg-cover rounded-l
                     lg:rounded-t-none lg:rounded-l-3xl text-center overflow-hidden

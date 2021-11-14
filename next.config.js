@@ -5,6 +5,7 @@ module.exports = {
         geoDbCitiesApiKey: '5cdf7ea234msh953d12f1242d084p1b8e54jsn14d641cc6f52',
         nyTimesApiKey: '7cJCevyHNkSvRwNIbhBJYttxPNPuV1o3',
         useTypeaheadLocationSearch: 'true',
+        googleAnalyticsTrackingId: 'G-8K19NYL1FR',
     },
     target: 'serverless',
 };

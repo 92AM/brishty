@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Hour } from '../interfaces';
 import moment from 'moment';
 import { CloseSvg } from './SvgFactory';
+import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import { GA_EVENT_INTERACTION_DISPLAY_HOURLY_WEATHER_MODAL_ID } from '../utility/constants';
 
 type HourlyWeatherProps = {
     item: Hour[];
@@ -16,6 +18,12 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
         setShowModal(true);
         setHourToRenderOnModal(hour);
         setDisplayableTime(time);
+        fireGoogleAnalyticsEvent(
+            'display-hourly-weather-modal',
+            'interaction',
+            `User clicked on hourly weather carousel to display the weather in modal.`,
+            GA_EVENT_INTERACTION_DISPLAY_HOURLY_WEATHER_MODAL_ID,
+        );
     };
 
     const slideComponents: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>[] =
