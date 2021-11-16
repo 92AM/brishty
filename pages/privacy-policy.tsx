@@ -24,13 +24,19 @@ export default function PrivacyPolicy() {
                             This is just a disclaimer to inform all our users that we do not store any consumer data,
                             period.
                         </p>
-                        <p>
+                        <p className={'emphasis'}>
                             We are physically unable to store any data as we{' '}
                             <span className={'font-semibold'}>do not</span> own any backend database to store it in! As
                             an user you can have full confidence when browsing{' '}
                             <a className={'hover:underline'} href={'https://www.brishty.net'}>
                                 www.brishty.net
                             </a>
+                        </p>
+                        <p>
+                            <span className={'font-semibold'}>
+                                However, we may use consumer data and supply to Google in order display targeted Google
+                                advertisements on the website.
+                            </span>
                         </p>
                         <p>
                             If you have any questions, please do not hesitate to get in touch with us{' '}
