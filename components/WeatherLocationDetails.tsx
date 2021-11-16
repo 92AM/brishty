@@ -49,8 +49,8 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
                         </a>
                     </Link>
                 </span>
-                {weatherDetails && <BasicCurrentAndHourlyWeather item={weatherDetails} />}
                 <GoogleAdComponent />
+                {weatherDetails && <BasicCurrentAndHourlyWeather item={weatherDetails} />}
             </PageContentWrapper>
             {mainLocationForMap && (
                 <div className={'z-0 relative'}>

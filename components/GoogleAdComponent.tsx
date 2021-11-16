@@ -9,12 +9,7 @@ export const GoogleAdComponent = () => {
     }, []);
 
     return (
-        <>
-            <script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5329664133778287"
-                crossOrigin="anonymous"
-            />
+        <div className="md:container md:mx-auto p-6">
             <ins
                 className="adsbygoogle"
                 style={{ display: 'block' }}
@@ -23,6 +18,6 @@ export const GoogleAdComponent = () => {
                 data-ad-format="auto"
                 data-full-width-responsive="true"
             />
-        </>
+        </div>
     );
 };
