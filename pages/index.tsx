@@ -14,6 +14,7 @@ import {
     getUkTopLocationsCurrentWeathers,
     getWorldTopLocationsCurrentWeathers,
 } from '../services/BulkWeatherLocationExtractionService';
+import { GoogleAdComponent } from '../components/GoogleAdComponent';
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -55,6 +56,9 @@ const IndexPage = ({
             <SearchBox />
             <PageContentWrapper classNameCustomAttributes={'py-6'}>
                 <HomePageWeatherMap />
+            </PageContentWrapper>
+            <GoogleAdComponent />
+            <PageContentWrapper classNameCustomAttributes={'py-6'}>
                 {ukTopLocationsWeathers && (
                     <TopLocationsWeatherPreviewsCarousel items={ukTopLocationsWeathers} mainLocation={'UK'} />
                 )}
