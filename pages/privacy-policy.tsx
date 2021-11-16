@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
                         </p>
                         <p>
                             <span className={'font-semibold'}>
-                                However, we may use consumer data and supply to Google in order display targeted Google
+                                However, we may use consumer data and supply to Google in order to display targeted Google
                                 advertisements on the website.
                             </span>
                         </p>
