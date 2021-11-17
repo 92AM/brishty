@@ -14,7 +14,7 @@ export const GoogleAdComponent = () => {
                 <div className="overflow-x-scroll hide-scroll-bar ">
                     <ins
                         className="adsbygoogle justify-center items-center flex"
-                        style={{ display: 'block' }}
+                        style={{ display: 'flex' }}
                         data-ad-client="ca-pub-5329664133778287"
                         data-ad-slot="5523921350"
                         data-ad-format="auto"
