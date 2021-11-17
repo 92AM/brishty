@@ -58,7 +58,9 @@ const IndexPage = ({
             <PageContentWrapper classNameCustomAttributes={'py-6'}>
                 <HomePageWeatherMap />
             </PageContentWrapper>
-            <GoogleAdComponent />
+            <div className={'pb-8'}>
+                <GoogleAdComponent />
+            </div>
             <PageContentWrapper classNameCustomAttributes={'py-6'}>
                 {ukTopLocationsWeathers && (
                     <TopLocationsWeatherPreviewsCarousel items={ukTopLocationsWeathers} mainLocation={'UK'} />

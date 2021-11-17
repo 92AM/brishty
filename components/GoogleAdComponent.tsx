@@ -9,7 +9,7 @@ export const GoogleAdComponent = () => {
     }, []);
 
     return (
-        <div className="items-center justify-center bg-gray-800 border-b border-gray-100 p-5">
+        <div className="items-center justify-center bg-gray-800 border-b border-gray-100 p-8">
             <div className="max-w-xl mx-auto max-w-screen-xl">
                 <div className="overflow-x-scroll hide-scroll-bar ">
                     <ins
