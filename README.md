@@ -36,3 +36,5 @@ Fixing lint issues : `npm run lint:fix`
 * GeoDB Cities : https://rapidapi.com/wirefreethought/api/geodb-cities
 * Algolia places (getting deprecated soon) : https://community.algolia.com/places/ 
 * NY Times : https://developer.nytimes.com/docs/top-stories-product/1/overview 
+
+Test change
