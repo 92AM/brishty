@@ -4,6 +4,7 @@ import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
 import { getEuropeMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
+import { CookieModal } from '../../components/CookieModal';
 
 type EuropeWeatherProps = {
     europeTopLocationsWeathers: LocationCurrentWeather[];
@@ -17,6 +18,7 @@ const EuropeWeather = ({ europeTopLocationsWeathers }: EuropeWeatherProps) => {
                 <span className="block pt-3 text-center text-2xl text-gray-800">Top Europe forecasts</span>
                 {europeTopLocationsWeathers && <TopLocationsWeatherPreviews items={europeTopLocationsWeathers} />}
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 };

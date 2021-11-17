@@ -4,6 +4,7 @@ import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
 import { getWindow } from '../services/BrowserService';
 import { GbSvg, HomeSvg, RightChevronSvg, WorldSvg } from '../components/SvgFactory';
+import { CookieModal } from '../components/CookieModal';
 
 const onClickReturnToHome = () => {
     getWindow().location.assign('/');
@@ -162,6 +163,7 @@ export default function About() {
                     </div>
                 </div>
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 }

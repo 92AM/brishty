@@ -4,6 +4,7 @@ import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
 import { getUkMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
+import { CookieModal } from '../../components/CookieModal';
 
 type UkWeatherProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -17,6 +18,7 @@ const UkWeather = ({ ukTopLocationsWeathers }: UkWeatherProps) => {
                 <span className="block pt-3 text-center text-2xl text-gray-800">Top UK forecasts</span>
                 {ukTopLocationsWeathers && <TopLocationsWeatherPreviews items={ukTopLocationsWeathers} />}
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 };

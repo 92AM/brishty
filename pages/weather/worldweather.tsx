@@ -4,6 +4,7 @@ import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
 import { getWorldMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
+import { CookieModal } from '../../components/CookieModal';
 
 type WorldWeatherProps = {
     worldTopLocationsWeathers: LocationCurrentWeather[];
@@ -17,6 +18,7 @@ const WorldWeather = ({ worldTopLocationsWeathers }: WorldWeatherProps) => {
                 <span className="block pt-3 text-center text-2xl text-gray-800">Rest of the world forecasts</span>
                 {worldTopLocationsWeathers && <TopLocationsWeatherPreviews items={worldTopLocationsWeathers} />}
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 };

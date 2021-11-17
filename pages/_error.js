@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import React from 'react';
 import { getWindow } from '../services/BrowserService';
 import {AboutSvg, HomeSvg, RightChevronSvg} from "../components/SvgFactory";
+import {CookieModal} from "../components/CookieModal";
 
 const onClickAboutUs = () => {
     getWindow().location.assign('/about');
@@ -64,6 +65,7 @@ function Error({ statusCode }) {
                     )}
                 </div>
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 }

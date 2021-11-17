@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
+import { CookieModal } from '../components/CookieModal';
 
 export default function Custom500() {
     return (
@@ -16,6 +17,7 @@ export default function Custom500() {
                     </span>{' '}
                 </div>
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 }

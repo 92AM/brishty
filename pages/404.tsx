@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import { getWindow } from '../services/BrowserService';
 import { AboutSvg, GbSvg, HomeSvg, RightChevronSvg, WorldSvg } from '../components/SvgFactory';
+import { CookieModal } from '../components/CookieModal';
 
 const onClickReturnToHome = () => {
     getWindow().location.assign('/');
@@ -91,6 +92,7 @@ export default function Custom404() {
                     </div>
                 </div>
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 }

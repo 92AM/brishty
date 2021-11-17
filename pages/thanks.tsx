@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import { getWindow } from '../services/BrowserService';
 import { AboutSvg, HomeSvg, RightChevronSvg } from '../components/SvgFactory';
+import { CookieModal } from '../components/CookieModal';
 
 const onClickReturnToHome = () => {
     getWindow().location.assign('/');
@@ -56,6 +57,7 @@ export default function Thanks() {
                     </div>
                 </div>
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 }

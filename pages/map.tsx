@@ -7,6 +7,7 @@ import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
 import { getExpandedHomePageStaticMapProps } from '../services/StaticMapPropsProviderService';
 import { LeftArrowSvg } from '../components/SvgFactory';
+import { CookieModal } from '../components/CookieModal';
 
 const WeatherMap = () => {
     const mainLocationForMap: MainLocationForMap = {
@@ -45,6 +46,7 @@ function Map() {
                 </span>
             </PageContentWrapper>
             <WeatherMap />
+            <CookieModal />
         </Layout>
     );
 }

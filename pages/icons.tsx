@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
+import { CookieModal } from '../components/CookieModal';
 
 type Props = {
     description: string;
@@ -88,6 +89,7 @@ export default function Icons() {
                     </div>
                 </div>
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 }

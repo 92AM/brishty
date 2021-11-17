@@ -15,6 +15,7 @@ import {
     getWorldTopLocationsCurrentWeathers,
 } from '../services/BulkWeatherLocationExtractionService';
 import { GoogleAdComponent } from '../components/GoogleAdComponent';
+import { CookieModal } from '../components/CookieModal';
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -70,6 +71,7 @@ const IndexPage = ({
                 )}
                 {worldNews && <WorldNews items={worldNews} />}
             </PageContentWrapper>
+            <CookieModal />
         </Layout>
     );
 };

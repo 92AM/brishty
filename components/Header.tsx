@@ -100,8 +100,8 @@ const Header = () => {
     };
 
     return (
-        <nav id="header" className="fixed w-full z-50">
-            <div className="relative w-full z-50 fixed top-0 bg-gray-800 border-b border-grey-light">
+        <nav id="header" className="fixed w-full z-40">
+            <div className="relative w-full z-40 fixed top-0 bg-gray-800 border-b border-grey-light">
                 <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-4">
                     <div className="pl-4 flex items-center">
                         <a href={'/'}>
