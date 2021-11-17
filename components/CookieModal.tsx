@@ -4,7 +4,9 @@ import { COOKIE_CONSENT_NAME } from '../utility/constants';
 
 export const CookieModal = () => {
     const [cookieConsentValue] = useState<boolean>(Cookies.get(COOKIE_CONSENT_NAME)?.toLowerCase() === 'true');
-    const [showCookieModal, setShowCookieModal] = useState<boolean>(Cookies.get(COOKIE_CONSENT_NAME)?.toLowerCase() !== 'true');
+    const [showCookieModal, setShowCookieModal] = useState<boolean>(
+        Cookies.get(COOKIE_CONSENT_NAME)?.toLowerCase() !== 'true',
+    );
 
     const setCookieConsentValue = (): void => {
         Cookies.set(COOKIE_CONSENT_NAME, 'true');
