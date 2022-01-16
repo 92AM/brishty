@@ -1,9 +1,9 @@
-const {
-    SITE_URL,
-    STATIC_SITEMAP_FILE_NAME,
-    SITEMAP_XML_EXTENSION,
+import {
     DYNAMIC_ADDITIONAL_SITEMAP_PATH,
-} = require('./utility/constants');
+    SITE_URL,
+    SITEMAP_XML_EXTENSION,
+    STATIC_SITEMAP_FILE_NAME,
+} from './utility/constants';
 
 const additionalWeatherSitemaps = [...Array(21).keys()].map(
     (page) => `${SITE_URL}${DYNAMIC_ADDITIONAL_SITEMAP_PATH}${page + 1}${SITEMAP_XML_EXTENSION}`,
