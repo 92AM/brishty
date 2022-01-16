@@ -1,9 +1,11 @@
-import {
-    DYNAMIC_ADDITIONAL_SITEMAP_PATH,
+/* eslint @typescript-eslint/no-var-requires: "off" */
+
+const {
     SITE_URL,
+    DYNAMIC_ADDITIONAL_SITEMAP_PATH,
     SITEMAP_XML_EXTENSION,
     STATIC_SITEMAP_FILE_NAME,
-} from './utility/constants';
+} = require('./utility/constants');
 
 const additionalWeatherSitemaps = [...Array(21).keys()].map(
     (page) => `${SITE_URL}${DYNAMIC_ADDITIONAL_SITEMAP_PATH}${page + 1}${SITEMAP_XML_EXTENSION}`,
