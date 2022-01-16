@@ -1,11 +1,9 @@
-/* eslint-disable  @typescript-eslint/ban-ts-comment */
-
 import React, { useEffect } from 'react';
+import { getWindow } from '../services/BrowserService';
 
 export const GoogleAdComponent = () => {
     useEffect(() => {
-        // @ts-ignore
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        (getWindow().adsbygoogle = getWindow().adsbygoogle || []).push({});
     }, []);
 
     return (

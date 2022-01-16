@@ -156,3 +156,7 @@ export interface News {
     imageCopyright?: string;
     facets: string[];
 }
+
+export interface SiteMapLinks {
+    links: string[];
+}
