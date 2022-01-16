@@ -1,7 +1,7 @@
 const siteUrl = 'https://www.brishty.net';
 
 const additionalWeatherSitemaps = [...Array(21).keys()].map(
-    (page) => `${siteUrl}/additional-sitemaps/server-sitemap-page-${page}.xml`,
+    (page) => `${siteUrl}/additional-sitemaps/server-sitemap-page-${page + 1}.xml`,
 );
 
 module.exports = {
