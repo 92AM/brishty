@@ -1,13 +1,18 @@
-const siteUrl = 'https://www.brishty.net';
+const {
+    SITE_URL,
+    STATIC_SITEMAP_FILE_NAME,
+    SITEMAP_XML_EXTENSION,
+    DYNAMIC_ADDITIONAL_SITEMAP_PATH,
+} = require('./utility/constants');
 
 const additionalWeatherSitemaps = [...Array(21).keys()].map(
-    (page) => `${siteUrl}/additional-sitemaps/server-sitemap-page-${page + 1}.xml`,
+    (page) => `${SITE_URL}${DYNAMIC_ADDITIONAL_SITEMAP_PATH}${page + 1}${SITEMAP_XML_EXTENSION}`,
 );
 
 module.exports = {
-    siteUrl,
+    SITE_URL,
     generateRobotsTxt: true,
     robotsTxtOptions: {
-        additionalSitemaps: [`${siteUrl}/sitemap.xml`, ...additionalWeatherSitemaps],
+        additionalSitemaps: [`${SITE_URL}/${STATIC_SITEMAP_FILE_NAME}`, ...additionalWeatherSitemaps],
     },
 };

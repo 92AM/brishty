@@ -12,6 +12,7 @@ export const NEARBY_LOCATION_MAP_ICON_SIZE = 30;
 export const NEARBY_LOCATION_RADIUS = 100;
 export const NEARBY_LOCATIONS_LIMIT = 10;
 export const NEARBY_LOCATION_TYPE = 'CITY';
+export const SITE_URL = 'https://www.brishty.net';
 
 // Google Analytics Event IDs
 
@@ -38,3 +39,6 @@ export const COOKIE_CONSENT_NAME = 'cookie-consent-value';
 
 export const BRISHTY_SITEMAP_GENERATOR_HOST = 'https://brishty-sitemap-generator.herokuapp.com';
 export const BRISHTY_SITEMAP_GENERATOR_ENDPOINT_PATH = '/generate-sitemap';
+export const STATIC_SITEMAP_FILE_NAME = 'sitemap.xml';
+export const SITEMAP_XML_EXTENSION = '.xml';
+export const DYNAMIC_ADDITIONAL_SITEMAP_PATH = '/additional-sitemaps/weather-sitemap-page-';
