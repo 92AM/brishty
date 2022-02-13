@@ -3,15 +3,11 @@ import '../styles/customStyles.css';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
-import Cookies from 'js-cookie';
-import { COOKIE_CONSENT_NAME } from '../utility/constants';
-
-const setCookieConsent = (cookieConsentValue) => {
-    return cookieConsentValue === undefined || cookieConsentValue === false ? false : cookieConsentValue;
-};
+import { BrishtyContextProvider } from '../context/State';
 
 const App = ({ Component, pageProps }) => {
     const router = useRouter();
+
     useEffect(() => {
         const handleRouteChange = (url) => {
             gtag.pageview(url);
@@ -22,10 +18,11 @@ const App = ({ Component, pageProps }) => {
         };
     }, [router.events]);
 
-    const cookieConsentValue = Cookies.get(COOKIE_CONSENT_NAME);
-    Cookies.set(COOKIE_CONSENT_NAME, setCookieConsent(cookieConsentValue));
-
-    return <Component {...pageProps} />;
+    return (
+        <BrishtyContextProvider>
+            <Component {...pageProps} />
+        </BrishtyContextProvider>
+    );
 };
 
 export default App;
