@@ -3,7 +3,7 @@ import { COOKIE_CONSENT_NAME } from '../utility/constants';
 import { getConsentCookieValue, setConsentCookieValue } from '../services/CookieService';
 
 export interface BrishtyContextProps {
-    displayCookieConsentModal: boolean | true;
+    displayCookieConsentModal: boolean | false;
 }
 
 export const BrishtyContext = createContext({} as BrishtyContextProps);

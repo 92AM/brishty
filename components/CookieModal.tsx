@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useBrishtyContext } from '../context/State';
+import { useBrishtyContext } from '../context/BrishtyCookieContext';
 import { setConsentCookieValue } from '../services/CookieService';
 import { COOKIE_CONSENT_NAME } from '../utility/constants';
 
