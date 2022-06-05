@@ -109,7 +109,6 @@ export type WeatherDetailsProps = {
 };
 
 export type MapProps = {
-    blackAndWhiteChecked: boolean;
     mapnikChecked: boolean;
     zoomLevel: number;
     width: string;

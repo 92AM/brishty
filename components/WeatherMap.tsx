@@ -201,11 +201,6 @@ const WeatherMap = ({
                         </LayersControl.Overlay>
                     )}
                     <MapLayer
-                        layerDisplayName={'OpenStreetMap - Black And White'}
-                        mapLayerUrl={'https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'}
-                        checked={mapProps.blackAndWhiteChecked}
-                    />
-                    <MapLayer
                         layerDisplayName={'OpenStreetMap - Standard Mapnik'}
                         mapLayerUrl={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
                         checked={mapProps.mapnikChecked}
