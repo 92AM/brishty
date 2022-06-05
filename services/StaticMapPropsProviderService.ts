@@ -10,7 +10,6 @@ import {
 
 export const getWeatherDetailsPageStaticMapProps = (): MapProps => {
     return {
-        blackAndWhiteChecked: false,
         mapnikChecked: true,
         zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
         width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
@@ -29,7 +28,6 @@ export const getWeatherDetailsPageStaticMapProps = (): MapProps => {
 
 export const getExpandedMapPageStaticMapProps = (): MapProps => {
     return {
-        blackAndWhiteChecked: false,
         mapnikChecked: true,
         zoomLevel: WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL + 2,
         width: WEATHER_DETAILS_PAGE_MAP_WIDTH,
@@ -48,7 +46,6 @@ export const getExpandedMapPageStaticMapProps = (): MapProps => {
 
 export const getHomePageStaticMapProps = (): MapProps => {
     return {
-        blackAndWhiteChecked: false,
         mapnikChecked: true,
         zoomLevel: HOMEPAGE_MAP_ZOOM_LEVEL,
         width: HOMEPAGE_MAP_WIDTH,
@@ -67,7 +64,6 @@ export const getHomePageStaticMapProps = (): MapProps => {
 
 export const getExpandedHomePageStaticMapProps = (): MapProps => {
     return {
-        blackAndWhiteChecked: false,
         mapnikChecked: true,
         zoomLevel: HOMEPAGE_MAP_ZOOM_LEVEL,
         width: HOMEPAGE_MAP_WIDTH,
