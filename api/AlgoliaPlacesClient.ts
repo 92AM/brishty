@@ -1,3 +1,5 @@
+// Deprecated - do not use anymore, this API is not in service anymore.
+
 const URL = `https://places-dsn.algolia.net/1/places/query`;
 const PARAMS = 'hitsPerPage=5&language=en&type=city';
 

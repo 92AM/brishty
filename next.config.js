@@ -6,6 +6,7 @@ module.exports = {
         nyTimesApiKey: '7cJCevyHNkSvRwNIbhBJYttxPNPuV1o3',
         useTypeaheadLocationSearch: 'true',
         googleAnalyticsTrackingId: 'G-8K19NYL1FR',
+        geoApiFyApiKey: 'b20cf73d361f4165b9808506c7e7b2c3',
     },
     target: 'serverless',
 };
