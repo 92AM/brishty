@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { AsyncTypeahead, Highlighter, TypeaheadMenuProps, TypeaheadResult } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
-import { algoliaPlacesClient } from '../api/AlgoliaPlacesClient';
 import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
 import { GA_EVENT_SEARCH_TYPE_LOCATION_SEARCH_USING_TYPEAHEAD_AUTOCOMPLETE_ID } from '../utility/constants';
+import { geoApiFyAutoCompleteClient } from '../api/GeoapifyAutoCompleteClient';
 
 type LocationSearch = {
     [index: string]: string;
@@ -28,15 +28,17 @@ const PLACEHOLDER_TEXT = 'Search for a location...';
 const SEARCH_DELAY = 250;
 const SHOULD_USE_CACHE = true;
 
-const getLocationDetails = (hits: any) => {
-    return hits.map(
-        (hit: any) =>
+const getLocationDetails = (response: any) => {
+    const { results } = response;
+
+    return results.map(
+        (eachResult: any) =>
             ({
-                displayableLocation: hit.locale_names[0] + ', ' + hit.administrative[0] + ', ' + hit.country,
-                searchLocation: hit.locale_names[0],
-                latitude: hit._geoloc.lat,
-                longitude: hit._geoloc.lng,
-                countryCode: hit.country_code,
+                displayableLocation: eachResult.formatted,
+                searchLocation: eachResult.name ?? eachResult.address_line1,
+                latitude: eachResult.lat,
+                longitude: eachResult.lon,
+                countryCode: eachResult.country_code,
             } as LocationSearch),
     );
 };
@@ -75,10 +77,10 @@ const AsyncLocationSearchTypeahead = ({
 
     const handleSearch = (query: string) => {
         setIsLoading(true);
-        algoliaPlacesClient(query)
+        geoApiFyAutoCompleteClient(query)
             .then((resp) => resp.json())
-            .then(({ hits }) => {
-                const options = getLocationDetails(hits);
+            .then((jsonResponse) => {
+                const options = getLocationDetails(jsonResponse);
                 setOptions(options);
                 setIsLoading(false);
             });

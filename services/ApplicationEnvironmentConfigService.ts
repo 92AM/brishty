@@ -8,6 +8,8 @@ export const nyTimesApiKey: string | undefined = process.env.nyTimesApiKey;
 
 export const googleAnalyticsTrackingId: string | undefined = process.env.googleAnalyticsTrackingId;
 
+export const geoApiFyApiKey: string | undefined = process.env.geoApiFyApiKey;
+
 export const useTypeaheadLocationSearch = (): boolean => {
     return (
         process.env.useTypeaheadLocationSearch !== undefined &&
