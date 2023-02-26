@@ -3,7 +3,7 @@ import '../styles/customStyles.css';
 import React, { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
-import { BrishtyContextProvider } from '../context/BrishtyCookieContext';
+import { BrishtyContextProvider } from '../contexts/BrishtyCookieContext';
 
 function App(props: { Component: FC; pageProps: any }) {
     const { Component, pageProps } = props;

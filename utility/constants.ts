@@ -33,8 +33,3 @@ export const GA_EVENT_INTERACTION_DISPLAY_HOURLY_WEATHER_MODAL_ID = 6;
 // Main cookie consent name
 
 export const COOKIE_CONSENT_NAME = 'cookie-consent-value';
-
-// Sitemap related constants
-
-export const BRISHTY_SITEMAP_GENERATOR_HOST = 'https://brishty-sitemap-generator.herokuapp.com';
-export const BRISHTY_SITEMAP_GENERATOR_ENDPOINT_PATH = '/generate-sitemap';

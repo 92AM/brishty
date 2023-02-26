@@ -1,5 +1,5 @@
 import { NearbyLocation } from '../interfaces';
-import { geoDbNearbyLocationsClient } from '../api/GeoDbNearbyLocationsClient';
+import { geoDbNearbyLocationsClient } from '../apis/GeoDbNearbyLocationsClient';
 import { sanitiseCoordinate } from './GenericUtilityService';
 import { mapToCoordinate } from './WeatherDetailsService';
 

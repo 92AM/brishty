@@ -1,5 +1,5 @@
 import { News } from '../interfaces';
-import { nyTimesNewsClient } from '../api/NyTimesNewsClient';
+import { nyTimesNewsClient } from '../apis/NyTimesNewsClient';
 
 const isMultimediaAvailable = (news: any): boolean => {
     return news.multimedia !== null && news.multimedia !== undefined;

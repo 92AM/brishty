@@ -1,7 +1,7 @@
 /* eslint-disable  @typescript-eslint/explicit-module-boundary-types */
 
-import { openWeatherMapLocationDetailsClient } from '../api/OpenWeatherMapLocationDetailsClient';
-import { openWeatherMapWeatherDetailsClient } from '../api/OpenWeatherMapWeatherDetailsClient';
+import { openWeatherMapLocationDetailsClient } from '../apis/OpenWeatherMapLocationDetailsClient';
+import { openWeatherMapWeatherDetailsClient } from '../apis/OpenWeatherMapWeatherDetailsClient';
 import {
     Coordinate,
     Current,

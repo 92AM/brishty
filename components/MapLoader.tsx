@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { MainLocationForMap, MapProps, NearbyLocationForMap } from '../interfaces';
 import MapPlaceholder from './MapPlaceholder';
@@ -18,7 +18,7 @@ export const MapLoader = ({
     useFullViewport: useFullViewport,
     height: height,
 }: MapLoaderProps) => {
-    const MapComponent = React.useMemo(
+    const MapComponent = useMemo(
         () =>
             dynamic(() => import('./Map'), {
                 loading: () =>

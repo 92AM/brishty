@@ -6,7 +6,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
 import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
 import { GA_EVENT_SEARCH_TYPE_LOCATION_SEARCH_USING_TYPEAHEAD_AUTOCOMPLETE_ID } from '../utility/constants';
-import { geoApiFyAutoCompleteClient } from '../api/GeoapifyAutoCompleteClient';
+import { geoApiFyAutoCompleteClient } from '../apis/GeoapifyAutoCompleteClient';
 
 type LocationSearch = {
     [index: string]: string;
