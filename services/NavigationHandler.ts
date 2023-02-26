@@ -1,9 +1,9 @@
 import { getWindow } from './BrowserService';
 
-export const onClickReturnToHome = () => getWindow().location.assign('/');
+export const onClickReturnToHome = (): void => getWindow().location.assign('/');
 
-export const onClickAboutUs = () => getWindow().location.assign('/about');
+export const onClickAboutUs = (): void => getWindow().location.assign('/about');
 
-export const onClickTopUkWeathers = () => getWindow().location.assign('/weather/ukweather');
+export const onClickTopUkWeathers = (): void => getWindow().location.assign('/weather/ukweather');
 
-export const onClickTopWorldWeathers = () => getWindow().location.assign('/weather/worldweather');
+export const onClickTopWorldWeathers = (): void => getWindow().location.assign('/weather/worldweather');

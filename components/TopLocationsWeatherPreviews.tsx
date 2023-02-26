@@ -16,10 +16,10 @@ const TopLocationsWeatherPreviews = ({ items: locationsWeathers }: TopLocationsW
             xl:grid-cols-2
             2xl:grid-cols-3 gap-5"
         >
-            {locationsWeathers.map((locationWeather) => {
+            {locationsWeathers.map((locationWeather, index) => {
                 const location = locationWeather.locationName + ', ' + locationWeather.countryCode;
                 return (
-                    <div className="w-full lg:max-w-full lg:flex shadow-lg">
+                    <div className="w-full lg:max-w-full lg:flex shadow-lg" key={index}>
                         <img
                             className="hidden lg:block h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t
                     lg:rounded-t-none lg:rounded-l text-center overflow-hidden"

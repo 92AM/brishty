@@ -65,6 +65,7 @@ const TopLocationsWeatherPreviewsCarousel = ({ items, mainLocation }: TopLocatio
             <div
                 className="inline-block px-3 my-4 cursor-pointer"
                 onClick={() => onClickLoadViewMoreLocationPage(mainLocation)}
+                key={mainLocation}
             >
                 <div
                     className="flex p-4 w-64 h-full max-w-xs overflow-hidden rounded-3xl
