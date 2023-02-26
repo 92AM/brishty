@@ -2,13 +2,13 @@ import React from 'react';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import { AboutSvg, GbSvg, HomeSvg, RightChevronSvg, WorldSvg } from '../components/SvgFactory';
-import { CookieModal } from '../components/CookieModal';
 import {
     onClickAboutUs,
     onClickReturnToHome,
     onClickTopUkWeathers,
     onClickTopWorldWeathers,
 } from '../services/NavigationHandler';
+import { CookieModalLoader } from '../components/CookieModalLoader';
 
 export default function Custom404() {
     return (
@@ -81,7 +81,7 @@ export default function Custom404() {
                     </div>
                 </div>
             </PageContentWrapper>
-            <CookieModal />
+            <CookieModalLoader />
         </Layout>
     );
 }

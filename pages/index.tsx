@@ -10,13 +10,13 @@ import { getWorldNews } from '../services/WorldNewsService';
 import WorldNews from '../components/WorldNews';
 import { HOME_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
 import { GoogleAdComponent } from '../components/GoogleAdComponent';
-import { CookieModal } from '../components/CookieModal';
 import {
     EUROPEAN_TOP_SEARCH_LOCATIONS,
     REST_OF_WORLD_TOP_SEARCH_LOCATIONS,
     UK_TOP_SEARCH_LOCATIONS,
 } from '../services/StaticLocationsFactory';
 import { getCurrentWeatherOfLocations } from '../services/WeatherDetailsService';
+import { CookieModalLoader } from '../components/CookieModalLoader';
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -74,7 +74,7 @@ const IndexPage = ({
                 )}
                 {worldNews && <WorldNews items={worldNews} />}
             </PageContentWrapper>
-            <CookieModal />
+            <CookieModalLoader />
         </Layout>
     );
 };

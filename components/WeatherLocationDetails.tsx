@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { WEATHER_DETAILS_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
 import { LeftArrowSvg } from './SvgFactory';
 import { GoogleAdComponent } from './GoogleAdComponent';
-import { CookieModal } from './CookieModal';
+import { CookieModalLoader } from './CookieModalLoader';
 
 const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
     const mainLocationForMap: MainLocationForMap = {
@@ -69,7 +69,7 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
             <PageContentWrapper classNameCustomAttributes={'py-8 px-2'}>
                 {weatherDetails && <SevenDayWeather item={weatherDetails.daily} />}
             </PageContentWrapper>
-            <CookieModal />
+            <CookieModalLoader />
         </Layout>
     );
 };

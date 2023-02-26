@@ -2,8 +2,8 @@ import PageContentWrapper from '../components/PageContentWrapper';
 import Layout from '../components/Layout';
 import React from 'react';
 import { AboutSvg, HomeSvg, RightChevronSvg } from '../components/SvgFactory';
-import { CookieModal } from '../components/CookieModal';
 import { onClickAboutUs, onClickReturnToHome } from '../services/NavigationHandler';
+import { CookieModalLoader } from '../components/CookieModalLoader';
 
 function Error(props: { statusCode: any }) {
     const { statusCode } = props;
@@ -64,7 +64,7 @@ function Error(props: { statusCode: any }) {
                     )}
                 </div>
             </PageContentWrapper>
-            <CookieModal />
+            <CookieModalLoader />
         </Layout>
     );
 }

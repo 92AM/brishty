@@ -3,7 +3,7 @@ import { useBrishtyContext } from '../contexts/BrishtyCookieContext';
 import { setConsentCookieValue } from '../services/CookieService';
 import { COOKIE_CONSENT_NAME } from '../utility/constants';
 
-export const CookieModal = () => {
+const CookieModal = () => {
     const brishtyContext = useBrishtyContext();
     const { displayCookieConsentModal } = brishtyContext;
 
@@ -43,3 +43,5 @@ export const CookieModal = () => {
         </>
     ) : null;
 };
+
+export default CookieModal;

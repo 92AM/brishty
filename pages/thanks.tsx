@@ -2,8 +2,8 @@ import React from 'react';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import { AboutSvg, HomeSvg, RightChevronSvg } from '../components/SvgFactory';
-import { CookieModal } from '../components/CookieModal';
 import { onClickAboutUs, onClickReturnToHome } from '../services/NavigationHandler';
+import { CookieModalLoader } from '../components/CookieModalLoader';
 
 export default function Thanks() {
     return (
@@ -49,7 +49,7 @@ export default function Thanks() {
                     </div>
                 </div>
             </PageContentWrapper>
-            <CookieModal />
+            <CookieModalLoader />
         </Layout>
     );
 }

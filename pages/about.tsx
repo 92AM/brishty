@@ -3,8 +3,8 @@ import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
 import { GbSvg, HomeSvg, RightChevronSvg, WorldSvg } from '../components/SvgFactory';
-import { CookieModal } from '../components/CookieModal';
 import { onClickReturnToHome, onClickTopUkWeathers, onClickTopWorldWeathers } from '../services/NavigationHandler';
+import { CookieModalLoader } from '../components/CookieModalLoader';
 
 export default function About() {
     return (
@@ -151,7 +151,7 @@ export default function About() {
                     </div>
                 </div>
             </PageContentWrapper>
-            <CookieModal />
+            <CookieModalLoader />
         </Layout>
     );
 }

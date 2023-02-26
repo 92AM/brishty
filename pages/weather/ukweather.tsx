@@ -3,9 +3,9 @@ import { LocationCurrentWeather } from '../../interfaces';
 import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
-import { CookieModal } from '../../components/CookieModal';
 import { getCurrentWeatherOfLocations } from '../../services/WeatherDetailsService';
 import { MORE_UK_TOP_SEARCH_LOCATIONS } from '../../services/StaticLocationsFactory';
+import { CookieModalLoader } from '../../components/CookieModalLoader';
 
 type UkWeatherProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -19,7 +19,7 @@ const UkWeather = ({ ukTopLocationsWeathers }: UkWeatherProps) => {
                 <span className="block pt-3 text-center text-2xl text-gray-800">Top UK forecasts</span>
                 {ukTopLocationsWeathers && <TopLocationsWeatherPreviews items={ukTopLocationsWeathers} />}
             </PageContentWrapper>
-            <CookieModal />
+            <CookieModalLoader />
         </Layout>
     );
 };
