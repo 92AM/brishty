@@ -1,19 +1,12 @@
 import PageContentWrapper from '../components/PageContentWrapper';
 import Layout from '../components/Layout';
 import React from 'react';
-import { getWindow } from '../services/BrowserService';
-import {AboutSvg, HomeSvg, RightChevronSvg} from "../components/SvgFactory";
-import {CookieModal} from "../components/CookieModal";
+import { AboutSvg, HomeSvg, RightChevronSvg } from '../components/SvgFactory';
+import { CookieModal } from '../components/CookieModal';
+import { onClickAboutUs, onClickReturnToHome } from '../services/NavigationHandler';
 
-const onClickAboutUs = () => {
-    getWindow().location.assign('/about');
-};
-
-const onClickReturnToHome = () => {
-    getWindow().location.assign('/');
-};
-
-function Error({ statusCode }) {
+function Error(props: { statusCode: any }) {
+    const { statusCode } = props;
     return (
         <Layout title="Brishty - search for weather">
             <PageContentWrapper classNameCustomAttributes={'px-4 pt-20 pb-20 min-h-screen'}>
@@ -42,7 +35,10 @@ function Error({ statusCode }) {
                                         <p className="pt-1 text-lg text-gray-700 text-base">Back to home</p>
                                     </div>
                                     <div className="flex-2 float-right">
-                                        <RightChevronSvg className={'pl-18 pt-1 flex-1 h-7 w-7'} viewBox={'0 0 24 24'} />
+                                        <RightChevronSvg
+                                            className={'pl-18 pt-1 flex-1 h-7 w-7'}
+                                            viewBox={'0 0 24 24'}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +53,10 @@ function Error({ statusCode }) {
                                         <p className="pt-1 text-lg text-gray-700 text-base">About us</p>
                                     </div>
                                     <div className="flex-2 float-right">
-                                        <RightChevronSvg className={'pl-18 pt-1 flex-1 h-7 w-7'} viewBox={'0 0 24 24'} />
+                                        <RightChevronSvg
+                                            className={'pl-18 pt-1 flex-1 h-7 w-7'}
+                                            viewBox={'0 0 24 24'}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +69,8 @@ function Error({ statusCode }) {
     );
 }
 
-Error.getInitialProps = ({ res, err }) => {
+Error.getInitialProps = (props: { res: any; err: any }) => {
+    const { res, err } = props;
     const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
     return { statusCode };
 };

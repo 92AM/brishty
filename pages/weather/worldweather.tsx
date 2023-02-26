@@ -3,8 +3,9 @@ import { LocationCurrentWeather } from '../../interfaces';
 import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
-import { getWorldMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
 import { CookieModal } from '../../components/CookieModal';
+import { getCurrentWeatherOfLocations } from '../../services/WeatherDetailsService';
+import { MORE_WORLD_TOP_SEARCH_LOCATIONS } from '../../services/StaticLocationsFactory';
 
 type WorldWeatherProps = {
     worldTopLocationsWeathers: LocationCurrentWeather[];
@@ -25,7 +26,7 @@ const WorldWeather = ({ worldTopLocationsWeathers }: WorldWeatherProps) => {
 
 WorldWeather.getInitialProps = async () => {
     return {
-        worldTopLocationsWeathers: await getWorldMoreTopLocationsCurrentWeathers(),
+        worldTopLocationsWeathers: await getCurrentWeatherOfLocations(MORE_WORLD_TOP_SEARCH_LOCATIONS),
     };
 };
 

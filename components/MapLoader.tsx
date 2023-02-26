@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { MainLocationForMap, MapProps, NearbyLocationForMap } from '../interfaces';
 import MapPlaceholder from './MapPlaceholder';
 
-type Props = {
+type MapLoaderProps = {
     mainLocationForMap?: MainLocationForMap;
     mapProps: MapProps;
     nearbyLocationsForMap?: NearbyLocationForMap[];
@@ -17,10 +17,10 @@ export const MapLoader = ({
     nearbyLocationsForMap: nearbyLocationsForMap,
     useFullViewport: useFullViewport,
     height: height,
-}: Props) => {
+}: MapLoaderProps) => {
     const MapComponent = React.useMemo(
         () =>
-            dynamic(() => import('./WeatherMap'), {
+            dynamic(() => import('./Map'), {
                 loading: () =>
                     useFullViewport ? <MapPlaceholder useFullViewport={useFullViewport} /> : <MapPlaceholder />,
                 ssr: false,

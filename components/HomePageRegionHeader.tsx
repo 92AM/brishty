@@ -1,10 +1,10 @@
 import React from 'react';
 
-type Props = {
+type HomePageRegionHeaderProps = {
     item: string;
 };
 
-const HomePageRegionHeader = ({ item: regionHeaderText }: Props) => {
+const HomePageRegionHeader = ({ item: regionHeaderText }: HomePageRegionHeaderProps) => {
     const locationTitleContent =
         regionHeaderText == 'World'
             ? 'Rest of the ' + regionHeaderText + ' forecasts'

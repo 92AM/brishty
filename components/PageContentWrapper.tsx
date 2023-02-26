@@ -7,13 +7,7 @@ type Props = {
 };
 
 const PageContentWrapper = ({ children, classNameCustomAttributes, addDefaultAttributes }: Props) => {
-    let shouldAddDefaultAttributes;
-
-    if (addDefaultAttributes === undefined) {
-        shouldAddDefaultAttributes = true;
-    } else {
-        shouldAddDefaultAttributes = addDefaultAttributes;
-    }
+    const shouldAddDefaultAttributes = addDefaultAttributes === undefined ? true : addDefaultAttributes;
 
     const defaultClassNameAttributes = shouldAddDefaultAttributes ? 'md:container md:mx-auto' : '';
     const defaultClassNameAttributesToAdd = shouldAddDefaultAttributes

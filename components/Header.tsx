@@ -18,9 +18,7 @@ const Header = () => {
 
     useEffect(() => {
         getDocument().addEventListener('mousedown', checkIfSearchContentIsClicked);
-        return () => {
-            getDocument().removeEventListener('mousedown', checkIfSearchContentIsClicked);
-        };
+        return () => getDocument().removeEventListener('mousedown', checkIfSearchContentIsClicked);
     }, []);
 
     const checkIfSearchContentIsClicked = (e: any) => {
@@ -31,9 +29,8 @@ const Header = () => {
         setClickedOnSearchFormState(false);
     };
 
-    const handleBurgerMenuOnClickEvent = () => {
+    const handleBurgerMenuOnClickEvent = () =>
         isBurgerMenuOpen ? setBurgerMenuState(false) : setBurgerMenuState(true);
-    };
 
     const handleSearchButtonOnClickEvent = () => {
         displayNavSearch ? setDisplayNavSearch(false) : setDisplayNavSearch(true);

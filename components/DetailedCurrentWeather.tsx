@@ -4,11 +4,11 @@ import { WeatherDetails } from '../interfaces';
 import moment from 'moment';
 import { windDegreeToText } from '../services/GenericUtilityService';
 
-type Props = {
+type DetailedCurrentWeatherProps = {
     item: WeatherDetails;
 };
 
-const DetailedCurrentWeather = ({ item: weatherDetails }: Props) => {
+const DetailedCurrentWeather = ({ item: weatherDetails }: DetailedCurrentWeatherProps) => {
     return (
         <div className="bg-gray-800 text-white text-2l text-center p-8">
             <div

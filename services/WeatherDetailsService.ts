@@ -70,28 +70,21 @@ const mapToCurrentWeather = (weatherDetailsJson: any): Current => {
 };
 
 const mapToHourlyWeather = (weatherDetailsJson: any): Hour[] => {
-    const hourlyWeather = weatherDetailsJson.hourly;
-    const hourly: Hour[] = [];
-
-    hourlyWeather.forEach((hour: any) => {
-        const tempHour: Hour = {
+    const toHourWeather = (hour: any): Hour => {
+        return {
             dateTime: hour.dt,
             temperature: convertKelvinToCelsius(hour.temp),
             weather: mapToWeather(hour.weather[0]),
             probabilityOfPrecipitation: hour.pop,
         };
-        hourly.push(tempHour);
-    });
+    };
 
-    return hourly;
+    return weatherDetailsJson.hourly.map((hour: any) => toHourWeather(hour));
 };
 
 const mapToDailyWeather = (weatherDetailsJson: any): Daily[] => {
-    const dailyWeather = weatherDetailsJson.daily;
-    const daily: Daily[] = [];
-
-    dailyWeather.forEach((dailyItem: any) => {
-        const tempDaily: Daily = {
+    const toDailyWeather = (dailyItem: any) => {
+        return {
             dateTime: dailyItem.dt,
             sunrise: dailyItem.sunrise,
             sunset: dailyItem.sunset,
@@ -108,10 +101,9 @@ const mapToDailyWeather = (weatherDetailsJson: any): Daily[] => {
             probabilityOfPrecipitation: dailyItem.pop,
             uvIndex: dailyItem.uvi,
         };
-        daily.push(tempDaily);
-    });
+    };
 
-    return daily;
+    return weatherDetailsJson.daily.map((dailyItem: any) => toDailyWeather(dailyItem));
 };
 
 export const mapToCoordinate = (coordinate: any): Coordinate => {
@@ -165,6 +157,16 @@ export const getLocationCurrentWeather = async (
 ): Promise<LocationCurrentWeather> => {
     const locationDetailsAsJson = await openWeatherMapLocationDetailsClient(locationName);
     return mapLocationDetailsJsonToLocationCurrentWeather(locationDetailsAsJson);
+};
+
+export const getCurrentWeatherOfLocations = async (locations: string[]): Promise<LocationCurrentWeather[]> => {
+    const currentWeatherOfLocations = [];
+
+    for await (const locationName of locations) {
+        currentWeatherOfLocations.push(await getLocationCurrentWeather(locationName));
+    }
+
+    return currentWeatherOfLocations;
 };
 
 export const getWeatherDetailsByLocationName = async (

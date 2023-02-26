@@ -2,21 +2,9 @@ import React from 'react';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
-import { getWindow } from '../services/BrowserService';
 import { GbSvg, HomeSvg, RightChevronSvg, WorldSvg } from '../components/SvgFactory';
 import { CookieModal } from '../components/CookieModal';
-
-const onClickReturnToHome = () => {
-    getWindow().location.assign('/');
-};
-
-const onClickTopUkWeathers = () => {
-    getWindow().location.assign('/weather/ukweather');
-};
-
-const onClickTopWorldWeathers = () => {
-    getWindow().location.assign('/weather/worldweather');
-};
+import { onClickReturnToHome, onClickTopUkWeathers, onClickTopWorldWeathers } from '../services/NavigationHandler';
 
 export default function About() {
     return (

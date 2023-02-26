@@ -3,8 +3,9 @@ import { LocationCurrentWeather } from '../../interfaces';
 import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
-import { getUkMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
 import { CookieModal } from '../../components/CookieModal';
+import { getCurrentWeatherOfLocations } from '../../services/WeatherDetailsService';
+import { MORE_UK_TOP_SEARCH_LOCATIONS } from '../../services/StaticLocationsFactory';
 
 type UkWeatherProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -25,7 +26,7 @@ const UkWeather = ({ ukTopLocationsWeathers }: UkWeatherProps) => {
 
 UkWeather.getInitialProps = async () => {
     return {
-        ukTopLocationsWeathers: await getUkMoreTopLocationsCurrentWeathers(),
+        ukTopLocationsWeathers: await getCurrentWeatherOfLocations(MORE_UK_TOP_SEARCH_LOCATIONS),
     };
 };
 

@@ -10,9 +10,9 @@ import { setPageModel } from '../../../services/PageModelService';
 import PageContentWrapper from '../../../components/PageContentWrapper';
 import { getNearbyLocations, removeSourceLocationFromNearbyLocation } from '../../../services/NearbyLocationsService';
 import {
-    getExpandedMapPageStaticMapProps,
-    getHomePageStaticMapProps,
-} from '../../../services/StaticMapPropsProviderService';
+    EXPANDED_MAP_PAGE_STATIC_MAP_PROPS,
+    HOME_PAGE_STATIC_MAP_PROPS,
+} from '../../../services/StaticMapPropsFactory';
 import { LeftArrowSvg } from '../../../components/SvgFactory';
 
 interface ExpandedWeatherMapProperties {
@@ -46,9 +46,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
         const mainLocationForMap: MainLocationForMap = {
             coordinate: { latitude: latitude, longitude: longitude } as Coordinate,
-            locationName: locationName,
-            temperature: temperature,
-            countryCode: countryCode,
+            locationName,
+            temperature,
+            countryCode,
         };
 
         const nearbyLocations = await getNearbyLocations(
@@ -60,28 +60,23 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             NEARBY_LOCATION_TYPE,
         );
 
-        const nearbyLocationsWithSourceRemoved = removeSourceLocationFromNearbyLocation(nearbyLocations, locationName);
-
-        const nearbyLocationsForMap: NearbyLocationForMap[] = [];
-
-        nearbyLocationsWithSourceRemoved.forEach((location) => {
-            const nearbyLocationForMap: NearbyLocationForMap = {
-                coordinate: location.coordinate,
-                locationName: location.name,
-                distance: location.distance,
-                countryCode: location.countryCode,
-            };
-            nearbyLocationsForMap.push(nearbyLocationForMap);
-        });
-
         const mapProps = parseBooleanStringOrDefault(shouldLoadExpandedMapPageProps)
-            ? getExpandedMapPageStaticMapProps()
-            : getHomePageStaticMapProps();
+            ? EXPANDED_MAP_PAGE_STATIC_MAP_PROPS
+            : HOME_PAGE_STATIC_MAP_PROPS;
 
         const expandedWeatherMapProperties: ExpandedWeatherMapProperties = {
             mainLocationForMap: mainLocationForMap,
             mapProps: mapProps,
-            nearbyLocationsForMap: nearbyLocationsForMap,
+            nearbyLocationsForMap: removeSourceLocationFromNearbyLocation(nearbyLocations, locationName).map(
+                (location) => {
+                    return {
+                        coordinate: location.coordinate,
+                        locationName: location.name,
+                        distance: location.distance,
+                        countryCode: location.countryCode,
+                    };
+                },
+            ),
         };
 
         return {

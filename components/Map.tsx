@@ -5,12 +5,11 @@ import { MainLocationForMap, MapProps, NearbyLocationForMap } from '../interface
 import React, { Fragment } from 'react';
 import { MAIN_LOCATION_MAP_ICON_SIZE, NEARBY_LOCATION_MAP_ICON_SIZE } from '../utility/constants';
 import { openWeatherMapApiKeyForMap } from '../services/ApplicationEnvironmentConfigService';
-import WeatherMapLegend from './WeatherMapLegend';
-import { searchWeatherByGeoLocation } from '../services/SearchService';
-import MapPositionResetController from './MapPositionResetController';
-import MapExpandController from './DetailedWeatherMapExpandController';
-import BasicMapExpandController from './BasicMapExpandController';
+import MapLegend from './MapLegend';
+import { executeExpandedMapSearch, searchWeatherByGeoLocation } from '../services/SearchService';
+import MapControlsExecutor from './MapControlsExecutor';
 import { getMainLocationPinSvgIcon, getNearbyLocationPinSvgIcon } from './SvgFactory';
+import { getWindow } from '../services/BrowserService';
 
 const OWM_API_KEY = openWeatherMapApiKeyForMap;
 
@@ -40,72 +39,7 @@ interface MapLayerProps {
     checked: boolean;
 }
 
-interface NearbyLocationsCoordinatesProps {
-    nearbyLocationsForMap: NearbyLocationForMap[];
-}
-
-const WeatherLayer = ({ layerDisplayName, omwLayerName, checked }: WeatherLayerProps) => {
-    return (
-        <LayersControl.Overlay checked={checked} name={layerDisplayName}>
-            <TileLayer
-                url={`https://tile.openweathermap.org/map/${omwLayerName}/{z}/{x}/{y}.png?appid=${OWM_API_KEY}`}
-            />
-        </LayersControl.Overlay>
-    );
-};
-
-const MapLayer = ({ layerDisplayName, mapLayerUrl, checked }: MapLayerProps) => {
-    return (
-        <LayersControl.BaseLayer checked={checked} name={layerDisplayName}>
-            <TileLayer attribution={mapAttributions} url={mapLayerUrl} />
-        </LayersControl.BaseLayer>
-    );
-};
-
-const NearbyLocationsMarkers = ({ nearbyLocationsForMap }: NearbyLocationsCoordinatesProps) => {
-    return (
-        <Fragment>
-            <LayerGroup>
-                {nearbyLocationsForMap.map((each, index) => (
-                    <Marker
-                        key={index}
-                        position={[Number(each.coordinate.latitude), Number(each.coordinate.longitude)]}
-                        icon={L.divIcon({
-                            iconSize: [NEARBY_LOCATION_MAP_ICON_SIZE, NEARBY_LOCATION_MAP_ICON_SIZE],
-                            iconAnchor: [NEARBY_LOCATION_MAP_ICON_SIZE / 2, NEARBY_LOCATION_MAP_ICON_SIZE + 9],
-                            className: '',
-                            html: getNearbyLocationPinSvgIcon(),
-                        })}
-                    >
-                        {each.locationName && each.distance && each.countryCode && each.coordinate && (
-                            <Popup>
-                                <span className={'p-1 text-gray-800 text-lg'}>{each.locationName}</span> <br />
-                                <span className={'p-1 text-gray-800 text-sm'}>{each.distance} miles away</span> <br />
-                                <button
-                                    className={
-                                        'p-1 text-gray-100 bg-gray-800 mt-3 text-base rounded-xl border border-gray-800'
-                                    }
-                                    onClick={() =>
-                                        onClickLoadNearbyLocationWeather(
-                                            each.locationName,
-                                            each.coordinate.latitude,
-                                            each.coordinate.longitude,
-                                            each.countryCode,
-                                        )
-                                    }
-                                >
-                                    <span className={'p-2'}>{'View Weather >'}</span>
-                                </button>
-                            </Popup>
-                        )}
-                    </Marker>
-                ))}
-            </LayerGroup>
-        </Fragment>
-    );
-};
-
-type Props = {
+type CombinedMapProps = {
     mainLocationForMap?: MainLocationForMap;
     mapProps: MapProps;
     nearbyLocationsForMap?: NearbyLocationForMap[];
@@ -113,13 +47,13 @@ type Props = {
     height?: number;
 };
 
-const WeatherMap = ({
+const Map = ({
     mainLocationForMap: mainLocationForMap,
     mapProps: mapProps,
     nearbyLocationsForMap: nearbyLocationsForMap,
     useFullViewport: useFullViewport,
     height: height,
-}: Props) => {
+}: CombinedMapProps) => {
     const londonLatitude = 0;
     const londonLongitude = 0;
 
@@ -129,6 +63,20 @@ const WeatherMap = ({
     if (latitude === 0 || longitude === 0) {
         return null;
     }
+
+    const WeatherLayer = ({ layerDisplayName, omwLayerName, checked }: WeatherLayerProps) => (
+        <LayersControl.Overlay checked={checked} name={layerDisplayName}>
+            <TileLayer
+                url={`https://tile.openweathermap.org/map/${omwLayerName}/{z}/{x}/{y}.png?appid=${OWM_API_KEY}`}
+            />
+        </LayersControl.Overlay>
+    );
+
+    const MapLayer = ({ layerDisplayName, mapLayerUrl, checked }: MapLayerProps) => (
+        <LayersControl.BaseLayer checked={checked} name={layerDisplayName}>
+            <TileLayer attribution={mapAttributions} url={mapLayerUrl} />
+        </LayersControl.BaseLayer>
+    );
 
     return (
         <Fragment>
@@ -141,37 +89,41 @@ const WeatherMap = ({
                 zoomAnimation={true}
             >
                 {mapProps.displayPositionResetController && (
-                    <MapPositionResetController
-                        controllerName={'Reset Position'}
-                        resetMapPosition={[latitude, longitude]}
-                        resetZoomLevel={mapProps.zoomLevel}
-                        controllerClassName="bg-gray-800 text-gray-100 rounded-xl p-2 text-base"
+                    <MapControlsExecutor
+                        controlName={'Reset Position'}
+                        controlClassName={'bg-gray-800 text-gray-100 rounded-xl p-2 text-base'}
                         renderPosition={{ position: 'bottomright' }}
+                        mapPositionReset={{
+                            resetMapPosition: [latitude, longitude],
+                            resetZoomLevel: mapProps.zoomLevel,
+                        }}
                     />
                 )}
-
                 {mapProps.displayDetailedWeatherExpandMapController && (
-                    <MapExpandController
-                        controllerName={'Expand Map'}
-                        controllerClassName="bg-gray-800 text-gray-100 rounded-xl p-2 text-base"
+                    <MapControlsExecutor
+                        controlName={'Expand Map'}
+                        controlClassName="bg-gray-800 text-gray-100 rounded-xl p-2 text-base"
                         renderPosition={{ position: 'bottomright' }}
-                        locationName={mainLocationForMap && mainLocationForMap.locationName}
-                        latitude={mainLocationForMap && mainLocationForMap.coordinate?.latitude}
-                        longitude={mainLocationForMap && mainLocationForMap.coordinate?.longitude}
-                        temperature={mainLocationForMap && mainLocationForMap.temperature}
-                        countryCode={mainLocationForMap?.countryCode}
-                        shouldLoadDetailsPageWeather={'true'}
+                        executeMapExpandAction={() =>
+                            executeExpandedMapSearch(
+                                mainLocationForMap?.locationName,
+                                mainLocationForMap?.coordinate?.latitude,
+                                mainLocationForMap?.coordinate?.longitude,
+                                mainLocationForMap?.temperature,
+                                mainLocationForMap?.countryCode,
+                                'true',
+                            )
+                        }
                     />
                 )}
-
                 {mapProps.displayBasicMapExpandController && (
-                    <BasicMapExpandController
-                        controllerName={'Expand Map'}
-                        controllerClassName={'bg-gray-800 text-gray-100 rounded-xl p-2 text-base'}
+                    <MapControlsExecutor
+                        controlName={'Expand Map'}
+                        controlClassName={'bg-gray-800 text-gray-100 rounded-xl p-2 text-base'}
                         renderPosition={{ position: 'bottomright' }}
+                        executeMapExpandAction={() => getWindow().location.assign('/map/')}
                     />
                 )}
-
                 {mapProps.displayMarker && (
                     <Marker
                         position={[latitude, longitude]}
@@ -197,7 +149,49 @@ const WeatherMap = ({
                 <LayersControl position="topright">
                     {nearbyLocationsForMap && nearbyLocationsForMap.length !== 0 && (
                         <LayersControl.Overlay checked={true} name={'Show nearby locations'}>
-                            <NearbyLocationsMarkers nearbyLocationsForMap={nearbyLocationsForMap} />
+                            <LayerGroup>
+                                {nearbyLocationsForMap.map((each, index) => (
+                                    <Marker
+                                        key={index}
+                                        position={[Number(each.coordinate.latitude), Number(each.coordinate.longitude)]}
+                                        icon={L.divIcon({
+                                            iconSize: [NEARBY_LOCATION_MAP_ICON_SIZE, NEARBY_LOCATION_MAP_ICON_SIZE],
+                                            iconAnchor: [
+                                                NEARBY_LOCATION_MAP_ICON_SIZE / 2,
+                                                NEARBY_LOCATION_MAP_ICON_SIZE + 9,
+                                            ],
+                                            className: '',
+                                            html: getNearbyLocationPinSvgIcon(),
+                                        })}
+                                    >
+                                        {each.locationName && each.distance && each.countryCode && each.coordinate && (
+                                            <Popup>
+                                                <span className={'p-1 text-gray-800 text-lg'}>{each.locationName}</span>{' '}
+                                                <br />
+                                                <span className={'p-1 text-gray-800 text-sm'}>
+                                                    {each.distance} miles away
+                                                </span>{' '}
+                                                <br />
+                                                <button
+                                                    className={
+                                                        'p-1 text-gray-100 bg-gray-800 mt-3 text-base rounded-xl border border-gray-800'
+                                                    }
+                                                    onClick={() =>
+                                                        onClickLoadNearbyLocationWeather(
+                                                            each.locationName,
+                                                            each.coordinate.latitude,
+                                                            each.coordinate.longitude,
+                                                            each.countryCode,
+                                                        )
+                                                    }
+                                                >
+                                                    <span className={'p-2'}>{'View Weather >'}</span>
+                                                </button>
+                                            </Popup>
+                                        )}
+                                    </Marker>
+                                ))}
+                            </LayerGroup>
                         </LayersControl.Overlay>
                     )}
                     <MapLayer
@@ -228,9 +222,9 @@ const WeatherMap = ({
                     <WeatherLayer layerDisplayName={'Wind'} omwLayerName={'wind_new'} checked={mapProps.windChecked} />
                 </LayersControl>
             </MapContainer>
-            <WeatherMapLegend />
+            <MapLegend />
         </Fragment>
     );
 };
 
-export default WeatherMap;
+export default Map;

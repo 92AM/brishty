@@ -1,16 +1,8 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
-import { getWindow } from '../services/BrowserService';
 import { AboutSvg, HomeSvg, RightChevronSvg } from '../components/SvgFactory';
-
-const onClickReturnToHome = () => {
-    getWindow().location.assign('/');
-};
-
-const onClickAboutUs = () => {
-    getWindow().location.assign('/about');
-};
+import { onClickAboutUs, onClickReturnToHome } from '../services/NavigationHandler';
 
 export default function PrivacyPolicy() {
     return (

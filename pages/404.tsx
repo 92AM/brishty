@@ -1,25 +1,14 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
-import { getWindow } from '../services/BrowserService';
 import { AboutSvg, GbSvg, HomeSvg, RightChevronSvg, WorldSvg } from '../components/SvgFactory';
 import { CookieModal } from '../components/CookieModal';
-
-const onClickReturnToHome = () => {
-    getWindow().location.assign('/');
-};
-
-const onClickTopUkWeathers = () => {
-    getWindow().location.assign('/weather/ukweather');
-};
-
-const onClickTopWorldWeathers = () => {
-    getWindow().location.assign('/weather/worldweather');
-};
-
-const onClickAboutUs = () => {
-    getWindow().location.assign('/about');
-};
+import {
+    onClickAboutUs,
+    onClickReturnToHome,
+    onClickTopUkWeathers,
+    onClickTopWorldWeathers,
+} from '../services/NavigationHandler';
 
 export default function Custom404() {
     return (

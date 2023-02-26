@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { getDocument, getWindow } from '../services/BrowserService';
 
-const googleAdsContainerName = 'adsbygoogle';
-
 export const GoogleAdComponent = () => {
     const [shouldCollapseAdComponent, setShouldCollapseAdComponent] = useState(false);
 
-    useEffect(() => {
-        (getWindow().adsbygoogle = getWindow().adsbygoogle || []).push({});
-    }, []);
+    const googleAdsContainerName = 'adsbygoogle';
 
     useEffect(() => {
+        (getWindow().adsbygoogle = getWindow().adsbygoogle || []).push({});
         setShouldCollapseAdComponent(getDocument().getElementsByClassName(googleAdsContainerName)?.length <= 1);
-    });
+    }, []);
 
     return shouldCollapseAdComponent ? null : (
         <div className="items-center justify-center bg-gray-800 border-b border-gray-100 p-4">

@@ -3,8 +3,9 @@ import { LocationCurrentWeather } from '../../interfaces';
 import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
-import { getEuropeMoreTopLocationsCurrentWeathers } from '../../services/BulkWeatherLocationExtractionService';
 import { CookieModal } from '../../components/CookieModal';
+import { getCurrentWeatherOfLocations } from '../../services/WeatherDetailsService';
+import { MORE_EUROPEAN_TOP_SEARCH_LOCATIONS } from '../../services/StaticLocationsFactory';
 
 type EuropeWeatherProps = {
     europeTopLocationsWeathers: LocationCurrentWeather[];
@@ -25,7 +26,7 @@ const EuropeWeather = ({ europeTopLocationsWeathers }: EuropeWeatherProps) => {
 
 EuropeWeather.getInitialProps = async () => {
     return {
-        europeTopLocationsWeathers: await getEuropeMoreTopLocationsCurrentWeathers(),
+        europeTopLocationsWeathers: await getCurrentWeatherOfLocations(MORE_EUROPEAN_TOP_SEARCH_LOCATIONS),
     };
 };
 

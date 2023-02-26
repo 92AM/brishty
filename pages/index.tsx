@@ -8,14 +8,15 @@ import { MapLoader } from '../components/MapLoader';
 import { setPageModel } from '../services/PageModelService';
 import { getWorldNews } from '../services/WorldNewsService';
 import WorldNews from '../components/WorldNews';
-import { getHomePageStaticMapProps } from '../services/StaticMapPropsProviderService';
-import {
-    getEuropeTopLocationsCurrentWeathers,
-    getUkTopLocationsCurrentWeathers,
-    getWorldTopLocationsCurrentWeathers,
-} from '../services/BulkWeatherLocationExtractionService';
+import { HOME_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
 import { GoogleAdComponent } from '../components/GoogleAdComponent';
 import { CookieModal } from '../components/CookieModal';
+import {
+    EUROPEAN_TOP_SEARCH_LOCATIONS,
+    REST_OF_WORLD_TOP_SEARCH_LOCATIONS,
+    UK_TOP_SEARCH_LOCATIONS,
+} from '../services/StaticLocationsFactory';
+import { getCurrentWeatherOfLocations } from '../services/WeatherDetailsService';
 
 type IndexPageProps = {
     ukTopLocationsWeathers: LocationCurrentWeather[];
@@ -36,7 +37,7 @@ const HomePageWeatherMap = () => {
                 <div className="text-black p-2 pt-10 text-3xl text-center">World Weather Map</div>
             </div>
             <div className={'p-2 z-0 relative'}>
-                <MapLoader mapProps={getHomePageStaticMapProps()} mainLocationForMap={mainLocationForMap} />
+                <MapLoader mapProps={HOME_PAGE_STATIC_MAP_PROPS} mainLocationForMap={mainLocationForMap} />
             </div>
         </div>
     );
@@ -81,9 +82,9 @@ const IndexPage = ({
 IndexPage.getInitialProps = async () => {
     try {
         return {
-            ukTopLocationsWeathers: await getUkTopLocationsCurrentWeathers(),
-            europeTopLocationsWeathers: await getEuropeTopLocationsCurrentWeathers(),
-            worldTopLocationWeathers: await getWorldTopLocationsCurrentWeathers(),
+            ukTopLocationsWeathers: await getCurrentWeatherOfLocations(UK_TOP_SEARCH_LOCATIONS),
+            europeTopLocationsWeathers: await getCurrentWeatherOfLocations(EUROPEAN_TOP_SEARCH_LOCATIONS),
+            worldTopLocationWeathers: await getCurrentWeatherOfLocations(REST_OF_WORLD_TOP_SEARCH_LOCATIONS),
             worldNews: await getWorldNews(),
         };
     } catch (err) {

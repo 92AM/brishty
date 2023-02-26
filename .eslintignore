@@ -7,6 +7,6 @@ next.config.js
 next-env.d.ts
 tailwind.config.js
 postcss.config.js
-pages/_app.js
-pages/_document.js
-pages/_error.js
+pages/_app.tsx
+pages/_document.tsx
+pages/_error.tsx

@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import { useWindowSize } from '../services/GenericUtilityService';
 import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
-import { getExpandedHomePageStaticMapProps } from '../services/StaticMapPropsProviderService';
+import { EXPANDED_HOME_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
 import { LeftArrowSvg } from '../components/SvgFactory';
 import { CookieModal } from '../components/CookieModal';
 
@@ -21,7 +21,7 @@ const WeatherMap = () => {
     return (
         <div className={'p-2 z-0 relative'}>
             <MapLoader
-                mapProps={getExpandedHomePageStaticMapProps()}
+                mapProps={EXPANDED_HOME_PAGE_STATIC_MAP_PROPS}
                 mainLocationForMap={mainLocationForMap}
                 useFullViewport={true}
                 height={size.height}

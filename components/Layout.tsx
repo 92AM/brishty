@@ -4,14 +4,14 @@ import Footer from './Footer';
 import Seo from './Seo';
 import Head from 'next/head';
 
-type Props = {
+type LayoutProps = {
     children?: ReactNode;
     title?: string;
     background?: string;
     searchTerm?: string;
 };
 
-const Layout = ({ children, title, background, searchTerm }: Props) => {
+const Layout = ({ children, title, background, searchTerm }: LayoutProps) => {
     return (
         <Fragment>
             <Head>

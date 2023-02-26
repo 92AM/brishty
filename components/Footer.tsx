@@ -8,8 +8,6 @@ import {
     GA_EVENT_NAVIGATED_PRIVACY_POLICY_ID,
 } from '../utility/constants';
 
-const currentYear = new Date().getFullYear();
-
 const Footer = () => {
     return (
         <>
@@ -96,7 +94,7 @@ const Footer = () => {
                     <div className="w-9/12 h-0.5 bg-gray-600 rounded-full" />
                     <div className="flex justify-between items-center pt-12">
                         <div className="text-base text-white mb-2">
-                            <p>{`Brishty © ${currentYear}`}</p>
+                            <p>{`Brishty © ${new Date().getFullYear()}`}</p>
                         </div>
                     </div>
                     <div className="flex justify-between items-center pt-2">

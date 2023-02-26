@@ -5,29 +5,25 @@ const isMultimediaAvailable = (news: any): boolean => {
     return news.multimedia !== null && news.multimedia !== undefined;
 };
 
+const toNews = (result: any): News => {
+    return {
+        section: result.section,
+        subsection: result.subsection,
+        title: result.title,
+        newsDescription: result.abstract,
+        byLine: result.byline,
+        publishedDate: new Date(result.published_date).toDateString(),
+        imageSource: isMultimediaAvailable(result) ? result.multimedia[0]?.url : '/images/placeholder-large.jpg',
+        imageCaption: isMultimediaAvailable(result) ? result.multimedia[0]?.caption : 'image caption unavailable',
+        imageCopyright: isMultimediaAvailable(result)
+            ? result.multimedia[0]?.copyright
+            : 'image copyright information unavailable',
+        facets: [...result.geo_facet, ...result.org_facet, ...result.per_facet],
+    } as News;
+};
+
 const mapNewsJsonToNews = (nearbyLocationsAsJson: any) => {
-    const newsResults = nearbyLocationsAsJson.results;
-    const mappedNewsItems: News[] = [];
-
-    newsResults.forEach((news: any) => {
-        const tempNews: News = {
-            section: news.section,
-            subsection: news.subsection,
-            title: news.title,
-            newsDescription: news.abstract,
-            byLine: news.byline,
-            publishedDate: new Date(news.published_date).toDateString(),
-            imageSource: isMultimediaAvailable(news) ? news.multimedia[0]?.url : '/images/placeholder-large.jpg',
-            imageCaption: isMultimediaAvailable(news) ? news.multimedia[0]?.caption : 'image caption unavailable',
-            imageCopyright: isMultimediaAvailable(news)
-                ? news.multimedia[0]?.copyright
-                : 'image copyright information unavailable',
-            facets: [...news.geo_facet, ...news.org_facet, ...news.per_facet],
-        };
-        mappedNewsItems.push(tempNews);
-    });
-
-    return mappedNewsItems;
+    return nearbyLocationsAsJson.results.map((result: any) => toNews(result));
 };
 
 export const getWorldNews = async (): Promise<News[]> => {

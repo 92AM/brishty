@@ -175,7 +175,7 @@ const PrecipitationIndex = () => {
     );
 };
 
-const WeatherMapLegend = () => {
+const MapLegend = () => {
     const slideComponents: any = [];
 
     slideComponents.push(<TemperatureIndex />);
@@ -195,4 +195,4 @@ const WeatherMapLegend = () => {
     );
 };
 
-export default WeatherMapLegend;
+export default MapLegend;

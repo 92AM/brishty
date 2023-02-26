@@ -2,11 +2,11 @@ import React from 'react';
 import { WeatherDetails } from '../interfaces';
 import Link from 'next/link';
 
-type Props = {
+type TodaysWeatherDescriptionProps = {
     item: WeatherDetails;
 };
 
-const TodaysWeatherDescription = ({ item: weatherDetails }: Props) => {
+const TodaysWeatherDescription = ({ item: weatherDetails }: TodaysWeatherDescriptionProps) => {
     return (
         <div className="px-4 2xl:px-32">
             <div className="text-gray-800 text-2xl text-left p-2 pb-4">

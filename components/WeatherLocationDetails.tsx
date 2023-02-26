@@ -9,7 +9,7 @@ import DetailedCurrentWeather from './DetailedCurrentWeather';
 import SevenDayWeather from './SevenDayWeather';
 import { MapLoader } from './MapLoader';
 import Link from 'next/link';
-import { getWeatherDetailsPageStaticMapProps } from '../services/StaticMapPropsProviderService';
+import { WEATHER_DETAILS_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
 import { LeftArrowSvg } from './SvgFactory';
 import { GoogleAdComponent } from './GoogleAdComponent';
 import { CookieModal } from './CookieModal';
@@ -22,17 +22,12 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
         countryCode: weatherDetails.countryCode,
     };
 
-    const nearbyLocationsForMap: NearbyLocationForMap[] = [];
-
-    weatherDetails?.nearbyLocations.forEach((location) => {
-        const nearbyLocationForMap: NearbyLocationForMap = {
-            coordinate: location.coordinate,
-            locationName: location.name,
-            distance: location.distance,
-            countryCode: location.countryCode,
-        };
-        nearbyLocationsForMap.push(nearbyLocationForMap);
-    });
+    const nearbyLocationsForMap: NearbyLocationForMap[] = weatherDetails?.nearbyLocations.map((location) => ({
+        coordinate: location.coordinate,
+        locationName: location.name,
+        distance: location.distance,
+        countryCode: location.countryCode,
+    }));
 
     return (
         <Layout
@@ -57,7 +52,7 @@ const WeatherLocationDetails = ({ weatherDetails }: WeatherDetailsProps) => {
                 <div className={'z-0 relative'}>
                     <MapLoader
                         mainLocationForMap={mainLocationForMap}
-                        mapProps={getWeatherDetailsPageStaticMapProps()}
+                        mapProps={WEATHER_DETAILS_PAGE_STATIC_MAP_PROPS}
                         nearbyLocationsForMap={nearbyLocationsForMap}
                     />
                 </div>
