@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
 import { WEATHER_DETAILS_PAGE_MAP_HEIGHT, WEATHER_DETAILS_PAGE_MAP_WIDTH } from '../utility/constants';
 import { MapSize } from '../interfaces';
-import { useWindowSize } from '../services/GenericUtilityService';
+import { useWindowSize } from '../custom-hooks/useWindowSize';
 
 type Props = {
     useFullViewport?: boolean;
 };
 
-const placeholderSlots = [1, 2, 3, 4, 5];
-
 const MapPlaceholder = ({ useFullViewport: useFullViewport }: Props) => {
+    const placeholderSlots = [1, 2, 3, 4, 5];
     const size: MapSize = useWindowSize();
+
     return (
         <Fragment>
             <div

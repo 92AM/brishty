@@ -159,3 +159,10 @@ export interface News {
 export interface SiteMapLinks {
     links: string[];
 }
+
+export interface GoogleAnalyticsEvent {
+    action: string;
+    category: string;
+    label: string;
+    value: number;
+}

@@ -14,12 +14,12 @@ const onClickLoadNearbyLocationWeather = (
     longitude: string,
     countryCode: string,
 ) => {
-    fireGoogleAnalyticsEvent(
-        'nearby-location-search',
-        'search-type',
-        `Location details - locationName : ${locationName} | latitude : ${latitude} | longitude : ${longitude} | countryCode : ${countryCode}`,
-        GA_EVENT_SEARCH_TYPE_NEARBY_LOCATION_SEARCH_ID,
-    );
+    fireGoogleAnalyticsEvent({
+        action: 'nearby-location-search',
+        category: 'search-type',
+        label: `Location details - locationName : ${locationName} | latitude : ${latitude} | longitude : ${longitude} | countryCode : ${countryCode}`,
+        value: GA_EVENT_SEARCH_TYPE_NEARBY_LOCATION_SEARCH_ID,
+    });
     searchWeatherByGeoLocation(locationName, latitude, longitude, countryCode);
 };
 

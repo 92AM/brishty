@@ -176,7 +176,7 @@ const PrecipitationIndex = () => {
 };
 
 const MapLegend = () => {
-    const slideComponents: any = [];
+    const slideComponents: JSX.Element[] = [];
 
     slideComponents.push(<TemperatureIndex />);
     slideComponents.push(<CloudIndex />);

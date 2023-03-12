@@ -29,12 +29,12 @@ const Footer = () => {
                                         className="hover:underline"
                                         href={'/privacy-policy'}
                                         onClick={() =>
-                                            fireGoogleAnalyticsEvent(
-                                                'navigated-to-privacy-policy-page',
-                                                'navigated',
-                                                `User clicked privacy policy link to navigate to privacy policy page.`,
-                                                GA_EVENT_NAVIGATED_PRIVACY_POLICY_ID,
-                                            )
+                                            fireGoogleAnalyticsEvent({
+                                                action: 'navigated-to-privacy-policy-page',
+                                                category: 'navigated',
+                                                label: `User clicked privacy policy link to navigate to privacy policy page.`,
+                                                value: GA_EVENT_NAVIGATED_PRIVACY_POLICY_ID,
+                                            })
                                         }
                                     >
                                         Privacy policy
@@ -45,12 +45,12 @@ const Footer = () => {
                                         className="hover:underline"
                                         href={'/about'}
                                         onClick={() =>
-                                            fireGoogleAnalyticsEvent(
-                                                'navigated-to-about-us-page',
-                                                'navigated',
-                                                `User clicked about us link to navigate to about us page.`,
-                                                GA_EVENT_NAVIGATED_ABOUT_US_ID,
-                                            )
+                                            fireGoogleAnalyticsEvent({
+                                                action: 'navigated-to-about-us-page',
+                                                category: 'navigated',
+                                                label: `User clicked about us link to navigate to about us page.`,
+                                                value: GA_EVENT_NAVIGATED_ABOUT_US_ID,
+                                            })
                                         }
                                     >
                                         About us
@@ -61,12 +61,12 @@ const Footer = () => {
                                         className="hover:underline"
                                         href={'/about#brishty-contact-form'}
                                         onClick={() =>
-                                            fireGoogleAnalyticsEvent(
-                                                'navigated-to-contact-us-page',
-                                                'navigated',
-                                                `User clicked contact us link to navigate to contact us page.`,
-                                                GA_EVENT_NAVIGATED_CONTACT_US_ID,
-                                            )
+                                            fireGoogleAnalyticsEvent({
+                                                action: 'navigated-to-contact-us-page',
+                                                category: 'navigated',
+                                                label: `User clicked contact us link to navigate to contact us page.`,
+                                                value: GA_EVENT_NAVIGATED_CONTACT_US_ID,
+                                            })
                                         }
                                     >
                                         Contact us
@@ -77,12 +77,12 @@ const Footer = () => {
                                         className="hover:underline"
                                         href={'/icons'}
                                         onClick={() =>
-                                            fireGoogleAnalyticsEvent(
-                                                'navigated-to-icons-page',
-                                                'navigated',
-                                                `User clicked icons link to navigate to icons page.`,
-                                                GA_EVENT_NAVIGATED_ICONS_ID,
-                                            )
+                                            fireGoogleAnalyticsEvent({
+                                                action: 'navigated-to-icons-page',
+                                                category: 'navigated',
+                                                label: `User clicked icons link to navigate to icons page.`,
+                                                value: GA_EVENT_NAVIGATED_ICONS_ID,
+                                            })
                                         }
                                     >
                                         Icons
@@ -105,12 +105,12 @@ const Footer = () => {
                                     className="hover:underline"
                                     href={'https://www.arkamitra.com'}
                                     onClick={() =>
-                                        fireGoogleAnalyticsEvent(
-                                            'navigated-to-arka-mitra-website',
-                                            'navigated',
-                                            `User clicked arka mitra link to navigate to arka mitra's website.`,
-                                            GA_EVENT_NAVIGATED_ARKA_MITRA_WEBSITE_ID,
-                                        )
+                                        fireGoogleAnalyticsEvent({
+                                            action: 'navigated-to-arka-mitra-website',
+                                            category: 'navigated',
+                                            label: `User clicked arka mitra link to navigate to arka mitra's website.`,
+                                            value: GA_EVENT_NAVIGATED_ARKA_MITRA_WEBSITE_ID,
+                                        })
                                     }
                                 >
                                     Arka Mitra

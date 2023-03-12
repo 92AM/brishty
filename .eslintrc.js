@@ -5,6 +5,18 @@ module.exports = {
         es2021: true,
         'jest/globals': true,
     },
+    globals: {
+        React: true,
+        google: true,
+        mount: true,
+        mountWithRouter: true,
+        shallow: true,
+        shallowWithRouter: true,
+        context: true,
+        expect: true,
+        jsdom: true,
+        JSX: true,
+    },
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',

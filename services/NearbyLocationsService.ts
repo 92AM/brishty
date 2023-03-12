@@ -4,28 +4,19 @@ import { sanitiseCoordinate } from './GenericUtilityService';
 import { mapToCoordinate } from './WeatherDetailsService';
 
 const mapNearbyLocationsJsonToNearbyLocations = (nearbyLocationsJson: any): NearbyLocation[] => {
-    const nearbyLocationsRaw = nearbyLocationsJson.data;
-    const nearbyLocations: NearbyLocation[] = [];
-
-    nearbyLocationsRaw.forEach((eachNearbyLocation: any) => {
-        const coordinate = {
-            lat: eachNearbyLocation.latitude,
-            lon: eachNearbyLocation.longitude,
-        };
-        const tempNearbyLocation: NearbyLocation = {
-            type: eachNearbyLocation.type,
-            name: eachNearbyLocation.name,
-            country: eachNearbyLocation.country,
-            countryCode: eachNearbyLocation.countryCode,
-            region: eachNearbyLocation.region,
-            regionCode: eachNearbyLocation.regionCode,
-            distance: eachNearbyLocation.distance,
-            coordinate: mapToCoordinate(coordinate),
-        };
-        nearbyLocations.push(tempNearbyLocation);
-    });
-
-    return nearbyLocations;
+    return nearbyLocationsJson.data.map((eachNearbyLocation: any) => ({
+        type: String(eachNearbyLocation.type),
+        name: String(eachNearbyLocation.name),
+        country: String(eachNearbyLocation.country),
+        countryCode: String(eachNearbyLocation.countryCode),
+        region: String(eachNearbyLocation.region),
+        regionCode: String(eachNearbyLocation.regionCode),
+        distance: String(eachNearbyLocation.distance),
+        coordinate: mapToCoordinate({
+            lat: String(eachNearbyLocation.latitude),
+            lon: String(eachNearbyLocation.longitude),
+        }),
+    }));
 };
 
 export const getNearbyLocations = async (
@@ -51,11 +42,10 @@ export const removeSourceLocationFromNearbyLocation = (
     nearbyLocations: NearbyLocation[],
     sourceLocationName: string | string[] | undefined,
 ): NearbyLocation[] => {
-    nearbyLocations.forEach((eachNearbyLocation, index) => {
-        if (String(sourceLocationName).indexOf(eachNearbyLocation.name) > -1) {
-            nearbyLocations.splice(index, 1);
-        }
-    });
+    nearbyLocations.map(
+        (eachNearbyLocation, index) =>
+            String(sourceLocationName).indexOf(eachNearbyLocation.name) > -1 && nearbyLocations.splice(index, 1),
+    );
 
     return nearbyLocations;
 };
