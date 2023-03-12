@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import { getWindow } from '../services/BrowserService';
 import AsyncLocationSearchTypeahead from './AsyncLocationSearchTypeahead';
 import { useTypeaheadLocationSearch } from '../services/ApplicationEnvironmentConfigService';
-
-const searchWeatherByLocation = (input: any) => {
-    const windowLocation = getWindow().location;
-    windowLocation.assign('/weather/' + input);
-};
+import { validateAndExecuteSearch } from '../services/SearchService';
 
 const inputItemClassName = 'border-b-2 rounded h-14 w-full p-6 text-xl text-gray-700 leading-tight focus:outline-none';
 const menuItemClassName = 'p-4 bg-white text-xl truncate';
@@ -21,15 +16,7 @@ const SearchForm = () => {
 
     const onSearchSubmit = (e: any) => {
         e.preventDefault();
-        try {
-            if (!input) {
-                throw new Error('Please insert a valid city name and search again.');
-            } else {
-                searchWeatherByLocation(input);
-            }
-        } catch (err) {
-            alert(err);
-        }
+        validateAndExecuteSearch(input);
     };
 
     return (

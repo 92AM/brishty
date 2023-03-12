@@ -1,18 +1,17 @@
 import cache from 'memory-cache';
 
-export const fetchResponseFromClientOrCache = async (
+const fetchResponseFromClient = async (
     url: string,
     cacheExpiryInMillisecond: number,
     requestInitializer?: any | undefined,
 ): Promise<any> => {
-    const cachedResponse = cache.get(url);
-
-    if (cachedResponse) {
-        return cachedResponse;
-    } else {
-        const response = await fetch(url, requestInitializer && requestInitializer);
-        const responseData = response.json();
-        await cache.put(url, responseData, cacheExpiryInMillisecond);
-        return responseData;
-    }
+    const responseData = (await fetch(url, requestInitializer && requestInitializer)).json();
+    await cache.put(url, responseData, cacheExpiryInMillisecond);
+    return responseData;
 };
+
+export const fetchResponseFromClientOrCache = async (
+    url: string,
+    cacheExpiryInMillisecond: number,
+    requestInitializer?: any | undefined,
+): Promise<any> => cache.get(url) ?? (await fetchResponseFromClient(url, cacheExpiryInMillisecond, requestInitializer));

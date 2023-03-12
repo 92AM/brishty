@@ -6,28 +6,28 @@ import {
     GA_EVENT_NAVIGATED_SEARCHED_WEATHER_USING_LOCATION_NAME_ID,
 } from '../utility/constants';
 
+const searchWeatherByLocationName: (input: string) => void = (input: string) => {
+    const windowLocation = getWindow().location;
+    const url = '/weather/' + input;
+    windowLocation.assign(url);
+    fireGoogleAnalyticsEvent({
+        action: 'searched-weather-using-location-name',
+        category: 'navigated',
+        label: `Navigated to : ${url}`,
+        value: GA_EVENT_NAVIGATED_SEARCHED_WEATHER_USING_LOCATION_NAME_ID,
+    });
+};
+
 export const validateAndExecuteSearch: (input: any) => void = (input: any) => {
     try {
         if (!input) {
-            throw 'Please insert a valid city name and search again.';
+            throw new Error('Please insert a valid city name and search again.');
         } else {
             searchWeatherByLocationName(input);
         }
     } catch (err) {
         alert(err);
     }
-};
-
-const searchWeatherByLocationName: (input: string) => void = (input: string) => {
-    const windowLocation = getWindow().location;
-    const url = '/weather/' + input;
-    windowLocation.assign(url);
-    fireGoogleAnalyticsEvent(
-        'searched-weather-using-location-name',
-        'navigated',
-        `Navigated to : ${url}`,
-        GA_EVENT_NAVIGATED_SEARCHED_WEATHER_USING_LOCATION_NAME_ID,
-    );
 };
 
 export const searchWeatherByGeoLocation: (
@@ -39,12 +39,12 @@ export const searchWeatherByGeoLocation: (
     const windowLocation = getWindow().location;
     const url = '/weather/' + locationName + '/' + latitude + '/' + longitude + '/' + countryCode;
     windowLocation.assign(url);
-    fireGoogleAnalyticsEvent(
-        'searched-weather-using-geo-coordinates',
-        'navigated',
-        `Navigated to : ${url}`,
-        GA_EVENT_NAVIGATED_SEARCHED_WEATHER_USING_GEO_COORDINATES_ID,
-    );
+    fireGoogleAnalyticsEvent({
+        action: 'searched-weather-using-geo-coordinates',
+        category: 'navigated',
+        label: `Navigated to : ${url}`,
+        value: GA_EVENT_NAVIGATED_SEARCHED_WEATHER_USING_GEO_COORDINATES_ID,
+    });
 };
 
 export const executeExpandedMapSearch: (
@@ -77,10 +77,10 @@ export const executeExpandedMapSearch: (
         '/' +
         shouldLoadDetailsPageWeather;
     windowLocation.assign(url);
-    fireGoogleAnalyticsEvent(
-        'executed-expanded-map-search',
-        'navigated',
-        `Navigated to : ${url}`,
-        GA_EVENT_NAVIGATED_EXECUTED_EXPANDED_MAP_SEARCH_ID,
-    );
+    fireGoogleAnalyticsEvent({
+        action: 'executed-expanded-map-search',
+        category: 'navigated',
+        label: `Navigated to : ${url}`,
+        value: GA_EVENT_NAVIGATED_EXECUTED_EXPANDED_MAP_SEARCH_ID,
+    });
 };

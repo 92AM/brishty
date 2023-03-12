@@ -18,12 +18,12 @@ const HourlyWeather = ({ item: hourly }: HourlyWeatherProps) => {
         setShowModal(true);
         setHourToRenderOnModal(hour);
         setDisplayableTime(time);
-        fireGoogleAnalyticsEvent(
-            'display-hourly-weather-modal',
-            'interaction',
-            `User clicked on hourly weather carousel to display the weather in modal.`,
-            GA_EVENT_INTERACTION_DISPLAY_HOURLY_WEATHER_MODAL_ID,
-        );
+        fireGoogleAnalyticsEvent({
+            action: 'display-hourly-weather-modal',
+            category: 'interaction',
+            label: `User clicked on hourly weather carousel to display the weather in modal.`,
+            value: GA_EVENT_INTERACTION_DISPLAY_HOURLY_WEATHER_MODAL_ID,
+        });
     };
 
     const slideComponents: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>[] =

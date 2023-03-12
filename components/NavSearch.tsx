@@ -21,9 +21,7 @@ const NavSearch = ({ searchContentNode, displayNavSearch, setDisplayNavSearch }:
         return;
     };
 
-    const onSearchChange = (e: any) => {
-        setInput(e.target.value);
-    };
+    const onSearchChange = (e: any) => setInput(e.target.value);
 
     const handleSearchInputKeyUp = (e: any) => {
         if (e.keyCode === 13) {

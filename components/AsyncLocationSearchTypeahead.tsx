@@ -43,9 +43,7 @@ const getLocationDetails = (response: any) => {
     );
 };
 
-const onDeselect = () => {
-    return '';
-};
+const onDeselect = () => '';
 
 const onSelected = (selected: LocationSearch) => {
     // onChange is called when deselected
@@ -58,12 +56,12 @@ const onSelected = (selected: LocationSearch) => {
             selected.longitude,
             selected.countryCode,
         );
-        fireGoogleAnalyticsEvent(
-            'location-search-using-typeahead-autocomplete',
-            'search-type',
-            `Location details - locationName : ${selected.searchLocation} | latitude : ${selected.latitude} | longitude : ${selected.longitude} | countryCode : ${selected.countryCode}`,
-            GA_EVENT_SEARCH_TYPE_LOCATION_SEARCH_USING_TYPEAHEAD_AUTOCOMPLETE_ID,
-        );
+        fireGoogleAnalyticsEvent({
+            action: 'location-search-using-typeahead-autocomplete',
+            category: 'search-type',
+            label: `Location details - locationName : ${selected.searchLocation} | latitude : ${selected.latitude} | longitude : ${selected.longitude} | countryCode : ${selected.countryCode}`,
+            value: GA_EVENT_SEARCH_TYPE_LOCATION_SEARCH_USING_TYPEAHEAD_AUTOCOMPLETE_ID,
+        });
     }
 };
 
@@ -107,11 +105,7 @@ const AsyncLocationSearchTypeahead = ({
             options={options}
             placeholder={PLACEHOLDER_TEXT}
             onMenuToggle={() => {}}
-            onChange={(selected: LocationSearch[]) => {
-                if (selected && selected.length === 1) {
-                    onSelected(selected[0]);
-                }
-            }}
+            onChange={(selected: LocationSearch[]) => selected && selected.length === 1 && onSelected(selected[0])}
             renderMenuItemChildren={(
                 option: TypeaheadResult<LocationSearch>,
                 props: TypeaheadMenuProps<LocationSearch>,

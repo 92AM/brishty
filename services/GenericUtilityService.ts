@@ -1,8 +1,6 @@
 import querystring from 'querystring';
-import { useEffect, useState } from 'react';
-import { MapSize } from '../interfaces';
+import { GoogleAnalyticsEvent } from '../interfaces';
 import moment from 'moment';
-import { getWindow } from './BrowserService';
 import * as gtag from '../lib/gtag';
 
 export const convertKelvinToCelsius = (kelvin: number): string => {
@@ -57,12 +55,12 @@ export const sanitiseCoordinate = (coordinate: string | string[] | undefined): s
 
 export const parseSearchedLocationNameOrDefault = (searchedLocationName: string | undefined): string => {
     const defaultValue = '';
-    const decodedParameter = querystring.unescape(searchedLocationName || defaultValue);
+    const decodedParameter = querystring.unescape(searchedLocationName ?? defaultValue);
 
     if (!decodedParameter) {
         return defaultValue;
     }
-    return decodedParameter.replace(/[&\\#!^=;`|@+()$€£~%.'":*?<>{}]/g, '') || defaultValue;
+    return decodedParameter.replace(/[&\\#!^=;`|@+()$€£~%.'":*?<>{}]/g, '') ?? defaultValue;
 };
 
 export const parseBooleanStringOrDefault = (booleanAsString: string | undefined): boolean => {
@@ -75,33 +73,6 @@ export const parseBooleanStringOrDefault = (booleanAsString: string | undefined)
     return booleanAsString.toLowerCase() === 'true';
 };
 
-export const calculateWindowHeightValueForMap = (windowHeight: number): number => {
-    if (windowHeight <= 500) {
-        return windowHeight - (windowHeight / 100) * 40;
-    }
-    if (windowHeight > 500 || windowHeight <= 800) {
-        return windowHeight - (windowHeight / 100) * 25;
-    }
-    return windowHeight;
-};
-
-export const useWindowSize = (): MapSize => {
-    const [windowSize, setWindowSize] = useState<MapSize>({
-        height: 0,
-    });
-    useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-                height: calculateWindowHeightValueForMap(getWindow().innerHeight),
-            });
-        }
-        getWindow().addEventListener('resize', handleResize);
-        handleResize();
-        return () => getWindow().removeEventListener('resize', handleResize);
-    }, []);
-    return windowSize;
-};
-
-export const fireGoogleAnalyticsEvent = (action: string, category: string, label: string, value: number): void => {
-    gtag.event({ action: action, category: category, label: label, value: value });
+export const fireGoogleAnalyticsEvent = (googleAnalyticsEvent: GoogleAnalyticsEvent): void => {
+    gtag.event({ ...googleAnalyticsEvent });
 };

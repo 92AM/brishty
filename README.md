@@ -34,5 +34,6 @@ Fixing lint issues : `npm run lint:fix`
 
 * OpenWeather : https://openweathermap.org/api 
 * GeoDB Cities : https://rapidapi.com/wirefreethought/api/geodb-cities
-* Algolia places (getting deprecated soon) : https://community.algolia.com/places/ 
+* Algolia places (deprecated and not in use anymore) : https://community.algolia.com/places/ 
+* Geoapify Autocomplete : https://www.geoapify.com/address-autocomplete 
 * NY Times : https://developer.nytimes.com/docs/top-stories-product/1/overview 

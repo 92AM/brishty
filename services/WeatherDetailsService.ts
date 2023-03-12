@@ -152,7 +152,7 @@ const mapWeatherDetailsJsonToWeatherDetailsObject = (
     } as WeatherDetails;
 };
 
-export const getLocationCurrentWeather = async (
+const getLocationCurrentWeather = async (
     locationName: string | string[] | undefined,
 ): Promise<LocationCurrentWeather> => {
     const locationDetailsAsJson = await openWeatherMapLocationDetailsClient(locationName);

@@ -34,12 +34,12 @@ const Header = () => {
 
     const handleSearchButtonOnClickEvent = () => {
         displayNavSearch ? setDisplayNavSearch(false) : setDisplayNavSearch(true);
-        fireGoogleAnalyticsEvent(
-            'expand-nav-bar-search-box',
-            'interaction',
-            `User clicked on nav bar search icon to expand the search box.`,
-            GA_EVENT_INTERACTION_EXPAND_NAV_BAR_SEARCH_BOX_ID,
-        );
+        fireGoogleAnalyticsEvent({
+            action: 'expand-nav-bar-search-box',
+            category: 'interaction',
+            label: `User clicked on nav bar search icon to expand the search box.`,
+            value: GA_EVENT_INTERACTION_EXPAND_NAV_BAR_SEARCH_BOX_ID,
+        });
     };
 
     const handleSearchButtonOnBlurEvent = (e: any) => {
@@ -127,12 +127,12 @@ const Header = () => {
                                     className="inline-block text-white text-grey-dark no-underline hover:text-grey-dark hover:underline py-2 px-4"
                                     href="/about"
                                     onClick={() =>
-                                        fireGoogleAnalyticsEvent(
-                                            'navigated-to-about-us-page',
-                                            'navigated',
-                                            `User clicked about us link to navigate to about us page.`,
-                                            GA_EVENT_NAVIGATED_ABOUT_US_ID,
-                                        )
+                                        fireGoogleAnalyticsEvent({
+                                            action: 'navigated-to-about-us-page',
+                                            category: 'navigated',
+                                            label: `User clicked about us link to navigate to about us page.`,
+                                            value: GA_EVENT_NAVIGATED_ABOUT_US_ID,
+                                        })
                                     }
                                 >
                                     About
@@ -143,12 +143,12 @@ const Header = () => {
                                     className="inline-block text-white text-grey-dark no-underline hover:text-grey-dark hover:underline py-2 px-4"
                                     href="/about#brishty-contact-form"
                                     onClick={() =>
-                                        fireGoogleAnalyticsEvent(
-                                            'navigated-to-contact-us-page',
-                                            'navigated',
-                                            `User clicked contact us link to navigate to contact us page.`,
-                                            GA_EVENT_NAVIGATED_CONTACT_US_ID,
-                                        )
+                                        fireGoogleAnalyticsEvent({
+                                            action: 'navigated-to-contact-us-page',
+                                            category: 'navigated',
+                                            label: `User clicked contact us link to navigate to contact us page.`,
+                                            value: GA_EVENT_NAVIGATED_CONTACT_US_ID,
+                                        })
                                     }
                                 >
                                     Contact us
@@ -159,12 +159,12 @@ const Header = () => {
                                     className="inline-block text-white text-grey-dark no-underline hover:text-grey-dark hover:underline py-2 px-4"
                                     href="/icons"
                                     onClick={() =>
-                                        fireGoogleAnalyticsEvent(
-                                            'navigated-to-icons-page',
-                                            'navigated',
-                                            `User clicked icons link to navigate to icons page.`,
-                                            GA_EVENT_NAVIGATED_ICONS_ID,
-                                        )
+                                        fireGoogleAnalyticsEvent({
+                                            action: 'navigated-to-icons-page',
+                                            category: 'navigated',
+                                            label: `User clicked icons link to navigate to icons page.`,
+                                            value: GA_EVENT_NAVIGATED_ICONS_ID,
+                                        })
                                     }
                                 >
                                     Icons
