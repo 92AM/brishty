@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/ban-ts-comment */ // TODO : Fix me at some point!
+
 import fetchMock, { enableFetchMocks } from 'jest-fetch-mock';
 import { geoApiFyAutoCompleteClient } from '../GeoapifyAutoCompleteClient';
 import { AUTO_COMPLETE_CLIENT_RESPONSE_MOCK } from '../../test-support/Stubs';
