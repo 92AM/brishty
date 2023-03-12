@@ -11,7 +11,7 @@
     "type-check": "tsc",
     "lint": "eslint --ext .js,.ts,.tsx .",
     "lint:fix": "eslint --ext .js,.ts,.tsx --fix .",
-    "test": "jest",
+    "test": "jest --collect-coverage",
     "postbuild": "next-sitemap"
   },
   "dependencies": {

@@ -2,18 +2,18 @@ import { createContext, ReactNode, useContext, useEffect } from 'react';
 import { COOKIE_CONSENT_NAME } from '../utility/constants';
 import { getConsentCookieValue, setConsentCookieValue } from '../services/CookieService';
 
-export interface BrishtyContextProps {
+export interface ContextProps {
     displayCookieConsentModal: boolean | false;
 }
 
-export const BrishtyContext = createContext({} as BrishtyContextProps);
-BrishtyContext.displayName = 'BrishtyContext';
+export const CookieContext = createContext({} as ContextProps);
+CookieContext.displayName = 'CookieContext';
 
 const getSanitisedConsentCookieValue = (consentCookieValue: string | undefined): string => {
     return consentCookieValue === undefined || consentCookieValue.toLowerCase() !== 'true' ? 'false' : 'true';
 };
 
-export function BrishtyContextProvider({ children }: { children: ReactNode }) {
+export function CookieContextProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         setConsentCookieValue(
             COOKIE_CONSENT_NAME,
@@ -23,9 +23,9 @@ export function BrishtyContextProvider({ children }: { children: ReactNode }) {
 
     const sharedState = {
         displayCookieConsentModal: getConsentCookieValue(COOKIE_CONSENT_NAME)?.toLowerCase() !== 'true',
-    } as BrishtyContextProps;
+    } as ContextProps;
 
-    return <BrishtyContext.Provider value={sharedState}>{children}</BrishtyContext.Provider>;
+    return <CookieContext.Provider value={sharedState}>{children}</CookieContext.Provider>;
 }
 
-export const useBrishtyContext = (): BrishtyContextProps => useContext(BrishtyContext);
+export const useCookieContext = (): ContextProps => useContext(CookieContext);

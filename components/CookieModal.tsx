@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useBrishtyContext } from '../contexts/BrishtyCookieContext';
+import { useCookieContext } from '../contexts/CookieContext';
 import { setConsentCookieValue } from '../services/CookieService';
 import { COOKIE_CONSENT_NAME } from '../utility/constants';
 
 const CookieModal = () => {
-    const brishtyContext = useBrishtyContext();
+    const brishtyContext = useCookieContext();
     const { displayCookieConsentModal } = brishtyContext;
 
     const [showCookieModal, setShowCookieModal] = useState<boolean>(displayCookieConsentModal);

@@ -3,7 +3,7 @@ import '../styles/customStyles.css';
 import React, { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as gtag from '../lib/gtag';
-import { BrishtyContextProvider } from '../contexts/BrishtyCookieContext';
+import { CookieContextProvider } from '../contexts/CookieContext';
 
 function App(props: { Component: FC; pageProps: any }) {
     const { Component, pageProps } = props;
@@ -16,9 +16,9 @@ function App(props: { Component: FC; pageProps: any }) {
     }, [router.events]);
 
     return (
-        <BrishtyContextProvider>
+        <CookieContextProvider>
             <Component {...pageProps} />
-        </BrishtyContextProvider>
+        </CookieContextProvider>
     );
 }
 
