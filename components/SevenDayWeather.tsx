@@ -1,6 +1,6 @@
 import React from 'react';
 import { Daily } from '../interfaces';
-import { getFormattedDateTime, windDegreeToText } from '../services/GenericUtilityService';
+import { getFormattedDateTime, windDegreeToText } from '../utility/BrishtyUtility';
 
 type DailyWeatherProps = {
     item: Daily[];

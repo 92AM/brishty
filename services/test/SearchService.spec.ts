@@ -1,6 +1,6 @@
 import { getWindow } from '../BrowserService';
 import { executeExpandedMapSearch, searchWeatherByGeoLocation, validateAndExecuteSearch } from '../SearchService';
-import { fireGoogleAnalyticsEvent } from '../GenericUtilityService';
+import { fireGoogleAnalyticsEvent } from '../../utility/BrishtyUtility';
 import {
     GA_EVENT_NAVIGATED_EXECUTED_EXPANDED_MAP_SEARCH_ID,
     GA_EVENT_NAVIGATED_SEARCHED_WEATHER_USING_GEO_COORDINATES_ID,
@@ -8,7 +8,7 @@ import {
 } from '../../utility/constants';
 
 jest.mock('../BrowserService');
-jest.mock('../GenericUtilityService');
+jest.mock('../../utility/BrishtyUtility');
 
 describe('SearchService', () => {
     const getWindowMock = getWindow as jest.Mock;

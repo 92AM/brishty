@@ -14,7 +14,7 @@ import {
     Weather,
     WeatherDetails,
 } from '../interfaces';
-import { convertKelvinToCelsius } from './GenericUtilityService';
+import { convertKelvinToCelsius } from '../utility/BrishtyUtility';
 import { NEARBY_LOCATION_RADIUS, NEARBY_LOCATION_TYPE, NEARBY_LOCATIONS_LIMIT } from '../utility/constants';
 import { getNearbyLocations, removeSourceLocationFromNearbyLocation } from './NearbyLocationsService';
 

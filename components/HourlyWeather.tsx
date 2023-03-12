@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Hour } from '../interfaces';
 import moment from 'moment';
 import { CloseSvg } from './SvgFactory';
-import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import { fireGoogleAnalyticsEvent } from '../utility/BrishtyUtility';
 import { GA_EVENT_INTERACTION_DISPLAY_HOURLY_WEATHER_MODAL_ID } from '../utility/constants';
 
 type HourlyWeatherProps = {

@@ -1,6 +1,6 @@
 import { NearbyLocation } from '../interfaces';
 import { geoDbNearbyLocationsClient } from '../apis/GeoDbNearbyLocationsClient';
-import { sanitiseCoordinate } from './GenericUtilityService';
+import { sanitiseCoordinate } from '../utility/BrishtyUtility';
 import { mapToCoordinate } from './WeatherDetailsService';
 
 const mapNearbyLocationsJsonToNearbyLocations = (nearbyLocationsJson: any): NearbyLocation[] => {

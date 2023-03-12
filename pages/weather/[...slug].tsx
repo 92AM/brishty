@@ -5,7 +5,7 @@ import { getWeatherDetailsByGeoLocation } from '../../services/WeatherDetailsSer
 import { ParsedUrlQuery } from 'querystring';
 import WeatherLocationDetails from '../../components/WeatherLocationDetails';
 import { setPageModel } from '../../services/PageModelService';
-import { parseSearchedLocationNameOrDefault } from '../../services/GenericUtilityService';
+import { parseSearchedLocationNameOrDefault } from '../../utility/BrishtyUtility';
 
 type Props = {
     weatherDetails: WeatherDetails;

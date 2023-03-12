@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import NavSearch from './NavSearch';
 import { getDocument } from '../services/BrowserService';
 import { BurgerMenuSvg, CloseSvg, SearchIconSvg } from './SvgFactory';
-import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import { fireGoogleAnalyticsEvent } from '../utility/BrishtyUtility';
 import {
     GA_EVENT_INTERACTION_EXPAND_NAV_BAR_SEARCH_BOX_ID,
     GA_EVENT_NAVIGATED_ABOUT_US_ID,

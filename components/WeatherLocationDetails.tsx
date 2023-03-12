@@ -9,7 +9,7 @@ import DetailedCurrentWeather from './DetailedCurrentWeather';
 import SevenDayWeather from './SevenDayWeather';
 import { MapLoader } from './MapLoader';
 import Link from 'next/link';
-import { WEATHER_DETAILS_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
+import { WEATHER_DETAILS_PAGE_STATIC_MAP_PROPS } from '../utility/StaticMapPropsFactory';
 import { LeftArrowSvg } from './SvgFactory';
 import { GoogleAdComponent } from './GoogleAdComponent';
 import { CookieModalLoader } from './CookieModalLoader';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import { fireGoogleAnalyticsEvent } from '../utility/BrishtyUtility';
 import {
     GA_EVENT_NAVIGATED_ABOUT_US_ID,
     GA_EVENT_NAVIGATED_ARKA_MITRA_WEBSITE_ID,

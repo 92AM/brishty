@@ -6,7 +6,7 @@ import {
     parseSearchedLocationNameOrDefault,
     sanitiseCoordinate,
     windDegreeToText,
-} from '../GenericUtilityService';
+} from '../BrishtyUtility';
 import * as gtag from '../../lib/gtag';
 
 jest.mock('../../lib/gtag');

@@ -4,7 +4,7 @@ import PageContentWrapper from '../../components/PageContentWrapper';
 import TopLocationsWeatherPreviews from '../../components/TopLocationsWeatherPreviews';
 import Layout from '../../components/Layout';
 import { getCurrentWeatherOfLocations } from '../../services/WeatherDetailsService';
-import { MORE_UK_TOP_SEARCH_LOCATIONS } from '../../services/StaticLocationsFactory';
+import { MORE_UK_TOP_SEARCH_LOCATIONS } from '../../utility/StaticLocationsFactory';
 import { CookieModalLoader } from '../../components/CookieModalLoader';
 
 type UkWeatherProps = {

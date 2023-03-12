@@ -1,7 +1,7 @@
 import React from 'react';
 import { NearbyLocation } from '../interfaces';
 import { searchWeatherByGeoLocation } from '../services/SearchService';
-import { fireGoogleAnalyticsEvent } from '../services/GenericUtilityService';
+import { fireGoogleAnalyticsEvent } from '../utility/BrishtyUtility';
 import { GA_EVENT_SEARCH_TYPE_NEARBY_LOCATION_SEARCH_ID } from '../utility/constants';
 
 type Props = {

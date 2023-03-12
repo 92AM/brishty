@@ -8,13 +8,13 @@ import { MapLoader } from '../components/MapLoader';
 import { setPageModel } from '../services/PageModelService';
 import { getWorldNews } from '../services/WorldNewsService';
 import WorldNews from '../components/WorldNews';
-import { HOME_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
+import { HOME_PAGE_STATIC_MAP_PROPS } from '../utility/StaticMapPropsFactory';
 import { GoogleAdComponent } from '../components/GoogleAdComponent';
 import {
     EUROPEAN_TOP_SEARCH_LOCATIONS,
     REST_OF_WORLD_TOP_SEARCH_LOCATIONS,
     UK_TOP_SEARCH_LOCATIONS,
-} from '../services/StaticLocationsFactory';
+} from '../utility/StaticLocationsFactory';
 import { getCurrentWeatherOfLocations } from '../services/WeatherDetailsService';
 import { CookieModalLoader } from '../components/CookieModalLoader';
 

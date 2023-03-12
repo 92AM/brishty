@@ -4,7 +4,7 @@ import { Coordinate, MainLocationForMap, MapSize } from '../interfaces';
 import Layout from '../components/Layout';
 import PageContentWrapper from '../components/PageContentWrapper';
 import Link from 'next/link';
-import { EXPANDED_HOME_PAGE_STATIC_MAP_PROPS } from '../services/StaticMapPropsFactory';
+import { EXPANDED_HOME_PAGE_STATIC_MAP_PROPS } from '../utility/StaticMapPropsFactory';
 import { LeftArrowSvg } from '../components/SvgFactory';
 import { CookieModalLoader } from '../components/CookieModalLoader';
 import { useWindowSize } from '../custom-hooks/useWindowSize';

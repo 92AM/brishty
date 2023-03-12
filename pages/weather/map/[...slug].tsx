@@ -5,14 +5,11 @@ import { MapLoader } from '../../../components/MapLoader';
 import { Coordinate, MainLocationForMap, MapProps, MapSize, NearbyLocationForMap } from '../../../interfaces';
 import { ParsedUrlQuery } from 'querystring';
 import { NEARBY_LOCATION_RADIUS, NEARBY_LOCATION_TYPE, NEARBY_LOCATIONS_LIMIT } from '../../../utility/constants';
-import { parseBooleanStringOrDefault } from '../../../services/GenericUtilityService';
+import { parseBooleanStringOrDefault } from '../../../utility/BrishtyUtility';
 import { setPageModel } from '../../../services/PageModelService';
 import PageContentWrapper from '../../../components/PageContentWrapper';
 import { getNearbyLocations, removeSourceLocationFromNearbyLocation } from '../../../services/NearbyLocationsService';
-import {
-    EXPANDED_MAP_PAGE_STATIC_MAP_PROPS,
-    HOME_PAGE_STATIC_MAP_PROPS,
-} from '../../../services/StaticMapPropsFactory';
+import { EXPANDED_MAP_PAGE_STATIC_MAP_PROPS, HOME_PAGE_STATIC_MAP_PROPS } from '../../../utility/StaticMapPropsFactory';
 import { LeftArrowSvg } from '../../../components/SvgFactory';
 import { useWindowSize } from '../../../custom-hooks/useWindowSize';
 

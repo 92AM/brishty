@@ -6,7 +6,7 @@ import {
     WEATHER_DETAILS_PAGE_MAP_HEIGHT,
     WEATHER_DETAILS_PAGE_MAP_WIDTH,
     WEATHER_DETAILS_PAGE_MAP_ZOOM_LEVEL,
-} from '../utility/constants';
+} from './constants';
 
 const defaultMapProps = {
     mapnikChecked: true,

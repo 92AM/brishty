@@ -1,5 +1,5 @@
 import { getWindow } from './BrowserService';
-import { fireGoogleAnalyticsEvent } from './GenericUtilityService';
+import { fireGoogleAnalyticsEvent } from '../utility/BrishtyUtility';
 import {
     GA_EVENT_NAVIGATED_EXECUTED_EXPANDED_MAP_SEARCH_ID,
     GA_EVENT_NAVIGATED_SEARCHED_WEATHER_USING_GEO_COORDINATES_ID,

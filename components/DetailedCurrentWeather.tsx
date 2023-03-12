@@ -2,7 +2,7 @@ import React from 'react';
 import WeatherDescriptionItem from './WeatherDescriptionItem';
 import { WeatherDetails } from '../interfaces';
 import moment from 'moment';
-import { windDegreeToText } from '../services/GenericUtilityService';
+import { windDegreeToText } from '../utility/BrishtyUtility';
 
 type DetailedCurrentWeatherProps = {
     item: WeatherDetails;

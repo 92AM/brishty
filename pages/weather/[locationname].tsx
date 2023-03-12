@@ -4,7 +4,7 @@ import { WeatherDetails } from '../../interfaces';
 import { getWeatherDetailsByLocationName } from '../../services/WeatherDetailsService';
 import WeatherLocationDetails from '../../components/WeatherLocationDetails';
 import { setPageModel } from '../../services/PageModelService';
-import { parseSearchedLocationNameOrDefault } from '../../services/GenericUtilityService';
+import { parseSearchedLocationNameOrDefault } from '../../utility/BrishtyUtility';
 
 type Props = {
     weatherDetails: WeatherDetails;
