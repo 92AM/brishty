@@ -5,7 +5,7 @@ import { MapLoader } from '../../../components/MapLoader';
 import { Coordinate, MainLocationForMap, MapProps, MapSize, NearbyLocationForMap } from '../../../interfaces';
 import { ParsedUrlQuery } from 'querystring';
 import { NEARBY_LOCATION_RADIUS, NEARBY_LOCATION_TYPE, NEARBY_LOCATIONS_LIMIT } from '../../../utility/constants';
-import { parseBooleanStringOrDefault, useWindowSize } from '../../../services/GenericUtilityService';
+import { parseBooleanStringOrDefault } from '../../../services/GenericUtilityService';
 import { setPageModel } from '../../../services/PageModelService';
 import PageContentWrapper from '../../../components/PageContentWrapper';
 import { getNearbyLocations, removeSourceLocationFromNearbyLocation } from '../../../services/NearbyLocationsService';
@@ -14,6 +14,7 @@ import {
     HOME_PAGE_STATIC_MAP_PROPS,
 } from '../../../services/StaticMapPropsFactory';
 import { LeftArrowSvg } from '../../../components/SvgFactory';
+import { useWindowSize } from '../../../custom-hooks/useWindowSize';
 
 interface ExpandedWeatherMapProperties {
     mainLocationForMap: MainLocationForMap;
